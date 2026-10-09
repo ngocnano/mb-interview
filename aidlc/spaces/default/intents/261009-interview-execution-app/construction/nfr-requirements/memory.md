@@ -2,6 +2,7 @@
 > This file is kept up to date automatically while the stage runs. Add observations at the review step, not by editing here directly.
 
 ## Interpretations
+- 2026-10-09T15:46:44Z [unit u1-scoring-skeleton] — requirements.md viết mã NFR có gạch (NFR-1) nhưng sensor truy vết đọc NFR1; thêm bảng ánh xạ NFR-n sang NFRn vào requirements.md để truy vết hoạt động.
 <!-- example: 2026-05-29T10:14:32Z — chose REST over GraphQL; the consuming team only needs CRUD, revisit if subscriptions land -->
 
 ## Deviations

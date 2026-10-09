@@ -1,0 +1,494 @@
+# Ngu?n h?p ??ng C1 (OpenAPI). Tr?ch t? inception/contract-design/contract-summary.md v? l? b?n l?m vi?c trong m? ngu?n.
+# U1 s? h?u; c?c Unit sau ch? th?m (NFR3.1). S?a ? ??y th? c?p nh?t contract-summary.md.
+openapi: 3.0.3
+info:
+  title: Interview Execution API
+  version: 1.0.0
+  description: >
+    API giữa app Flutter và backend Node.js. Mọi API trừ /auth/login cần
+    Authorization: Bearer <JWT>. Lỗi luôn trả Error. Trường lạ phải được client bỏ qua.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      summary: Đăng nhập bằng email và mật khẩu (FR-A0)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email, maxLength: 255 }
+                password: { type: string, minLength: 1, maxLength: 128 }
+      responses:
+        '200':
+          description: Đăng nhập thành công
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LoginResponse' }
+
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+  /config:
+    get:
+      summary: Cấu hình công khai cho app (U4)
+      responses:
+        '200':
+          description: Cờ tính năng
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [aiCvSummaryEnabled]
+                properties:
+                  aiCvSummaryEnabled: { type: boolean }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /panels:
+    get:
+      summary: HĐPV Inprogress mà tôi được gán (FR-A2, BR-A2)
+      responses:
+        '200':
+          description: Danh sách sắp theo ngay tăng dần, rồi theo maHdpv
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/PanelSummary' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /panels/{maHdpv}/candidates:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+    get:
+      summary: Ứng viên Xác nhận = Y của HĐPV, mọi vị trí, sắp theo giờ (FR-A4, BR-A1)
+      responses:
+        '200':
+          description: Sắp theo tuThoiGian tăng dần, cùng giờ thì maUngVien tăng dần
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [panel, items]
+                properties:
+                  panel: { $ref: '#/components/schemas/PanelSummary' }
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/CandidateRow' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /panels/{maHdpv}/candidates/{maUngVien}:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+      - $ref: '#/components/parameters/MaUngVien'
+    get:
+      summary: Thông tin ứng viên để chấm (FR-A5); không có sdt, ngaySinh, gioiTinh
+      responses:
+        '200':
+          description: Thông tin ứng viên
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CandidateDetail' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /criteria:
+    get:
+      summary: Tiêu chí đang hoạt động, sắp theo thuTu (FR-A7)
+      responses:
+        '200':
+          description: Danh sách tiêu chí
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Criterion' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /panels/{maHdpv}/candidates/{maUngVien}/referable-positions:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+      - $ref: '#/components/parameters/MaUngVien'
+    get:
+      summary: Vị trí đang hoạt động, trừ vị trí hiện tại của ứng viên (U2, FR-A5)
+      responses:
+        '200':
+          description: Danh sách vị trí để refer
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Position' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /panels/{maHdpv}/candidates/{maUngVien}/evaluation:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+      - $ref: '#/components/parameters/MaUngVien'
+    post:
+      summary: Hoàn thành đánh giá và khóa (FR-A6)
+      description: >
+        HĐPV phải Inprogress hoặc Completed, ứng viên Xác nhận = Y. Mọi tiêu chí đang hoạt động
+        phải có điểm. Cùng idempotencyKey gửi lại trả 200 với bản đã lưu; khác khóa khi đã có bài trả 409.
+        Server tự tính diemTrungBinh; nếu client gửi trường này thì bị bỏ qua.
+        U1: chưa có ketLuan, refer. U2: ketLuan bắt buộc; refer chỉ khi ketLuan = KHAC.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CompleteEvaluationRequest' }
+      responses:
+        '201':
+          description: Đã hoàn thành
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CompleteEvaluationResponse' }
+        '200':
+          description: Gửi lại cùng idempotencyKey, trả bản đã lưu
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CompleteEvaluationResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+    get:
+      summary: Bài đã hoàn thành của tôi cho ứng viên này (U2, US6.3)
+      description: >
+        Chỉ đọc được bài của chính người gọi. Chưa có bài: 404 mã EVALUATION_NOT_FOUND.
+        Chưa được gán: 403.
+      responses:
+        '200':
+          description: Bài đã hoàn thành, chỉ đọc
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EvaluationDetail' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /panels/{maHdpv}/my-evaluations:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+    get:
+      summary: Tóm tắt các bài tôi đã hoàn thành trong HĐPV, để app ghép vào danh sách (U2, ADR-002)
+      responses:
+        '200':
+          description: Chỉ bài của người gọi
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/MyEvaluationSummary' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /panels/{maHdpv}/candidates/{maUngVien}/cv-link:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+      - $ref: '#/components/parameters/MaUngVien'
+    post:
+      summary: Cấp liên kết xem CV ngắn hạn và ghi nhật ký xem (U3, FR-A8)
+      responses:
+        '200':
+          description: Liên kết hết hạn sau 5 phút
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [url, expiresAt, pageCount]
+                properties:
+                  url: { type: string, description: 'Đường dẫn tương đối /api/v1/cv-files/{token}' }
+                  expiresAt: { type: string, format: date-time }
+                  pageCount: { type: integer, minimum: 1 }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500': { $ref: '#/components/responses/ServerError' }
+        '502': { $ref: '#/components/responses/ServerError' }
+  /cv-files/{token}:
+    parameters:
+      - name: token
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      summary: Nội dung PDF của CV (U3)
+      description: >
+        Token ngắn hạn gắn với người dùng và ứng viên; vẫn yêu cầu JWT của cùng người dùng.
+        Header Content-Disposition inline, Cache-Control no-store.
+      responses:
+        '200':
+          description: Tệp PDF
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '410':
+          description: Liên kết đã hết hạn (CV_LINK_EXPIRED)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /panels/{maHdpv}/candidates/{maUngVien}/ai-summary:
+    parameters:
+      - $ref: '#/components/parameters/MaHdpv'
+      - $ref: '#/components/parameters/MaUngVien'
+    post:
+      summary: Tạo hoặc lấy tóm tắt AI của CV (U4, FR-A9, FR-A10)
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taoLai: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Kết quả đã lưu hoặc vừa tạo
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AiSummary' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/Unprocessable' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+        '502': { $ref: '#/components/responses/ServerError' }
+        '504': { $ref: '#/components/responses/ServerError' }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  parameters:
+    MaHdpv:
+      name: maHdpv
+      in: path
+      required: true
+      schema: { type: string }
+    MaUngVien:
+      name: maUngVien
+      in: path
+      required: true
+      schema: { type: string }
+  schemas:
+    LoginResponse:
+      type: object
+      required: [token, expiresAt, user]
+      properties:
+        token: { type: string }
+        expiresAt: { type: string, format: date-time }
+        user:
+          type: object
+          required: [userId, employedId, hoTen, email]
+          properties:
+            userId: { type: string }
+            employedId: { type: string }
+            hoTen: { type: string }
+            email: { type: string }
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, description: 'Mã ổn định, ví dụ VALIDATION_FAILED, UNAUTHENTICATED, FORBIDDEN, PANEL_NOT_AVAILABLE, CANDIDATE_NOT_CONFIRMED, ALREADY_COMPLETED, CV_NOT_FOUND, CV_NO_TEXT, AI_DISABLED, RATE_LIMITED' }
+        message: { type: string, description: 'Thông báo tiếng Việt hiển thị được' }
+        correlationId: { type: string, description: 'Mã tương quan của request, dùng khi báo lỗi cho người vận hành (NFR3.2)' }
+        details:
+          type: array
+          description: Danh sách trường lỗi khi code = VALIDATION_FAILED
+          items:
+            type: object
+            required: [field, message]
+            properties:
+              field: { type: string, description: 'Ví dụ diem.TC03, ketLuan, referMaViTri' }
+              message: { type: string }
+    PanelSummary:
+      type: object
+      required: [maHdpv, ten, ngay, hinhThuc]
+      properties:
+        maHdpv: { type: string }
+        ten: { type: string }
+        ngay: { type: string, format: date }
+        hinhThuc: { type: string, enum: [Online, Offline] }
+        diaDiem: { type: string }
+        soUngVienXacNhan: { type: integer, minimum: 0 }
+    Position:
+      type: object
+      required: [maViTri, job, dvql]
+      properties:
+        maViTri: { type: string }
+        job: { type: string }
+        dvql: { type: string }
+        dvtt1: { type: string }
+        dvtt2: { type: string }
+        dvtt3: { type: string }
+    CandidateRow:
+      type: object
+      required: [maUngVien, ten, viTri, tuThoiGian, denThoiGian]
+      properties:
+        maUngVien: { type: string }
+        ten: { type: string }
+        viTri: { $ref: '#/components/schemas/Position' }
+        tuThoiGian: { type: string, pattern: '^[0-2][0-9]:[0-5][0-9]$' }
+        denThoiGian: { type: string, pattern: '^[0-2][0-9]:[0-5][0-9]$' }
+        coCv: { type: boolean, description: 'U3' }
+    CandidateDetail:
+      allOf:
+        - $ref: '#/components/schemas/CandidateRow'
+        - type: object
+          properties:
+            kinhNghiem: { type: string }
+            trinhDo: { type: string }
+            panel: { $ref: '#/components/schemas/PanelSummary' }
+    Criterion:
+      type: object
+      required: [maTieuChi, tenTieuChi, diemToiThieu, diemToiDa, thuTu]
+      properties:
+        maTieuChi: { type: string, maxLength: 20 }
+        tenTieuChi: { type: string, maxLength: 200 }
+        diemToiThieu: { type: integer, minimum: 1, maximum: 5 }
+        diemToiDa: { type: integer, minimum: 1, maximum: 5 }
+        thuTu: { type: integer }
+    ScoreItem:
+      type: object
+      required: [maTieuChi, diem]
+      properties:
+        maTieuChi: { type: string }
+        diem: { type: integer, minimum: 1, maximum: 5 }
+    CompleteEvaluationRequest:
+      type: object
+      required: [idempotencyKey, diem, ketLuan]
+      properties:
+        idempotencyKey: { type: string, format: uuid }
+        diem:
+          type: array
+          minItems: 1
+          items: { $ref: '#/components/schemas/ScoreItem' }
+        nhanXet: { type: string, maxLength: 2000 }
+        ketLuan:
+          type: string
+          enum: [DAT, LOAI, CAN_NHAC, KHAC]
+          description: 'Bắt buộc từ U2'
+        diemTrungBinh: { type: number, description: 'Server bỏ qua giá trị này và tự tính (BR6.3)' }
+        referMaViTri: { type: string, description: 'Chỉ khi ketLuan = KHAC; khác vị trí hiện tại; vị trí đang hoạt động' }
+        referLyDo: { type: string, maxLength: 500, description: 'Chỉ khi có referMaViTri' }
+    CompleteEvaluationResponse:
+      type: object
+      required: [evaluationId, submittedAt, trangThai]
+      properties:
+        evaluationId: { type: string }
+        submittedAt: { type: string, format: date-time }
+        trangThai: { type: string, enum: [SUBMITTED] }
+        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC] }
+        diemTrungBinh: { type: number, description: 'U2; 2 chữ số thập phân, server tính' }
+    EvaluationDetail:
+      type: object
+      required: [evaluationId, maHdpv, maUngVien, diem, submittedAt, trangThai]
+      properties:
+        evaluationId: { type: string }
+        maHdpv: { type: string }
+        maUngVien: { type: string }
+        diem:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ScoreItem'
+              - type: object
+                properties:
+                  tenTieuChi: { type: string, description: 'Giữ được cả tiêu chí đã ngừng' }
+                  diemToiThieu: { type: integer, minimum: 1, maximum: 5 }
+                  diemToiDa: { type: integer, minimum: 1, maximum: 5 }
+        nhanXet: { type: string }
+        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC], description: 'Vắng với bài hoàn thành từ U1 (AC6.3.6)' }
+        referViTri: { $ref: '#/components/schemas/Position' }
+        referLyDo: { type: string }
+        diemTrungBinh: { type: number }
+        submittedAt: { type: string, format: date-time }
+        trangThai: { type: string, enum: [SUBMITTED] }
+    MyEvaluationSummary:
+      type: object
+      required: [maUngVien, submittedAt]
+      properties:
+        maUngVien: { type: string }
+        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC] }
+        diemTrungBinh: { type: number }
+        submittedAt: { type: string, format: date-time }
+    AiItem:
+      type: object
+      required: [id, tieuDe, trich, trang]
+      properties:
+        id: { type: string }
+        tieuDe: { type: string }
+        thoiGian: { type: string }
+        tinhTrang: { type: string, description: 'Chỉ cho chứng chỉ' }
+        trich: { type: string, maxLength: 300, description: 'Nguyên văn trong CV' }
+        trang: { type: integer, minimum: 1 }
+    AiSummary:
+      type: object
+      required: [tomTat, kinhNghiem, trinhDo, chungChi, cauHoiGoiY, taoLuc, canhBao]
+      properties:
+        tomTat: { type: string, maxLength: 800 }
+        kinhNghiem: { type: array, items: { $ref: '#/components/schemas/AiItem' } }
+        trinhDo: { type: array, items: { $ref: '#/components/schemas/AiItem' } }
+        chungChi: { type: array, items: { $ref: '#/components/schemas/AiItem' } }
+        cauHoiGoiY:
+          type: array
+          maxItems: 6
+          items:
+            type: object
+            required: [loai, noiDung, thamChieu]
+            properties:
+              loai: { type: string, enum: [KINH_NGHIEM, TRINH_DO, CHUNG_CHI] }
+              noiDung: { type: string, maxLength: 300 }
+              thamChieu: { type: string, description: 'id của một AiItem' }
+        taoLuc: { type: string, format: date-time }
+        canhBao: { type: string, description: 'Lưu ý AI có thể sai sót, chỉ để tham khảo' }
+  responses:
+    BadRequest:
+      description: Dữ liệu không hợp lệ (VALIDATION_FAILED)
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Unauthorized:
+      description: Chưa đăng nhập, sai thông tin hoặc token hết hạn
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Forbidden:
+      description: Không được gán vào HĐPV, tài khoản bị khóa, hoặc AI_DISABLED
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    NotFound:
+      description: Không tồn tại, HĐPV không đủ trạng thái, ứng viên Xác nhận = N, hoặc CV_NOT_FOUND
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Conflict:
+      description: Đã hoàn thành đánh giá với khóa khác (ALREADY_COMPLETED)
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Unprocessable:
+      description: CV dạng ảnh không có lớp chữ (CV_NO_TEXT)
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    TooManyRequests:
+      description: Vượt giới hạn số lần gọi AI (RATE_LIMITED) hoặc tạm khóa đăng nhập sau 5 lần sai (LOGIN_LOCKED); có header Retry-After
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    ServerError:
+      description: Lỗi máy chủ hoặc nhà cung cấp ngoài
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }

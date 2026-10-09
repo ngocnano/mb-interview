@@ -1,0 +1,70 @@
+# Môi trường dev và demo (IS-1). `docker compose up -d oracle` chỉ chạy DB (dùng khi phát triển với `npm run dev`).
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21.3.0-slim-faststart
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:?đặt ORACLE_PASSWORD trong .env}
+      DB_OWNER_PASSWORD: ${DB_OWNER_PASSWORD:?đặt DB_OWNER_PASSWORD trong .env}
+      DB_APP_PASSWORD: ${DB_APP_PASSWORD:?đặt DB_APP_PASSWORD trong .env}
+    ports:
+      # Chỉ mở cổng DB trên máy cục bộ (IS-2).
+      - '127.0.0.1:${DB_PORT:-1521}:1521'
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./docker/init:/container-entrypoint-initdb.d:ro
+      - ./docker/schema:/opt/oracle/schema:ro
+      - ./backups:/opt/oracle/backups
+      - ./docker/healthcheck.sh:/opt/oracle/interview-healthcheck.sh:ro
+    healthcheck:
+      test: ['CMD', 'bash', '/opt/oracle/interview-healthcheck.sh']
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    logging:
+      driver: json-file
+      options: { max-size: 50m, max-file: '10' }
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: interview-backend:${APP_VERSION:-dev}
+    restart: unless-stopped
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      # Trong mạng Compose, backend gọi DB qua tên dịch vụ và cổng nội bộ.
+      DB_HOST: oracle
+      DB_PORT: 1521
+      DB_SERVICE: XEPDB1
+      DB_APP_USER: ${DB_APP_USER:-INTERVIEW_APP}
+      DB_APP_PASSWORD: ${DB_APP_PASSWORD:?đặt DB_APP_PASSWORD trong .env}
+      DB_OWNER_USER: ${DB_OWNER_USER:-INTERVIEW_OWNER}
+      DB_OWNER_PASSWORD: ${DB_OWNER_PASSWORD:?đặt DB_OWNER_PASSWORD trong .env}
+      JWT_SECRET: ${JWT_SECRET:?đặt JWT_SECRET (tối thiểu 32 byte) trong .env}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      BCRYPT_COST: ${BCRYPT_COST:-10}
+      TRUST_PROXY: ${TRUST_PROXY:-0}
+    ports:
+      - '${BACKEND_PORT:-8080}:8080'
+    stop_grace_period: 15s
+    logging:
+      driver: json-file
+      options: { max-size: 50m, max-file: '10' }
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: '1'
+
+volumes:
+  oracle-data:

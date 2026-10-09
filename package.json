@@ -1,0 +1,11 @@
+{
+  "name": "interview-execution-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "init-env": "node scripts/init-env.mjs",
+    "db:up": "docker compose up -d --wait oracle",
+    "db:down": "docker compose down",
+    "ci": "node scripts/ci.mjs"
+  }
+}

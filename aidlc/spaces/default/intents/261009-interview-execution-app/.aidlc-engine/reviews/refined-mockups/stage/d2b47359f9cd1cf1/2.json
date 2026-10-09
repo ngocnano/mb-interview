@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "stage": "refined-mockups",
+  "unit": null,
+  "workflow": null,
+  "attempt": "d2b47359f9cd1cf1",
+  "iteration": 2,
+  "reviewer": "aidlc-product-lead-agent",
+  "verdict": "READY",
+  "request_id": "review:4a8ffb775b07baf934f3671ceba0c171",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:e17b7661d0aa3dafe652a47d0c0fb32caa8578eccceda56715f58ae7f8a94913",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "mockups.md",
+      "finding": "Mockup là wireframe chữ kèm đặc tả, chưa phải ảnh giao diện đồ họa; stage này kỳ vọng mức trung đến cao về độ chi tiết hình ảnh, nên người duyệt khó hình dung màu, kính mờ và bento",
+      "required_action": "PO cho biết có cần bản đồ họa không; nếu cần, tạo ở bước sau hoặc từ giao diện Flutter thật",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "mockups.md, bố cục hai khung",
+      "finding": "Hai khung trên máy tính để bàn, lưới bento và đổi sáng/tối cộng thêm công sức trong lát cắt 2 ngày đang đã chật",
+      "required_action": "Quyết định giữ hay bỏ ở Delivery Planning; phương án dự phòng chuyển trang một cột đã được ghi",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "design-system-mapping.md",
+      "finding": "Chưa tính tương phản cho viền ô nhập chế độ tối và chữ trên kính mờ thật",
+      "required_action": "Kiểm khi dựng giao diện (đã ghi trong A11Y-2, A11Y-14)",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "interaction-spec.md, ScoreSelector",
+      "finding": "`SegmentedButton` của Material 3 có thể khó tùy chỉnh để cao 48 px và có dấu tích cho 5 đoạn hẹp trên điện thoại",
+      "required_action": "Nếu vướng, dùng hàng 5 nút tự viết; không đổi thiết kế",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "accessibility-checklist.md",
+      "finding": "Nhiều mục ở trạng thái \"Cần kiểm khi dựng\"; danh mục chưa phải kết quả kiểm",
+      "required_action": "Giữ lời giới hạn đã ghi; đưa các mục này vào kế hoạch kiểm thử ở Construction",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-06",
+      "severity": "High",
+      "location": "stories.md toàn bộ",
+      "finding": "Phạm vi đã tăng từ 8 yêu cầu lên 24 story (15 Must Have) so với mục tiêu \"dựng trong 2 ngày\"; không có đánh giá nào cho thấy khối lượng này vừa 2 ngày",
+      "required_action": "PO và Delivery Planning quyết định đường cắt phạm vi; ưu tiên làm các story Must Have trước, cân nhắc đưa AI, hai khung, sáng/tối, refer, CV sang đợt sau",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-07",
+      "severity": "Medium",
+      "location": "US5.6, US5.7, US7.4, NFR-8",
+      "finding": "Tính năng AI mâu thuẫn với tài liệu nguồn Phase 2 mục 11.2 (không dùng AI phân tích ứng viên trong MVP khi chưa có cơ sở pháp lý, consent, rà soát thiên lệch); nhà cung cấp, nơi lưu dữ liệu và consent chưa quyết",
+      "required_action": "Giữ cờ tắt mặc định; PO xác nhận chấp nhận rủi ro này và giao Legal / Security trả lời OQ-AI-1..4 trước khi bật",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-08",
+      "severity": "Medium",
+      "location": "FR-A5, FR-A6, US5.3, US5.4",
+      "finding": "Ý nghĩa nghiệp vụ của kết luận `Khác` chưa được PO mô tả (nhãn chỉ là \"Khác\"); dễ bị hiểu lẫn với `Cân nhắc` khi HR đọc kết quả sau này",
+      "required_action": "PO xác nhận ý nghĩa của `Khác` và có đổi nhãn thành rõ hơn (ví dụ \"Phù hợp vị trí khác\") không",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-09",
+      "severity": "Medium",
+      "location": "stories.md, cột Ưu tiên",
+      "finding": "Mức ưu tiên Should Have và Could Have của US5.4, US5.5, US5.6, US5.7, US7.4 và nhóm 8 là đề xuất của người soạn, PO chưa xác nhận",
+      "required_action": "PO xác nhận hoặc đổi mức ưu tiên tại cổng",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-10",
+      "severity": "Medium",
+      "location": "requirements.md, stories.md",
+      "finding": "Hai tài liệu đã được duyệt ở stage trước bị sửa trực tiếp nhiều lần (trạng thái HĐPV, bỏ chọn vị trí, CV, kết luận, refer, AI, giao diện chung) mà không mở lại vòng duyệt stage đó",
+      "required_action": "Ghi nhận cho PO; nên có một lượt rà soát tổng thể tài liệu ở Delivery Planning",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-11",
+      "severity": "Low",
+      "location": "NFR-9",
+      "finding": "Phông chữ đồng nhất không áp dụng được cho chữ bên trong tệp CV PDF (dùng phông nhúng trong tệp); họ phông Roboto là đề xuất chưa được PO xác nhận",
+      "required_action": "Giữ ghi chú đã có; PO xác nhận họ phông",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-12",
+      "severity": "Low",
+      "location": "design-system-mapping.md",
+      "finding": "Làm nổi bật đoạn trích trong CV phụ thuộc gói xem PDF hỗ trợ tọa độ chữ; gói chưa chọn",
+      "required_action": "Chọn gói ở thiết kế kỹ thuật, kiểm trên cả web và điện thoại; phương án dự phòng là hiển thị bản văn bản của trang",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-13",
+      "severity": "Low",
+      "location": "mockups-preview.html",
+      "finding": "Nội dung AI và CV trong bản HTML là dữ liệu giả lập; chất lượng AI thật chưa được đánh giá",
+      "required_action": "Đánh giá chất lượng với CV thật khi có nhà cung cấp",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-14",
+      "severity": "High",
+      "location": "stories.md toàn bộ",
+      "finding": "Phạm vi đã lên 25 story (16 Must Have) cho mục tiêu \"dựng trong 2 ngày\"; chưa có đánh giá khối lượng nào chứng minh vừa 2 ngày",
+      "required_action": "PO và Delivery Planning chốt đường cắt phạm vi trước khi vào Construction (đề xuất hai đợt như lần rà soát trước)",
+      "status": "New"
+    },
+    {
+      "id": "R-15",
+      "severity": "Medium",
+      "location": "requirements.md FR-A4, FR-A5; stories.md US5.8",
+      "finding": "\"Cột điểm trung bình ứng viên\" được hiểu là cả khối trên phiếu chấm lẫn cột trên danh sách ứng viên; đây là diễn giải của người soạn",
+      "required_action": "PO xác nhận hiểu đúng hoặc chọn một trong hai chỗ",
+      "status": "New"
+    },
+    {
+      "id": "R-16",
+      "severity": "Medium",
+      "location": "memory/project.md",
+      "finding": "Quy tắc cứng đã khẳng định ở practices-discovery vẫn dùng chữ \"submit\" (ví dụ \"idempotency key cho thao tác submit đánh giá\"); chưa đổi vì cần qua bước khẳng định lại",
+      "required_action": "Chỉ đổi khi PO muốn; hiện không ảnh hưởng chức năng",
+      "status": "New"
+    },
+    {
+      "id": "R-17",
+      "severity": "Medium",
+      "location": "FR-A5, A-18",
+      "finding": "Điểm trung bình tạm tính khi chưa chọn đủ tiêu chí có thể gây hiểu nhầm là điểm cuối",
+      "required_action": "Giữ dòng phụ \"Tạm tính theo n/N tiêu chí đã chọn\"; PO xác nhận hiển thị tạm tính hay chỉ khi đủ",
+      "status": "New"
+    },
+    {
+      "id": "R-18",
+      "severity": "Low",
+      "location": "FR-A5, A-17",
+      "finding": "Trung bình cộng không trọng số, quy về thang 5; nếu sau này có trọng số theo tiêu chí (FR-7 ở phạm vi đầy đủ) thì công thức phải đổi, và điểm đã lưu không tính lại",
+      "required_action": "Ghi nhận; khi thêm trọng số cần quyết định có tính lại bài cũ không",
+      "status": "New"
+    },
+    {
+      "id": "R-19",
+      "severity": "Low",
+      "location": "FR-A5",
+      "finding": "Giao diện làm tròn bằng số thực, còn server tính bằng số thập phân; với số tiêu chí khác 5 có thể lệch ở quy tắc làm tròn lên từ 0,5",
+      "required_action": "Dùng cùng một hàm tính và kiểm thử đơn vị cho cả hai phía khi hiện thực (khớp TDD)",
+      "status": "New"
+    },
+    {
+      "id": "R-20",
+      "severity": "Low",
+      "location": "mockups-preview.html",
+      "finding": "Thẻ ứng viên có hiệu ứng trượt vào nên ảnh chụp lúc đang chạy hiệu ứng trông mờ; không phải lỗi, tắt khi bật giảm chuyển động",
+      "required_action": "Không cần xử lý",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "mockups.md",
+      "finding": "Mockup là wireframe chữ kèm đặc tả, chưa phải ảnh giao diện đồ họa; stage này kỳ vọng mức trung đến cao về độ chi tiết hình ảnh, nên người duyệt khó hình dung màu, kính mờ và bento",
+      "required_action": "PO cho biết có cần bản đồ họa không; nếu cần, tạo ở bước sau hoặc từ giao diện Flutter thật",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "mockups.md, bố cục hai khung",
+      "finding": "Hai khung trên máy tính để bàn, lưới bento và đổi sáng/tối cộng thêm công sức trong lát cắt 2 ngày đang đã chật",
+      "required_action": "Quyết định giữ hay bỏ ở Delivery Planning; phương án dự phòng chuyển trang một cột đã được ghi",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "design-system-mapping.md",
+      "finding": "Chưa tính tương phản cho viền ô nhập chế độ tối và chữ trên kính mờ thật",
+      "required_action": "Kiểm khi dựng giao diện (đã ghi trong A11Y-2, A11Y-14)",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "interaction-spec.md, ScoreSelector",
+      "finding": "`SegmentedButton` của Material 3 có thể khó tùy chỉnh để cao 48 px và có dấu tích cho 5 đoạn hẹp trên điện thoại",
+      "required_action": "Nếu vướng, dùng hàng 5 nút tự viết; không đổi thiết kế",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "accessibility-checklist.md",
+      "finding": "Nhiều mục ở trạng thái \"Cần kiểm khi dựng\"; danh mục chưa phải kết quả kiểm",
+      "required_action": "Giữ lời giới hạn đã ghi; đưa các mục này vào kế hoạch kiểm thử ở Construction",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-06",
+      "severity": "High",
+      "location": "stories.md toàn bộ",
+      "finding": "Phạm vi đã tăng từ 8 yêu cầu lên 24 story (15 Must Have) so với mục tiêu \"dựng trong 2 ngày\"; không có đánh giá nào cho thấy khối lượng này vừa 2 ngày",
+      "required_action": "PO và Delivery Planning quyết định đường cắt phạm vi; ưu tiên làm các story Must Have trước, cân nhắc đưa AI, hai khung, sáng/tối, refer, CV sang đợt sau",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-07",
+      "severity": "Medium",
+      "location": "US5.6, US5.7, US7.4, NFR-8",
+      "finding": "Tính năng AI mâu thuẫn với tài liệu nguồn Phase 2 mục 11.2 (không dùng AI phân tích ứng viên trong MVP khi chưa có cơ sở pháp lý, consent, rà soát thiên lệch); nhà cung cấp, nơi lưu dữ liệu và consent chưa quyết",
+      "required_action": "Giữ cờ tắt mặc định; PO xác nhận chấp nhận rủi ro này và giao Legal / Security trả lời OQ-AI-1..4 trước khi bật",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-08",
+      "severity": "Medium",
+      "location": "FR-A5, FR-A6, US5.3, US5.4",
+      "finding": "Ý nghĩa nghiệp vụ của kết luận `Khác` chưa được PO mô tả (nhãn chỉ là \"Khác\"); dễ bị hiểu lẫn với `Cân nhắc` khi HR đọc kết quả sau này",
+      "required_action": "PO xác nhận ý nghĩa của `Khác` và có đổi nhãn thành rõ hơn (ví dụ \"Phù hợp vị trí khác\") không",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-09",
+      "severity": "Medium",
+      "location": "stories.md, cột Ưu tiên",
+      "finding": "Mức ưu tiên Should Have và Could Have của US5.4, US5.5, US5.6, US5.7, US7.4 và nhóm 8 là đề xuất của người soạn, PO chưa xác nhận",
+      "required_action": "PO xác nhận hoặc đổi mức ưu tiên tại cổng",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-10",
+      "severity": "Medium",
+      "location": "requirements.md, stories.md",
+      "finding": "Hai tài liệu đã được duyệt ở stage trước bị sửa trực tiếp nhiều lần (trạng thái HĐPV, bỏ chọn vị trí, CV, kết luận, refer, AI, giao diện chung) mà không mở lại vòng duyệt stage đó",
+      "required_action": "Ghi nhận cho PO; nên có một lượt rà soát tổng thể tài liệu ở Delivery Planning",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-11",
+      "severity": "Low",
+      "location": "NFR-9",
+      "finding": "Phông chữ đồng nhất không áp dụng được cho chữ bên trong tệp CV PDF (dùng phông nhúng trong tệp); họ phông Roboto là đề xuất chưa được PO xác nhận",
+      "required_action": "Giữ ghi chú đã có; PO xác nhận họ phông",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-12",
+      "severity": "Low",
+      "location": "design-system-mapping.md",
+      "finding": "Làm nổi bật đoạn trích trong CV phụ thuộc gói xem PDF hỗ trợ tọa độ chữ; gói chưa chọn",
+      "required_action": "Chọn gói ở thiết kế kỹ thuật, kiểm trên cả web và điện thoại; phương án dự phòng là hiển thị bản văn bản của trang",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-13",
+      "severity": "Low",
+      "location": "mockups-preview.html",
+      "finding": "Nội dung AI và CV trong bản HTML là dữ liệu giả lập; chất lượng AI thật chưa được đánh giá",
+      "required_action": "Đánh giá chất lượng với CV thật khi có nhà cung cấp",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-14",
+      "severity": "High",
+      "location": "stories.md toàn bộ",
+      "finding": "Phạm vi đã lên 25 story (16 Must Have) cho mục tiêu \"dựng trong 2 ngày\"; chưa có đánh giá khối lượng nào chứng minh vừa 2 ngày",
+      "required_action": "PO và Delivery Planning chốt đường cắt phạm vi trước khi vào Construction (đề xuất hai đợt như lần rà soát trước)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-15",
+      "severity": "Medium",
+      "location": "requirements.md FR-A4, FR-A5; stories.md US5.8",
+      "finding": "\"Cột điểm trung bình ứng viên\" được hiểu là cả khối trên phiếu chấm lẫn cột trên danh sách ứng viên; đây là diễn giải của người soạn",
+      "required_action": "PO xác nhận hiểu đúng hoặc chọn một trong hai chỗ",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-16",
+      "severity": "Medium",
+      "location": "memory/project.md",
+      "finding": "Quy tắc cứng đã khẳng định ở practices-discovery vẫn dùng chữ \"submit\" (ví dụ \"idempotency key cho thao tác submit đánh giá\"); chưa đổi vì cần qua bước khẳng định lại",
+      "required_action": "Chỉ đổi khi PO muốn; hiện không ảnh hưởng chức năng",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-17",
+      "severity": "Medium",
+      "location": "FR-A5, A-18",
+      "finding": "Điểm trung bình tạm tính khi chưa chọn đủ tiêu chí có thể gây hiểu nhầm là điểm cuối",
+      "required_action": "Giữ dòng phụ \"Tạm tính theo n/N tiêu chí đã chọn\"; PO xác nhận hiển thị tạm tính hay chỉ khi đủ",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-18",
+      "severity": "Low",
+      "location": "FR-A5, A-17",
+      "finding": "Trung bình cộng không trọng số, quy về thang 5; nếu sau này có trọng số theo tiêu chí (FR-7 ở phạm vi đầy đủ) thì công thức phải đổi, và điểm đã lưu không tính lại",
+      "required_action": "Ghi nhận; khi thêm trọng số cần quyết định có tính lại bài cũ không",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-19",
+      "severity": "Low",
+      "location": "FR-A5",
+      "finding": "Giao diện làm tròn bằng số thực, còn server tính bằng số thập phân; với số tiêu chí khác 5 có thể lệch ở quy tắc làm tròn lên từ 0,5",
+      "required_action": "Dùng cùng một hàm tính và kiểm thử đơn vị cho cả hai phía khi hiện thực (khớp TDD)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-20",
+      "severity": "Low",
+      "location": "mockups-preview.html",
+      "finding": "Thẻ ứng viên có hiệu ứng trượt vào nên ảnh chụp lúc đang chạy hiệu ứng trông mờ; không phải lỗi, tắt khi bật giảm chuyển động",
+      "required_action": "Không cần xử lý",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-product-lead-agent\n**Verdict:** READY\n**Iteration:** 2\n\n### Review\n\nRà soát advisory lần hai sau đợt bổ sung thứ tư của PO: đổi thuật ngữ \"nộp đánh giá\" thành \"hoàn thành đánh giá\" và thêm điểm trung bình ứng viên (khối cập nhật ngay trên phiếu chấm và cột Điểm TB trên danh sách ứng viên).\n\nNhận định: thuật ngữ mới được áp dụng nhất quán ở bản HTML (nút, hộp thoại, thông báo, nhãn), `mockups.md`, `interaction-spec.md`, `requirements.md`, `stories.md` và `traceability.json`; không còn chữ \"nộp\" trong các tài liệu hiện hành. Các định danh kỹ thuật `SUBMITTED`, `submittedAt`, `idempotencyKey` được giữ nguyên có chủ đích và ghi rõ. Điểm trung bình có đủ ở bốn lớp: giao diện (khối AverageScoreCard, cột Điểm TB), yêu cầu (FR-A4, FR-A5, FR-A6, BR-A5), story (US5.8, AC4.1.12, AC6.1.14..16, AC6.3.5) và truy vết. Ví dụ tính (4, 3, 4 ra 3,7; 4, 3, 5, 4, 5 ra 4,2) kiểm tra đúng bằng tay. Điểm trung bình được server tự tính và bỏ qua giá trị do client gửi, nên không thể bị giả mạo. Kiểm tra bằng script: 54 ID FR/NFR đều có truy vết, 25 story đều được tham chiếu.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| High | stories.md toàn bộ | Phạm vi đã lên 25 story (16 Must Have) cho mục tiêu \"dựng trong 2 ngày\"; chưa có đánh giá khối lượng nào chứng minh vừa 2 ngày | PO và Delivery Planning chốt đường cắt phạm vi trước khi vào Construction (đề xuất hai đợt như lần rà soát trước) |\n| Medium | requirements.md FR-A4, FR-A5; stories.md US5.8 | \"Cột điểm trung bình ứng viên\" được hiểu là cả khối trên phiếu chấm lẫn cột trên danh sách ứng viên; đây là diễn giải của người soạn | PO xác nhận hiểu đúng hoặc chọn một trong hai chỗ |\n| Medium | memory/project.md | Quy tắc cứng đã khẳng định ở practices-discovery vẫn dùng chữ \"submit\" (ví dụ \"idempotency key cho thao tác submit đánh giá\"); chưa đổi vì cần qua bước khẳng định lại | Chỉ đổi khi PO muốn; hiện không ảnh hưởng chức năng |\n| Medium | FR-A5, A-18 | Điểm trung bình tạm tính khi chưa chọn đủ tiêu chí có thể gây hiểu nhầm là điểm cuối | Giữ dòng phụ \"Tạm tính theo n/N tiêu chí đã chọn\"; PO xác nhận hiển thị tạm tính hay chỉ khi đủ |\n| Low | FR-A5, A-17 | Trung bình cộng không trọng số, quy về thang 5; nếu sau này có trọng số theo tiêu chí (FR-7 ở phạm vi đầy đủ) thì công thức phải đổi, và điểm đã lưu không tính lại | Ghi nhận; khi thêm trọng số cần quyết định có tính lại bài cũ không |\n| Low | FR-A5 | Giao diện làm tròn bằng số thực, còn server tính bằng số thập phân; với số tiêu chí khác 5 có thể lệch ở quy tắc làm tròn lên từ 0,5 | Dùng cùng một hàm tính và kiểm thử đơn vị cho cả hai phía khi hiện thực (khớp TDD) |\n| Low | mockups-preview.html | Thẻ ứng viên có hiệu ứng trượt vào nên ảnh chụp lúc đang chạy hiệu ứng trông mờ; không phải lỗi, tắt khi bật giảm chuyển động | Không cần xử lý |\n\nCác finding còn hiệu lực từ lần rà soát trước, không đổi: AI mâu thuẫn tài liệu nguồn mục 11.2 và còn chờ OQ-AI-1..4; ý nghĩa nghiệp vụ của kết luận `Khác`; mức ưu tiên Should/Could Have chưa được PO xác nhận; hai tài liệu đã duyệt ở stage trước bị sửa trực tiếp nhiều lần.\n\n### Suggestions\n\n- Khi hiện thực, đặt công thức điểm trung bình thành một hàm thuần dùng chung và viết test đơn vị trước (4, 3, 4 ra 3,7; 4, 3, 5, 4, 5 ra 4,2; bảng không điểm ra rỗng).\n",
+  "recorded_at": "2026-10-09T09:04:42Z"
+}

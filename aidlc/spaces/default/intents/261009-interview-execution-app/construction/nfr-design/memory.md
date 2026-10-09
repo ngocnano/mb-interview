@@ -8,6 +8,7 @@
 <!-- example: 2026-05-29T10:14:32Z — skipped the optional caching layer the stage prose suggested; the dataset is small enough that it adds risk -->
 
 ## Tradeoffs
+- 2026-10-09T15:46:44Z [unit u1-scoring-skeleton] — Sự kiện kiểm toán chỉ ghi ra stdout (log), chưa phải kho bất biến; phiếu hoàn thành vẫn bất biến trong DB. Cân nhắc bảng kiểm toán chỉ-thêm ở hạ tầng.
 <!-- example: 2026-05-29T10:14:32Z — picked TDD over BDD this run; the team is unit-first and the domain is well-understood -->
 
 ## Open questions

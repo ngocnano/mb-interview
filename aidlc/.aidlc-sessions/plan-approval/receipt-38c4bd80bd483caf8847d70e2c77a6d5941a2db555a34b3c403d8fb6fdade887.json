@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "targetId": "unit:u1-scoring-skeleton",
+  "intentId": "01a11ef8-9f16-752f-ade5-27394f73c3d1",
+  "runFloor": "WORKFLOW_STARTED:2026-10-09T04:42:52Z#1",
+  "fingerprint": "sha256:v3:50592ada2ef2000c03f3fef14dbb2ffc33b9117a6d7aef2096dbd70ab9c3b229",
+  "questionsFile": "aidlc/spaces/default/intents/261009-interview-execution-app/construction/u1-scoring-skeleton/code-generation/code-generation-questions.md",
+  "promptSha256": "dee3180c09175077bd3edce48a84a061b31caf467e82323df5b0f8577453a8bd",
+  "directiveEpoch": "sha256:9396945de6bc005dbb14a25957f18b59bcadaa3cb631a0e215d3e36c2507a6c0",
+  "sourceFloor": "83e6a38c05bf238d35c0877cc2be5eb55705d6f5b8d4a55f1a9842fc4de68130",
+  "markerRevision": 26,
+  "plannedSourceSha256": "83e6a38c05bf238d35c0877cc2be5eb55705d6f5b8d4a55f1a9842fc4de68130",
+  "session": "sess_0fd97503-1006-446a-b076-101a6a055490",
+  "challengeId": "57d4af55ae0f6906f81b3107a31f1502",
+  "choice": "Approve Plan",
+  "questionsSha256": "9c3778ab1c21cfcd293b3d21161d4c21ff5e952751e7797cf64edd616e84f4a9",
+  "certifiedSourceSha256": "83e6a38c05bf238d35c0877cc2be5eb55705d6f5b8d4a55f1a9842fc4de68130",
+  "status": "generation"
+}

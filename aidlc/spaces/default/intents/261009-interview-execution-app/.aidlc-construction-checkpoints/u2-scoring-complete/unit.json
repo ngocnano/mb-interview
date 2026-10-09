@@ -1,0 +1,22 @@
+{
+  "version": 4,
+  "id": "5bf02c6f-73c5-41f1-9836-45b9d2425c08",
+  "kind": "unit",
+  "unit": "u2-scoring-complete",
+  "fingerprint": "sha256:fe9b30ea63db4301bfd8fa150fe0a792c950eaf8781c785011054cd84665abef",
+  "command_sha256": "5eed5d8d48512e504e5d39c41fba40437e3a00e052a6a3141d170dcb8832a8ab",
+  "command_label": "npm --prefix backend run verify:e2e",
+  "started_at": "2026-10-09T16:50:34.251Z",
+  "finished_at": null,
+  "exit_code": null,
+  "signal": null,
+  "error": null,
+  "stdout_bytes": 0,
+  "stderr_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_tail": "",
+  "stderr_tail": "",
+  "evidence_unchanged": false,
+  "verified": false
+}

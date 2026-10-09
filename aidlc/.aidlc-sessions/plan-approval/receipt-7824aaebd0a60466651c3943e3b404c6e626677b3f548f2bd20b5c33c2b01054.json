@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "targetId": "unit:u2-scoring-complete",
+  "intentId": "01a11ef8-9f16-752f-ade5-27394f73c3d1",
+  "runFloor": "WORKFLOW_STARTED:2026-10-09T04:42:52Z#1",
+  "fingerprint": "sha256:v3:ea666559d4e9636100e55855fb34d5335a7017bd90cb17f7d4f869419ea3c3c2",
+  "questionsFile": "aidlc/spaces/default/intents/261009-interview-execution-app/construction/u2-scoring-complete/code-generation/code-generation-questions.md",
+  "promptSha256": "4af83c2057773ea0fa3f115b017c94b3ac8cb64f2c1b66d3b34f13409c41f721",
+  "directiveEpoch": "sha256:ecd565cdd9309470d5673b06b7dd059ad895eaf75d646d55beb8f6afa258f765",
+  "sourceFloor": "a14ecfded159d32611eab2baf22d609a40c12e078c622e5ac87668518eff6ecd",
+  "markerRevision": 51,
+  "plannedSourceSha256": "a14ecfded159d32611eab2baf22d609a40c12e078c622e5ac87668518eff6ecd",
+  "session": "sess_0fd97503-1006-446a-b076-101a6a055490",
+  "challengeId": "5fdb4161b27ad8a4a5c4be69722c6eb7",
+  "choice": "Approve Plan",
+  "questionsSha256": "a4d4aacec54b63081d1e1e3c848672f799ea9efa1129406ae1092eae0c47d6ca",
+  "certifiedSourceSha256": "a14ecfded159d32611eab2baf22d609a40c12e078c622e5ac87668518eff6ecd",
+  "status": "generation"
+}

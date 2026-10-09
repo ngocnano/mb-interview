@@ -1,0 +1,734 @@
+{
+  "stage": "code-generation",
+  "unit": "u2-scoring-complete",
+  "upstream_ids": [
+    "AC1.2.1",
+    "AC1.2.2",
+    "AC2.1.3",
+    "AC4.1.11",
+    "AC4.1.12",
+    "AC5.3.1",
+    "AC5.3.2",
+    "AC5.3.3",
+    "AC5.3.4",
+    "AC5.3.5",
+    "AC5.3.6",
+    "AC5.3.7",
+    "AC5.4.0",
+    "AC5.4.1",
+    "AC5.4.2",
+    "AC5.4.3",
+    "AC5.4.4",
+    "AC5.4.5",
+    "AC5.4.6",
+    "AC5.4.7",
+    "AC5.4.8",
+    "AC5.8.1",
+    "AC5.8.2",
+    "AC5.8.3",
+    "AC5.8.4",
+    "AC5.8.5",
+    "AC5.8.6",
+    "AC5.8.7",
+    "AC5.8.8",
+    "AC6.1.8",
+    "AC6.1.9",
+    "AC6.1.10",
+    "AC6.1.11",
+    "AC6.1.12",
+    "AC6.1.14",
+    "AC6.1.15",
+    "AC6.1.16",
+    "AC6.2.1",
+    "AC6.2.2",
+    "AC6.2.3",
+    "AC6.3.1",
+    "AC6.3.2",
+    "AC6.3.3",
+    "AC6.3.4",
+    "AC6.3.5",
+    "AC6.3.6",
+    "AC2.1.1",
+    "AC2.1.2",
+    "AC2.1.4",
+    "AC2.1.5",
+    "AC2.1.6",
+    "AC2.1.7",
+    "AC4.1.1",
+    "AC4.1.10",
+    "AC4.1.2",
+    "AC4.1.3",
+    "AC4.1.4",
+    "AC4.1.5",
+    "AC4.1.6",
+    "AC4.1.7",
+    "AC4.1.8",
+    "AC4.1.9",
+    "AC5.2.1",
+    "AC5.2.2",
+    "AC5.2.3",
+    "AC5.2.4",
+    "AC5.2.5",
+    "AC6.1.1",
+    "AC6.1.13",
+    "AC6.1.2",
+    "AC6.1.3",
+    "AC6.1.4",
+    "AC6.1.5",
+    "AC6.1.6",
+    "AC6.1.7",
+    "AC5.2.6",
+    "AC5.2.7",
+    "BR5.1",
+    "BR5.2",
+    "BR5.3",
+    "BR5.4",
+    "BR5.5",
+    "BR5.6",
+    "BR5.7",
+    "BR5.8",
+    "BR5.9",
+    "BR6.1",
+    "BR6.2",
+    "BR6.3",
+    "BR6.4",
+    "BR6.5",
+    "BR6.6",
+    "BR6.7",
+    "BR7.1",
+    "BR7.2",
+    "BR7.3",
+    "BR7.4",
+    "BR7.5",
+    "BR7.6",
+    "BR7.7",
+    "BR7.8",
+    "BR8.1",
+    "BR8.2",
+    "BR8.3",
+    "BR8.4",
+    "BR8.5",
+    "BR9.1",
+    "BR9.2",
+    "BR9.3",
+    "BR1.4",
+    "BR2.1",
+    "BR2.10",
+    "BR2.11",
+    "BR2.2",
+    "BR2.3",
+    "BR3.10",
+    "BR3.3",
+    "BR3.5",
+    "BR3.7",
+    "BR3.8",
+    "BR3.9"
+  ],
+  "coverage": [
+    {
+      "id": "AC1.2.1",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC1.2.2",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC2.1.3",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.11",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.12",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC5.3.1",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.3.2",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.3.3",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.3.4",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.3.5",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation-u2.test.ts"
+    },
+    {
+      "id": "AC5.3.6",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.3.7",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.0",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.1",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.2",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC5.4.3",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.4",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC5.4.5",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.6",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation-u2.test.ts"
+    },
+    {
+      "id": "AC5.4.7",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.4.8",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.1",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.2",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.3",
+      "status": "OK",
+      "target": "app/test/core/average_score_test.dart"
+    },
+    {
+      "id": "AC5.8.4",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.5",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.6",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.8.7",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC5.8.8",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC6.1.8",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.9",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.10",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.11",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.12",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.14",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.15",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.1.16",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation-u2.test.ts"
+    },
+    {
+      "id": "AC6.2.1",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation-u2.test.ts"
+    },
+    {
+      "id": "AC6.2.2",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC6.2.3",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC6.3.1",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC6.3.2",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation-u2.test.ts"
+    },
+    {
+      "id": "AC6.3.3",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.3.4",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC6.3.5",
+      "status": "OK",
+      "target": "backend/test/integration/api-u2.test.ts"
+    },
+    {
+      "id": "AC6.3.6",
+      "status": "OK",
+      "target": "app/test/features/review_logout_test.dart"
+    },
+    {
+      "id": "AC2.1.1",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC2.1.2",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC2.1.4",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC2.1.5",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC2.1.6",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC2.1.7",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.1",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.10",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.2",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.3",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.4",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.5",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.6",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.7",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.8",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC4.1.9",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.1",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.2",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.3",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.4",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.5",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.1",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.13",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.2",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.3",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.4",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.5",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.6",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC6.1.7",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.6",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "AC5.2.7",
+      "status": "N/A",
+      "target": "phủ ở Unit khác (U1 hoặc U5), xem functional-design"
+    },
+    {
+      "id": "BR5.1",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR5.2",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR5.3",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR5.4",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR5.5",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR5.6",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR5.7",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR5.8",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR5.9",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR6.1",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/average-score.ts"
+    },
+    {
+      "id": "BR6.2",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/average-score.ts"
+    },
+    {
+      "id": "BR6.3",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR6.4",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR6.5",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR6.6",
+      "status": "OK",
+      "target": "shared/average-score-examples.json"
+    },
+    {
+      "id": "BR6.7",
+      "status": "OK",
+      "target": "app/lib/core/average_score.dart"
+    },
+    {
+      "id": "BR7.1",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR7.2",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR7.3",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR7.4",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR7.5",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR7.6",
+      "status": "OK",
+      "target": "app/lib/features/candidates/candidates_screen.dart"
+    },
+    {
+      "id": "BR7.7",
+      "status": "OK",
+      "target": "app/lib/features/scoring/evaluation_view_screen.dart"
+    },
+    {
+      "id": "BR7.8",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR8.1",
+      "status": "OK",
+      "target": "app/lib/features/shared/widgets.dart"
+    },
+    {
+      "id": "BR8.2",
+      "status": "OK",
+      "target": "app/lib/core/auth.dart"
+    },
+    {
+      "id": "BR8.3",
+      "status": "OK",
+      "target": "app/lib/features/candidates/candidates_screen.dart"
+    },
+    {
+      "id": "BR8.4",
+      "status": "OK",
+      "target": "app/lib/features/panels/panels_screen.dart"
+    },
+    {
+      "id": "BR8.5",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR9.1",
+      "status": "OK",
+      "target": "docker/schema/migrate/002-u2-constraints.sql"
+    },
+    {
+      "id": "BR9.2",
+      "status": "OK",
+      "target": "scripts/migrate.mjs"
+    },
+    {
+      "id": "BR9.3",
+      "status": "OK",
+      "target": "docker/schema/migrate/002-u2-constraints.sql"
+    },
+    {
+      "id": "BR1.4",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR2.1",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR2.10",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR2.11",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR2.2",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR2.3",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.10",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.3",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.5",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.7",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.8",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    },
+    {
+      "id": "BR3.9",
+      "status": "N/A",
+      "target": "quy tắc của U1 được tham chiếu, đã phủ ở U1"
+    }
+  ]
+}

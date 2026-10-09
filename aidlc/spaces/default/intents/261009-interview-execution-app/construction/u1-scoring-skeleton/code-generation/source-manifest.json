@@ -1,0 +1,136 @@
+{
+  "stage": "code-generation",
+  "unit": "u1-scoring-skeleton",
+  "version": 1,
+  "writes": [
+    {
+      "path": ".dockerignore"
+    },
+    {
+      "path": ".env.example"
+    },
+    {
+      "path": ".gitattributes"
+    },
+    {
+      "path": ".gitignore"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "app/.gitignore"
+    },
+    {
+      "path": "app/.metadata"
+    },
+    {
+      "path": "app/README.md"
+    },
+    {
+      "path": "app/analysis_options.yaml"
+    },
+    {
+      "path": "app/android/.gitignore"
+    },
+    {
+      "path": "app/android/app/build.gradle.kts"
+    },
+    {
+      "path": "app/android/app/src/debug/"
+    },
+    {
+      "path": "app/android/app/src/main/AndroidManifest.xml"
+    },
+    {
+      "path": "app/android/app/src/main/kotlin/"
+    },
+    {
+      "path": "app/android/app/src/main/res/"
+    },
+    {
+      "path": "app/android/app/src/profile/"
+    },
+    {
+      "path": "app/android/build.gradle.kts"
+    },
+    {
+      "path": "app/android/gradle.properties"
+    },
+    {
+      "path": "app/android/gradle/wrapper/gradle-wrapper.properties"
+    },
+    {
+      "path": "app/android/settings.gradle.kts"
+    },
+    {
+      "path": "app/lib/"
+    },
+    {
+      "path": "app/pubspec.lock"
+    },
+    {
+      "path": "app/pubspec.yaml"
+    },
+    {
+      "path": "app/test/"
+    },
+    {
+      "path": "app/web/"
+    },
+    {
+      "path": "backend/.prettierignore"
+    },
+    {
+      "path": "backend/.prettierrc"
+    },
+    {
+      "path": "backend/Dockerfile"
+    },
+    {
+      "path": "backend/eslint.config.js"
+    },
+    {
+      "path": "backend/openapi.yaml"
+    },
+    {
+      "path": "backend/package-lock.json"
+    },
+    {
+      "path": "backend/package.json"
+    },
+    {
+      "path": "backend/scripts/"
+    },
+    {
+      "path": "backend/src/"
+    },
+    {
+      "path": "backend/test/"
+    },
+    {
+      "path": "backend/tsconfig.build.json"
+    },
+    {
+      "path": "backend/tsconfig.json"
+    },
+    {
+      "path": "backend/vitest.config.ts"
+    },
+    {
+      "path": "data/"
+    },
+    {
+      "path": "docker-compose.yml"
+    },
+    {
+      "path": "docker/"
+    },
+    {
+      "path": "package.json"
+    },
+    {
+      "path": "scripts/"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "askId": "5fdb4161b27ad8a4a5c4be69722c6eb7",
+  "intentId": "01a11ef8-9f16-752f-ade5-27394f73c3d1",
+  "targets": [
+    {
+      "unit": "u2-scoring-complete",
+      "targetId": "unit:u2-scoring-complete",
+      "fingerprint": "sha256:v3:ea666559d4e9636100e55855fb34d5335a7017bd90cb17f7d4f869419ea3c3c2"
+    }
+  ],
+  "question": "Approve the code plan for u2-scoring-complete?",
+  "choices": [
+    "Approve Plan",
+    "Request Changes",
+    "I'll edit the files"
+  ],
+  "mode": "ask",
+  "bound": false,
+  "issuedAt": "2026-10-09T16:11:57.925Z",
+  "repliesFrom": {
+    "shard": "aidlc/spaces/default/intents/261009-interview-execution-app/audit/ngoctm-88437f3d2be3.md",
+    "offset": 368507
+  },
+  "results": [
+    {
+      "unit": "u2-scoring-complete",
+      "choice": "approve",
+      "fingerprint": "sha256:v3:ea666559d4e9636100e55855fb34d5335a7017bd90cb17f7d4f869419ea3c3c2",
+      "turns": 93
+    }
+  ]
+}

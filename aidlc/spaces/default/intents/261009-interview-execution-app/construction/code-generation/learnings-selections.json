@@ -1,0 +1,14 @@
+{
+  "stage_slug": "code-generation",
+  "space": "default",
+  "intent": "261009-interview-execution-app",
+  "selections": [
+    {
+      "candidate_id": "c3",
+      "type": "learning",
+      "scope": "project",
+      "heading": "Corrections",
+      "text": "ALWAYS kiểm tra có phiên agent hoặc workflow khác đang chạy trong cùng thư mục (danh sách phiên và thời gian ghi tệp) trước khi ghi vào thư mục dùng chung; nếu có thì dừng lại và hỏi người dùng thay vì ghi chồng lên."
+    }
+  ]
+}

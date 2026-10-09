@@ -1,0 +1,15 @@
+.git
+.kiro
+aidlc
+.env
+backups
+logs
+data/import
+**/node_modules
+backend/dist
+backend/coverage
+app/.dart_tool
+app/coverage
+app/android
+app/lib
+app/test

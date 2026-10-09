@@ -1,0 +1,35 @@
+;;; 
+Export: Release 21.0.0.0.0 - Production on Fri Oct 9 15:12:47 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Starting "INTERVIEW_OWNER"."SYS_EXPORT_SCHEMA_01":  interview_owner/********@//localhost:1521/XEPDB1 schemas=INTERVIEW_OWNER directory=BACKUP_DIR dumpfile=20261009-2212.dmp logfile=20261009-2212.log reuse_dumpfiles=y 
+Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type SCHEMA_EXPORT/STATISTICS/MARKER
+Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type SCHEMA_EXPORT/TABLE/COMMENT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+. . exported "INTERVIEW_OWNER"."CANDIDATE"               9.179 KB       6 rows
+. . exported "INTERVIEW_OWNER"."CRITERION"               7.617 KB       5 rows
+. . exported "INTERVIEW_OWNER"."EVALUATION_SCORE"            0 KB       0 rows
+. . exported "INTERVIEW_OWNER"."INTERVIEWER"             7.007 KB       3 rows
+. . exported "INTERVIEW_OWNER"."INTERVIEW_EVALUATION"        0 KB       0 rows
+. . exported "INTERVIEW_OWNER"."INTERVIEW_PANEL"         8.148 KB       5 rows
+. . exported "INTERVIEW_OWNER"."JOB_POSITION"            7.828 KB       3 rows
+. . exported "INTERVIEW_OWNER"."LOGIN_THROTTLE"          6.492 KB       2 rows
+. . exported "INTERVIEW_OWNER"."PANEL_CANDIDATE"         7.820 KB       9 rows
+. . exported "INTERVIEW_OWNER"."PANEL_INTERVIEWER"       7.531 KB       6 rows
+. . exported "INTERVIEW_OWNER"."USER_ACCOUNT"            7.656 KB       3 rows
+Master table "INTERVIEW_OWNER"."SYS_EXPORT_SCHEMA_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for INTERVIEW_OWNER.SYS_EXPORT_SCHEMA_01 is:
+  /opt/oracle/backups/20261009-2212.dmp
+Job "INTERVIEW_OWNER"."SYS_EXPORT_SCHEMA_01" successfully completed at Fri Oct 9 15:13:57 2026 elapsed 0 00:01:04

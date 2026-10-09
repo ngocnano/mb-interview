@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "stage": "functional-design",
+  "unit": "u2-scoring-complete",
+  "workflow": null,
+  "attempt": "e25c51250944feb9",
+  "iteration": 1,
+  "reviewer": "aidlc-architecture-reviewer-agent",
+  "verdict": "READY",
+  "request_id": "review:d526bf6febe3f750f7aa197f2620e744",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:520103a40413ade4a8e15237afb9db950d84c1831f8527f12868c31f6d2d942b",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Low",
+      "location": "functional-spec.md, phạm vi",
+      "finding": "`contract-summary.md` và `backend/openapi.yaml` cần thêm mã lỗi `EVALUATION_NOT_FOUND` và `ketLuan` nullable",
+      "required_action": "Cập nhật ở Code Generation, đã ghi trong spec",
+      "status": "New"
+    },
+    {
+      "id": "R-02",
+      "severity": "Low",
+      "location": "rules.md BR8.4",
+      "finding": "Ghép \"đã chấm / tổng\" bằng nhiều lời gọi song song là chấp nhận được khi mỗi người ít HĐPV",
+      "required_action": "Theo dõi khi đo hiệu năng; đã ghi giả định",
+      "status": "New"
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "rules.md BR8.2",
+      "finding": "JWT không thu hồi khi đăng xuất",
+      "required_action": "Chấp nhận ở MVP, đã ghi giả định",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Low",
+      "location": "functional-spec.md, phạm vi",
+      "finding": "`contract-summary.md` và `backend/openapi.yaml` cần thêm mã lỗi `EVALUATION_NOT_FOUND` và `ketLuan` nullable",
+      "required_action": "Cập nhật ở Code Generation, đã ghi trong spec",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-02",
+      "severity": "Low",
+      "location": "rules.md BR8.4",
+      "finding": "Ghép \"đã chấm / tổng\" bằng nhiều lời gọi song song là chấp nhận được khi mỗi người ít HĐPV",
+      "required_action": "Theo dõi khi đo hiệu năng; đã ghi giả định",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "rules.md BR8.2",
+      "finding": "JWT không thu hồi khi đăng xuất",
+      "required_action": "Chấp nhận ở MVP, đã ghi giả định",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-architecture-reviewer-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory thiết kế chức năng U2 (`entities.md`, `rules.md`, `functional-spec.md`, `traceability.json`) đối chiếu `stories.md`, `contract-summary.md`, ADR-002, ADR-003 và câu trả lời Q1..Q3. Mọi AC của U2 đều có quy tắc đích; cảm biến truy vết đạt (không gap, không orphan). Công thức điểm trung bình bằng số nguyên mẫu số 60 đã kiểm tay với hai ví dụ chuẩn (4,3,4 ra 3,67 và 3,7; 4,3,5,4,5 ra 4,20 và 4,2). Không có thay đổi nào vượt phạm vi U2 hoặc làm đổi nghĩa quy tắc U1.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Low | functional-spec.md, phạm vi | `contract-summary.md` và `backend/openapi.yaml` cần thêm mã lỗi `EVALUATION_NOT_FOUND` và `ketLuan` nullable | Cập nhật ở Code Generation, đã ghi trong spec |\n| Low | rules.md BR8.4 | Ghép \"đã chấm / tổng\" bằng nhiều lời gọi song song là chấp nhận được khi mỗi người ít HĐPV | Theo dõi khi đo hiệu năng; đã ghi giả định |\n| Low | rules.md BR8.2 | JWT không thu hồi khi đăng xuất | Chấp nhận ở MVP, đã ghi giả định |\n",
+  "recorded_at": "2026-10-09T16:06:24Z"
+}

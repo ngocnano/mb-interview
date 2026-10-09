@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "stage": "code-generation",
+  "unit": "u1-scoring-skeleton",
+  "workflow": null,
+  "attempt": "e25c51250944feb9",
+  "iteration": 1,
+  "reviewer": "aidlc-architecture-reviewer-agent",
+  "verdict": "READY",
+  "request_id": "review:909f1fa34947f4bbd2ce7edafa62a9d5",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:bf623640d16b7f599fe28ce62b61bba5ebe6ed05965fd73521fdd1ddd7e7bffe",
+  "source_fingerprint": "af210203ea43a55246f0f25fdf5c4539999f006b6e730a31d56aa66575dfb851",
+  "unit_source_fingerprint": "sha256:a0138947d8cf74c066948afc3e3cbbbaea2e95b03833719087cfb0bbaea46586",
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "`code-summary.md`, bước 3..5",
+      "finding": "Lược đồ DB được viết trước test nên không có bước Red thật, trái thứ tự TDD đã chọn cho lớp này",
+      "required_action": "Chấp nhận vì cần DDL để dựng Oracle và chứng minh runner sẵn sàng; ghi nhận và áp dụng Red thật cho lớp DB của U2 (thêm cột kết luận, refer, điểm trung bình)",
+      "status": "New"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "`app/` + `backend/src/app.ts`",
+      "finding": "Luồng app Flutter Web gọi API thật trong trình duyệt (đăng nhập, chấm, hoàn thành) chưa được kiểm tự động; mới kiểm test widget với API giả, `verify:e2e` ở tầng HTTP và ảnh chụp màn đăng nhập. Ảnh chụp màn hẹp 420 px cho thấy các ô nhập bị cắt mép phải, chưa rõ do cửa sổ headless hay do bố cục",
+      "required_action": "Kiểm tay trên trình duyệt thật và điện thoại ở Build and Test; chỉnh bố cục khi làm U5 nếu lỗi tái hiện",
+      "status": "New"
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "NFR13.1..NFR13.3, NFR1.12",
+      "finding": "Chưa đo p95 và thời gian mở màn; HTTPS chưa có (máy demo chưa chọn)",
+      "required_action": "Đã ghi `Deferred`; đo ở Build and Test và chốt HTTPS trước khi dùng dữ liệu thật",
+      "status": "New"
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "`evaluation/service.ts`",
+      "finding": "Bộ đệm tiêu chí 60 giây ở production làm kiểm payload dùng danh sách cũ ngay sau khi nạp tiêu chí mới",
+      "required_action": "Chấp nhận (tiêu chí ít đổi); có thể xóa bộ đệm sau khi lệnh nạp chạy khi cần",
+      "status": "New"
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "`app.ts`",
+      "finding": "Content-Security-Policy tắt vì Flutter Web cần worker và wasm",
+      "required_action": "Cấu hình CSP riêng ở bước hạ tầng khi chốt proxy",
+      "status": "New"
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "`identity/service.ts`",
+      "finding": "Đọc rồi ghi bộ đếm đăng nhập sai không khóa dòng nên hai lần sai đồng thời có thể đếm thiếu một",
+      "required_action": "Chấp nhận cho MVP; khóa bằng 5 lần sai vẫn có hiệu lực sau lần sai kế tiếp",
+      "status": "New"
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "`scripts/deploy.mjs`",
+      "finding": "Mới kiểm cú pháp, chưa chạy trọn các bước",
+      "required_action": "Chạy thử khi phát hành lần đầu trên máy demo",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "`code-summary.md`, bước 3..5",
+      "finding": "Lược đồ DB được viết trước test nên không có bước Red thật, trái thứ tự TDD đã chọn cho lớp này",
+      "required_action": "Chấp nhận vì cần DDL để dựng Oracle và chứng minh runner sẵn sàng; ghi nhận và áp dụng Red thật cho lớp DB của U2 (thêm cột kết luận, refer, điểm trung bình)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "`app/` + `backend/src/app.ts`",
+      "finding": "Luồng app Flutter Web gọi API thật trong trình duyệt (đăng nhập, chấm, hoàn thành) chưa được kiểm tự động; mới kiểm test widget với API giả, `verify:e2e` ở tầng HTTP và ảnh chụp màn đăng nhập. Ảnh chụp màn hẹp 420 px cho thấy các ô nhập bị cắt mép phải, chưa rõ do cửa sổ headless hay do bố cục",
+      "required_action": "Kiểm tay trên trình duyệt thật và điện thoại ở Build and Test; chỉnh bố cục khi làm U5 nếu lỗi tái hiện",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "NFR13.1..NFR13.3, NFR1.12",
+      "finding": "Chưa đo p95 và thời gian mở màn; HTTPS chưa có (máy demo chưa chọn)",
+      "required_action": "Đã ghi `Deferred`; đo ở Build and Test và chốt HTTPS trước khi dùng dữ liệu thật",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "`evaluation/service.ts`",
+      "finding": "Bộ đệm tiêu chí 60 giây ở production làm kiểm payload dùng danh sách cũ ngay sau khi nạp tiêu chí mới",
+      "required_action": "Chấp nhận (tiêu chí ít đổi); có thể xóa bộ đệm sau khi lệnh nạp chạy khi cần",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "`app.ts`",
+      "finding": "Content-Security-Policy tắt vì Flutter Web cần worker và wasm",
+      "required_action": "Cấu hình CSP riêng ở bước hạ tầng khi chốt proxy",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "`identity/service.ts`",
+      "finding": "Đọc rồi ghi bộ đếm đăng nhập sai không khóa dòng nên hai lần sai đồng thời có thể đếm thiếu một",
+      "required_action": "Chấp nhận cho MVP; khóa bằng 5 lần sai vẫn có hiệu lực sau lần sai kế tiếp",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "`scripts/deploy.mjs`",
+      "finding": "Mới kiểm cú pháp, chưa chạy trọn các bước",
+      "required_action": "Chạy thử khi phát hành lần đầu trên máy demo",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-architecture-reviewer-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory một lần cho mã của U1 `u1-scoring-skeleton` (backend Node.js, app Flutter, lược đồ Oracle, script vận hành), đối chiếu `code-generation-plan.md`, `code-summary.md`, `source-manifest.json`, `traceability.json`, `rules.md`, `contract-summary.md` (C1..C6) và các tài liệu NFR, hạ tầng.\n\nNhận định: mã bám đúng thiết kế đã duyệt. Chính sách truy cập nằm ở một chỗ (`CatalogPolicy`, ADR-004) và được gọi trước mọi truy cập dữ liệu; hoàn thành đánh giá là một giao dịch, có idempotency, xử lý đua ghi bằng ràng buộc duy nhất rồi đọc lại để phân biệt 200 và 409; quyền DB của tài khoản ứng dụng chỉ thêm vào bảng phiếu và bảng điểm (kiểm bằng test); mọi truy vấn dùng biến ràng buộc (quy tắc ESLint cấm nối chuỗi); log che trường nhạy cảm và có mã tương quan; backend từ chối khởi động khi thiếu khóa JWT. Số liệu đã kiểm lại: 99 test backend đạt, độ phủ 92,95%; 39 test Flutter đạt, độ phủ 95,5%; ESLint, Prettier, `dart format`, `flutter analyze` sạch; `verify:e2e` 21/21; Docker Compose thật chạy, backend phục vụ Flutter Web và màn đăng nhập hiển thị đúng khi mở bằng Edge; sao lưu và khôi phục Data Pump chạy được. `traceability.json`: 170 mục, 153 `OK` trỏ tới tệp tồn tại, 13 `N/A` thuộc Unit khác, 4 `Deferred` có lý do; sensor truy vết pass. Ghi chú trung thực về quy trình đã có trong `code-summary.md`: bước lược đồ DB không có Red thật, và một phiên workflow thứ hai đã tạm ghi đè kế hoạch đã duyệt trước khi được khôi phục.\n\nTrong lúc rà soát có một lỗ hổng đã được sửa ngay trước khi ghi kết luận: giới hạn tốc độ theo IP (NFR1.4) sẽ coi mọi người dùng là cùng một địa chỉ khi backend chạy sau reverse proxy HTTPS (IS-8), nên 100 request mỗi phút áp dụng cho cả hệ thống. Nay có biến `TRUST_PROXY` (số lớp proxy, mặc định 0) trong `config.ts`, `app.ts`, `.env.example` và `docker-compose.yml`, có test cho giá trị mặc định và giá trị 1.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Medium | `code-summary.md`, bước 3..5 | Lược đồ DB được viết trước test nên không có bước Red thật, trái thứ tự TDD đã chọn cho lớp này | Chấp nhận vì cần DDL để dựng Oracle và chứng minh runner sẵn sàng; ghi nhận và áp dụng Red thật cho lớp DB của U2 (thêm cột kết luận, refer, điểm trung bình) |\n| Medium | `app/` + `backend/src/app.ts` | Luồng app Flutter Web gọi API thật trong trình duyệt (đăng nhập, chấm, hoàn thành) chưa được kiểm tự động; mới kiểm test widget với API giả, `verify:e2e` ở tầng HTTP và ảnh chụp màn đăng nhập. Ảnh chụp màn hẹp 420 px cho thấy các ô nhập bị cắt mép phải, chưa rõ do cửa sổ headless hay do bố cục | Kiểm tay trên trình duyệt thật và điện thoại ở Build and Test; chỉnh bố cục khi làm U5 nếu lỗi tái hiện |\n| Medium | NFR13.1..NFR13.3, NFR1.12 | Chưa đo p95 và thời gian mở màn; HTTPS chưa có (máy demo chưa chọn) | Đã ghi `Deferred`; đo ở Build and Test và chốt HTTPS trước khi dùng dữ liệu thật |\n| Low | `evaluation/service.ts` | Bộ đệm tiêu chí 60 giây ở production làm kiểm payload dùng danh sách cũ ngay sau khi nạp tiêu chí mới | Chấp nhận (tiêu chí ít đổi); có thể xóa bộ đệm sau khi lệnh nạp chạy khi cần |\n| Low | `app.ts` | Content-Security-Policy tắt vì Flutter Web cần worker và wasm | Cấu hình CSP riêng ở bước hạ tầng khi chốt proxy |\n| Low | `identity/service.ts` | Đọc rồi ghi bộ đếm đăng nhập sai không khóa dòng nên hai lần sai đồng thời có thể đếm thiếu một | Chấp nhận cho MVP; khóa bằng 5 lần sai vẫn có hiệu lực sau lần sai kế tiếp |\n| Low | `scripts/deploy.mjs` | Mới kiểm cú pháp, chưa chạy trọn các bước | Chạy thử khi phát hành lần đầu trên máy demo |\n\n### Suggestions\n\n- Thêm một kịch bản duyệt web tự động (Playwright hoặc `flutter drive`) cho luồng đăng nhập → chấm → hoàn thành để lấp khoảng trống thứ hai ở trên.\n",
+  "recorded_at": "2026-10-09T15:41:49Z"
+}

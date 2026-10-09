@@ -1,0 +1,59 @@
+{
+  "tieuChi": [
+    { "maTieuChi": "TC01", "tenTieuChi": "Chuyên môn nghiệp vụ", "diemToiThieu": 1, "diemToiDa": 5, "thuTu": 1 },
+    { "maTieuChi": "TC02", "tenTieuChi": "Kỹ năng giao tiếp", "diemToiThieu": 1, "diemToiDa": 5, "thuTu": 2 },
+    { "maTieuChi": "TC03", "tenTieuChi": "Giải quyết vấn đề", "diemToiThieu": 1, "diemToiDa": 5, "thuTu": 3 },
+    { "maTieuChi": "TC04", "tenTieuChi": "Tinh thần làm việc nhóm", "diemToiThieu": 1, "diemToiDa": 5, "thuTu": 4 },
+    { "maTieuChi": "TC05", "tenTieuChi": "Mức độ phù hợp với vị trí", "diemToiThieu": 1, "diemToiDa": 5, "thuTu": 5 }
+  ],
+  "viTri": [
+    { "maViTri": "VT01", "job": "Chuyên viên Kế toán", "dvql": "Phòng Tài chính" },
+    { "maViTri": "VT02", "job": "Lập trình viên", "dvql": "Phòng Công nghệ" },
+    { "maViTri": "VT03", "job": "Chuyên viên Nhân sự", "dvql": "Phòng Nhân sự" },
+    { "maViTri": "VT04", "job": "Vị trí đã ngừng tuyển", "dvql": "Phòng Hành chính", "trangThai": "INACTIVE" }
+  ],
+  "cbql": [
+    { "employedId": "E001", "ten": "Nguyễn Văn An", "job": "Trưởng phòng", "donVi": "Phòng Tài chính", "email": "an@mau.vn" },
+    { "employedId": "E002", "ten": "Trần Thị Bình", "job": "Phó phòng", "donVi": "Phòng Công nghệ", "email": "binh@mau.vn" },
+    { "employedId": "E003", "ten": "Lê Văn Cường", "job": "Trưởng phòng", "donVi": "Phòng Nhân sự", "email": "cuong@mau.vn" }
+  ],
+  "taiKhoan": [
+    { "email": "an@mau.vn", "matKhau": "MatKhauMau-001", "employedId": "E001", "hoTen": "Nguyễn Văn An" },
+    { "email": "binh@mau.vn", "matKhau": "MatKhauMau-002", "employedId": "E002", "hoTen": "Trần Thị Bình" },
+    { "email": "cuong@mau.vn", "matKhau": "MatKhauMau-003", "employedId": "E003", "hoTen": "Lê Văn Cường" }
+  ],
+  "ungVien": [
+    { "ma": "UV001", "ten": "Phạm Minh Đức", "maViTri": "VT01", "sdt": "0900000001", "email": "uv001@mau.vn", "ngaySinh": "01/02/1995", "gioiTinh": "Nam", "kinhNghiem": "4 năm kế toán tổng hợp", "trinhDo": "Đại học Kinh tế" },
+    { "ma": "UV002", "ten": "Võ Thị Hà", "maViTri": "VT02", "sdt": "0900000002", "email": "uv002@mau.vn", "ngaySinh": "15/06/1997", "gioiTinh": "Nữ", "kinhNghiem": "3 năm lập trình backend", "trinhDo": "Đại học Bách khoa" },
+    { "ma": "UV003", "ten": "Đỗ Quang Huy", "maViTri": "VT01", "sdt": "0900000003", "email": "uv003@mau.vn", "ngaySinh": "20/11/1993", "gioiTinh": "Nam", "kinhNghiem": "6 năm kế toán thuế", "trinhDo": "Đại học Tài chính" },
+    { "ma": "UV004", "ten": "Bùi Thu Trang", "maViTri": "VT03", "sdt": "0900000004", "email": "uv004@mau.vn", "ngaySinh": "05/03/1996", "gioiTinh": "Nữ", "kinhNghiem": "2 năm tuyển dụng", "trinhDo": "Đại học Lao động" },
+    { "ma": "UV005", "ten": "Ngô Gia Bảo", "maViTri": "VT02", "sdt": "0900000005", "email": "uv005@mau.vn", "ngaySinh": "09/09/1998", "gioiTinh": "Nam", "kinhNghiem": "1 năm lập trình", "trinhDo": "Cao đẳng CNTT" },
+    { "ma": "UV006", "ten": "Đặng Mai Phương", "maViTri": "VT03", "sdt": "0900000006", "email": "uv006@mau.vn", "ngaySinh": "30/12/1994", "gioiTinh": "Nữ", "kinhNghiem": "5 năm nhân sự", "trinhDo": "Thạc sĩ QTNL" }
+  ],
+  "hdpv": [
+    { "ma": "HD001", "ten": "HĐPV Kế toán đợt 1 (nháp)", "diaDiem": "Phòng họp A", "ngay": "09/10/2026", "hinhThuc": "Offline", "trangThai": "Draft" },
+    { "ma": "HD002", "ten": "HĐPV Nhân sự đợt 1 (đã gửi)", "diaDiem": "Phòng họp B", "ngay": "09/10/2026", "hinhThuc": "Offline", "daGuiEmail": "Y", "trangThai": "Sent" },
+    { "ma": "HD003", "ten": "HĐPV Công nghệ đợt 1 (đã xác nhận)", "diaDiem": "Phòng họp C", "ngay": "10/10/2026", "hinhThuc": "Online", "trangThai": "Xác nhận" },
+    { "ma": "HD004", "ten": "HĐPV Tổng hợp đợt 2 (đang phỏng vấn)", "diaDiem": "Phòng họp D", "ngay": "09/10/2026", "hinhThuc": "Online", "trangThai": "Inprogress" },
+    { "ma": "HD005", "ten": "HĐPV Công nghệ đợt 0 (đã xong)", "diaDiem": "Phòng họp E", "ngay": "08/10/2026", "hinhThuc": "Offline", "trangThai": "Completed" }
+  ],
+  "hdpvUngVien": [
+    { "maHdpv": "HD001", "maUngVien": "UV001", "tuThoiGian": "09:00", "denThoiGian": "09:30", "xacNhan": "Y" },
+    { "maHdpv": "HD002", "maUngVien": "UV004", "tuThoiGian": "09:00", "denThoiGian": "09:30", "xacNhan": "Y" },
+    { "maHdpv": "HD003", "maUngVien": "UV002", "tuThoiGian": "09:00", "denThoiGian": "09:30", "xacNhan": "Y" },
+    { "maHdpv": "HD004", "maUngVien": "UV001", "tuThoiGian": "09:00", "denThoiGian": "09:30", "xacNhan": "Y" },
+    { "maHdpv": "HD004", "maUngVien": "UV002", "tuThoiGian": "08:00", "denThoiGian": "08:30", "xacNhan": "Y" },
+    { "maHdpv": "HD004", "maUngVien": "UV003", "tuThoiGian": "09:00", "denThoiGian": "09:30", "xacNhan": "Y" },
+    { "maHdpv": "HD004", "maUngVien": "UV004", "tuThoiGian": "07:00", "denThoiGian": "07:30", "xacNhan": "N" },
+    { "maHdpv": "HD005", "maUngVien": "UV005", "tuThoiGian": "10:00", "denThoiGian": "10:30", "xacNhan": "Y" },
+    { "maHdpv": "HD005", "maUngVien": "UV006", "tuThoiGian": "11:00", "denThoiGian": "11:30", "xacNhan": "Y" }
+  ],
+  "hdpvCbql": [
+    { "maHdpv": "HD001", "maCbql": "E003" },
+    { "maHdpv": "HD002", "maCbql": "E003" },
+    { "maHdpv": "HD003", "maCbql": "E002" },
+    { "maHdpv": "HD004", "maCbql": "E001" },
+    { "maHdpv": "HD004", "maCbql": "E002" },
+    { "maHdpv": "HD005", "maCbql": "E001" }
+  ]
+}

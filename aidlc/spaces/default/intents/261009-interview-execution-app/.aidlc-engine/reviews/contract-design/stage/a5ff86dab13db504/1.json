@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "stage": "contract-design",
+  "unit": null,
+  "workflow": null,
+  "attempt": "a5ff86dab13db504",
+  "iteration": 1,
+  "reviewer": "aidlc-architecture-reviewer-agent",
+  "verdict": "READY",
+  "request_id": "review:bd91e1512a8e1c69ee5194111c8a98a2",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:5f6c072010d9ec10fa29bbcc2ca324a9e7695ab7b5c68267eb4120d63479438f",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "C1 `/cv-files/{token}`",
+      "finding": "Yêu cầu JWT trong header có thể không làm được với trình xem PDF nhúng trên web; khi đó U3 phải đổi cách cấp nội dung",
+      "required_action": "Chọn gói xem PDF sớm ở U3 và quyết định cách cấp nội dung (tải về bộ nhớ app rồi hiển thị là phương án dự phòng)",
+      "status": "New"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "Quy tắc thay đổi, `ketLuan`",
+      "finding": "`ketLuan` từ không có (U1) sang bắt buộc (U2) là thay đổi phá vỡ trong `v1`; chỉ an toàn nếu U1 và U2 phát hành cùng nhau",
+      "required_action": "Delivery Planning ghi rõ U1 không được phát hành riêng ra người dùng thật",
+      "status": "New"
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "C2 `upsertImportBatch`, C3, C4",
+      "finding": "Giao dịch nạp dữ liệu trải qua nhiều module bằng cách truyền giao dịch vào; cần một kiểu giao dịch dùng chung giữa các module",
+      "required_action": "Functional Design / thiết kế kỹ thuật định nghĩa kiểu giao dịch dùng chung trong module nền",
+      "status": "New"
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "C3 `verifyToken`",
+      "finding": "Tài khoản bị khóa sau khi phát token vẫn bị từ chối nghĩa là mỗi request phải đọc trạng thái tài khoản",
+      "required_action": "Chấp nhận; NFR xem xét chi phí đọc hoặc bộ đệm ngắn",
+      "status": "New"
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "C1 `/my-evaluations`, `/panels/{maHdpv}/candidates`",
+      "finding": "Không phân trang; HĐPV rất đông ứng viên có thể chậm",
+      "required_action": "Chấp nhận cho MVP; ghi ở NFR",
+      "status": "New"
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "C6",
+      "finding": "Tệp nạp chứa mật khẩu dạng rõ; đã ghi không commit vào git và không ghi log",
+      "required_action": "Thêm mẫu tên tệp nạp vào `.gitignore` khi dựng U1",
+      "status": "New"
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "C7",
+      "finding": "Nhà cung cấp AI chưa chọn (OQ-AI-1..4)",
+      "required_action": "Bộ giả lập đủ để dựng và test U4",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "C1 `/cv-files/{token}`",
+      "finding": "Yêu cầu JWT trong header có thể không làm được với trình xem PDF nhúng trên web; khi đó U3 phải đổi cách cấp nội dung",
+      "required_action": "Chọn gói xem PDF sớm ở U3 và quyết định cách cấp nội dung (tải về bộ nhớ app rồi hiển thị là phương án dự phòng)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "Quy tắc thay đổi, `ketLuan`",
+      "finding": "`ketLuan` từ không có (U1) sang bắt buộc (U2) là thay đổi phá vỡ trong `v1`; chỉ an toàn nếu U1 và U2 phát hành cùng nhau",
+      "required_action": "Delivery Planning ghi rõ U1 không được phát hành riêng ra người dùng thật",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "C2 `upsertImportBatch`, C3, C4",
+      "finding": "Giao dịch nạp dữ liệu trải qua nhiều module bằng cách truyền giao dịch vào; cần một kiểu giao dịch dùng chung giữa các module",
+      "required_action": "Functional Design / thiết kế kỹ thuật định nghĩa kiểu giao dịch dùng chung trong module nền",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "C3 `verifyToken`",
+      "finding": "Tài khoản bị khóa sau khi phát token vẫn bị từ chối nghĩa là mỗi request phải đọc trạng thái tài khoản",
+      "required_action": "Chấp nhận; NFR xem xét chi phí đọc hoặc bộ đệm ngắn",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "C1 `/my-evaluations`, `/panels/{maHdpv}/candidates`",
+      "finding": "Không phân trang; HĐPV rất đông ứng viên có thể chậm",
+      "required_action": "Chấp nhận cho MVP; ghi ở NFR",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "C6",
+      "finding": "Tệp nạp chứa mật khẩu dạng rõ; đã ghi không commit vào git và không ghi log",
+      "required_action": "Thêm mẫu tên tệp nạp vào `.gitignore` khi dựng U1",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "C7",
+      "finding": "Nhà cung cấp AI chưa chọn (OQ-AI-1..4)",
+      "required_action": "Bộ giả lập đủ để dựng và test U4",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-architecture-reviewer-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory một lần cho `contract-summary.md`, đối chiếu `unit-of-work.md`, `unit-of-work-dependency.md`, `components.md`, `decisions.md`, `requirements.md` và câu trả lời Q1..Q3.\n\nNhận định: bảy hợp đồng phủ đủ mọi cạnh trong sơ đồ phụ thuộc Unit (U2, U3, U5 → U1; U4 → U3) và hai ranh giới ra ngoài (người vận hành nạp tệp, nhà cung cấp AI). OpenAPI C1 có 12 đường dẫn, 13 thao tác, khớp từng FR-A0..FR-A10 và cột Unit chỉ rõ Unit nào thêm API nào. Bảy khối yaml đều đọc được bằng trình phân tích YAML và OpenAPI không thiếu tham chiếu (kiểm bằng script). Quy tắc nghiệp vụ được phản ánh đúng ở hợp đồng: BR-A1, BR-A2 qua `canOpenForScoring` / `canComplete` (C2, đúng ADR-004); refer chỉ khi `KHAC`; server tự tính `diemTrungBinh` và bỏ qua giá trị client (C5, ADR-003); idempotency `200` / `409`; AI tắt mặc định trả `AI_DISABLED`; CV qua liên kết ngắn hạn, `no-store`. Bộ ví dụ dùng chung cho công thức điểm trung bình tính đúng (4, 3, 4 ra 3,67 lưu và 3,7 hiển thị; 4, 3, 5, 4, 5 ra 4,20). Quy tắc thay đổi hợp đồng, thời gian chờ và thử lại đúng Q3 = A.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Medium | C1 `/cv-files/{token}` | Yêu cầu JWT trong header có thể không làm được với trình xem PDF nhúng trên web; khi đó U3 phải đổi cách cấp nội dung | Chọn gói xem PDF sớm ở U3 và quyết định cách cấp nội dung (tải về bộ nhớ app rồi hiển thị là phương án dự phòng) |\n| Medium | Quy tắc thay đổi, `ketLuan` | `ketLuan` từ không có (U1) sang bắt buộc (U2) là thay đổi phá vỡ trong `v1`; chỉ an toàn nếu U1 và U2 phát hành cùng nhau | Delivery Planning ghi rõ U1 không được phát hành riêng ra người dùng thật |\n| Medium | C2 `upsertImportBatch`, C3, C4 | Giao dịch nạp dữ liệu trải qua nhiều module bằng cách truyền giao dịch vào; cần một kiểu giao dịch dùng chung giữa các module | Functional Design / thiết kế kỹ thuật định nghĩa kiểu giao dịch dùng chung trong module nền |\n| Low | C3 `verifyToken` | Tài khoản bị khóa sau khi phát token vẫn bị từ chối nghĩa là mỗi request phải đọc trạng thái tài khoản | Chấp nhận; NFR xem xét chi phí đọc hoặc bộ đệm ngắn |\n| Low | C1 `/my-evaluations`, `/panels/{maHdpv}/candidates` | Không phân trang; HĐPV rất đông ứng viên có thể chậm | Chấp nhận cho MVP; ghi ở NFR |\n| Low | C6 | Tệp nạp chứa mật khẩu dạng rõ; đã ghi không commit vào git và không ghi log | Thêm mẫu tên tệp nạp vào `.gitignore` khi dựng U1 |\n| Low | C7 | Nhà cung cấp AI chưa chọn (OQ-AI-1..4) | Bộ giả lập đủ để dựng và test U4 |\n\nRủi ro chung còn mở: 25 story cho mục tiêu 2 ngày; Delivery Planning chốt đường cắt.\n\n### Suggestions\n\n- Đặt tệp OpenAPI C1 vào mã nguồn backend và sinh kiểu dữ liệu cho cả Node.js và Dart từ đó, để app và backend không lệch trường.\n",
+  "recorded_at": "2026-10-09T09:52:57Z"
+}

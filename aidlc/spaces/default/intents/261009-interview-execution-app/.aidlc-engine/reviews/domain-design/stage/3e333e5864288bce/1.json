@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "stage": "domain-design",
+  "unit": null,
+  "workflow": null,
+  "attempt": "3e333e5864288bce",
+  "iteration": 1,
+  "reviewer": "aidlc-architecture-reviewer-agent",
+  "verdict": "READY",
+  "request_id": "review:51e66693e421f892134f0322db8c8f93",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:c71d29ce31096afcb5e0de18cf1628efbd1347874a72c14a5f4ae2de4b4b847c",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "decisions.md ADR-007, components.md DataImport",
+      "finding": "Giao dịch nạp dữ liệu trải qua bốn khối giả định các khối chạy chung một tiến trình và chung kết nối DB; đây là quyết định triển khai thuộc Units Generation",
+      "required_action": "Units Generation xác nhận chạy chung tiến trình, hoặc chọn cách nạp khác (theo từng khối, có thể chạy lại)",
+      "status": "New"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "components.md InterviewCatalog",
+      "finding": "InterviewCatalog có năm khối gọi tới (gọi kiểm quyền); giao diện truy vấn chính sách là điểm hỏng chung và cần ổn định",
+      "required_action": "Contract Design định nghĩa rõ các truy vấn chính sách (được mở, được hoàn thành, vị trí hiện tại, vị trí hợp lệ) và mã lỗi",
+      "status": "New"
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "decisions.md ADR-002",
+      "finding": "App ghép dữ liệu từ hai API nên số đếm \"đã chấm / tổng\" có thể lệch tạm thời; logic ghép nằm ở client cần test",
+      "required_action": "Viết test ghép ở app; chấp nhận độ lệch tạm thời cho MVP",
+      "status": "New"
+    },
+    {
+      "id": "R-04",
+      "severity": "Medium",
+      "location": "decisions.md ADR-003",
+      "finding": "Hai bản cài đặt công thức điểm trung bình (Dart và Node.js) có thể lệch ở quy tắc làm tròn",
+      "required_action": "Bộ ví dụ test chung là bắt buộc ở cả hai phía; nêu rõ kiểu số dùng khi lưu (thập phân, không dùng số thực) ở Functional Design",
+      "status": "New"
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "components.md CandidateDocuments",
+      "finding": "Thực thể Candidate có các thuộc tính nhạy cảm (sdt, ngaySinh, gioiTinh) dù không hiển thị; lưu chúng là quyết định dữ liệu",
+      "required_action": "Functional Design và NFR xác nhận có cần lưu các trường này không (tối thiểu hóa dữ liệu)",
+      "status": "New"
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "components.md AiAssist",
+      "finding": "Kết quả AI được khóa theo maUngVien + cvHash + promptVersion, không gắn với người yêu cầu; người phỏng vấn khác cùng HĐPV sẽ thấy kết quả đã lưu",
+      "required_action": "Xác nhận ở Functional Design rằng chia sẻ kết quả giữa người phỏng vấn cùng quyền là chấp nhận được (liên quan OQ-AI-4)",
+      "status": "New"
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "components.md",
+      "finding": "Gói xem PDF và nhà cung cấp AI chưa chọn",
+      "required_action": "Chọn ở thiết kế kỹ thuật; không đổi ranh giới khối",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "decisions.md ADR-007, components.md DataImport",
+      "finding": "Giao dịch nạp dữ liệu trải qua bốn khối giả định các khối chạy chung một tiến trình và chung kết nối DB; đây là quyết định triển khai thuộc Units Generation",
+      "required_action": "Units Generation xác nhận chạy chung tiến trình, hoặc chọn cách nạp khác (theo từng khối, có thể chạy lại)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "components.md InterviewCatalog",
+      "finding": "InterviewCatalog có năm khối gọi tới (gọi kiểm quyền); giao diện truy vấn chính sách là điểm hỏng chung và cần ổn định",
+      "required_action": "Contract Design định nghĩa rõ các truy vấn chính sách (được mở, được hoàn thành, vị trí hiện tại, vị trí hợp lệ) và mã lỗi",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-03",
+      "severity": "Medium",
+      "location": "decisions.md ADR-002",
+      "finding": "App ghép dữ liệu từ hai API nên số đếm \"đã chấm / tổng\" có thể lệch tạm thời; logic ghép nằm ở client cần test",
+      "required_action": "Viết test ghép ở app; chấp nhận độ lệch tạm thời cho MVP",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-04",
+      "severity": "Medium",
+      "location": "decisions.md ADR-003",
+      "finding": "Hai bản cài đặt công thức điểm trung bình (Dart và Node.js) có thể lệch ở quy tắc làm tròn",
+      "required_action": "Bộ ví dụ test chung là bắt buộc ở cả hai phía; nêu rõ kiểu số dùng khi lưu (thập phân, không dùng số thực) ở Functional Design",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-05",
+      "severity": "Low",
+      "location": "components.md CandidateDocuments",
+      "finding": "Thực thể Candidate có các thuộc tính nhạy cảm (sdt, ngaySinh, gioiTinh) dù không hiển thị; lưu chúng là quyết định dữ liệu",
+      "required_action": "Functional Design và NFR xác nhận có cần lưu các trường này không (tối thiểu hóa dữ liệu)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "components.md AiAssist",
+      "finding": "Kết quả AI được khóa theo maUngVien + cvHash + promptVersion, không gắn với người yêu cầu; người phỏng vấn khác cùng HĐPV sẽ thấy kết quả đã lưu",
+      "required_action": "Xác nhận ở Functional Design rằng chia sẻ kết quả giữa người phỏng vấn cùng quyền là chấp nhận được (liên quan OQ-AI-4)",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "components.md",
+      "finding": "Gói xem PDF và nhà cung cấp AI chưa chọn",
+      "required_action": "Chọn ở thiết kế kỹ thuật; không đổi ranh giới khối",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-architecture-reviewer-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory một lần cho Domain Design: `components.md`, `decisions.md`, `traceability.json`, đối chiếu với `requirements.md`, `stories.md` và các câu trả lời Q1..Q3.\n\nNhận định: danh mục gồm 7 khối (6 backend và ứng dụng Flutter), 14 thực thể. Kiểm tra tự động bằng script cho thấy danh mục hợp lệ: tên khối không trùng, phụ thuộc khai báo hai chiều, không có vòng phụ thuộc, mỗi thực thể có đúng một khối sở hữu và có định danh, mọi tham chiếu trỏ tới thực thể đã khai báo. 25 story đều có trong bảng truy vết, và mọi đích truy vết là khối hoặc thực thể có thật. Hạ tầng (Oracle, kho tệp, nhà cung cấp AI) nằm đúng ở phụ thuộc bên ngoài, không bị coi là khối. Bảy ADR đều có Context, Decision, Consequences, Alternatives Rejected theo quy định của giai đoạn Inception. Các quy tắc cứng đã khẳng định (RBAC ở server, idempotency, HR chốt kết luận) được đặt vào khối cụ thể: chính sách truy cập ở InterviewCatalog (ADR-004), chống gửi trùng ở Evaluation, AI không chấm điểm (BR-A4 trong AiAssist).\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Medium | decisions.md ADR-007, components.md DataImport | Giao dịch nạp dữ liệu trải qua bốn khối giả định các khối chạy chung một tiến trình và chung kết nối DB; đây là quyết định triển khai thuộc Units Generation | Units Generation xác nhận chạy chung tiến trình, hoặc chọn cách nạp khác (theo từng khối, có thể chạy lại) |\n| Medium | components.md InterviewCatalog | InterviewCatalog có năm khối gọi tới (gọi kiểm quyền); giao diện truy vấn chính sách là điểm hỏng chung và cần ổn định | Contract Design định nghĩa rõ các truy vấn chính sách (được mở, được hoàn thành, vị trí hiện tại, vị trí hợp lệ) và mã lỗi |\n| Medium | decisions.md ADR-002 | App ghép dữ liệu từ hai API nên số đếm \"đã chấm / tổng\" có thể lệch tạm thời; logic ghép nằm ở client cần test | Viết test ghép ở app; chấp nhận độ lệch tạm thời cho MVP |\n| Medium | decisions.md ADR-003 | Hai bản cài đặt công thức điểm trung bình (Dart và Node.js) có thể lệch ở quy tắc làm tròn | Bộ ví dụ test chung là bắt buộc ở cả hai phía; nêu rõ kiểu số dùng khi lưu (thập phân, không dùng số thực) ở Functional Design |\n| Low | components.md CandidateDocuments | Thực thể Candidate có các thuộc tính nhạy cảm (sdt, ngaySinh, gioiTinh) dù không hiển thị; lưu chúng là quyết định dữ liệu | Functional Design và NFR xác nhận có cần lưu các trường này không (tối thiểu hóa dữ liệu) |\n| Low | components.md AiAssist | Kết quả AI được khóa theo maUngVien + cvHash + promptVersion, không gắn với người yêu cầu; người phỏng vấn khác cùng HĐPV sẽ thấy kết quả đã lưu | Xác nhận ở Functional Design rằng chia sẻ kết quả giữa người phỏng vấn cùng quyền là chấp nhận được (liên quan OQ-AI-4) |\n| Low | components.md | Gói xem PDF và nhà cung cấp AI chưa chọn | Chọn ở thiết kế kỹ thuật; không đổi ranh giới khối |\n\nRủi ro chung còn mở từ các stage trước, không đổi: phạm vi 25 story cho mục tiêu 2 ngày; tính năng AI chờ Legal và Security (OQ-AI-1..4).\n\n### Suggestions\n\n- Ở Units Generation, cân nhắc một đơn vị triển khai backend duy nhất (Node.js) chứa sáu khối backend, cộng một đơn vị ứng dụng Flutter; cách này khớp ADR-007 và lịch 2 ngày.\n",
+  "recorded_at": "2026-10-09T09:20:24Z"
+}

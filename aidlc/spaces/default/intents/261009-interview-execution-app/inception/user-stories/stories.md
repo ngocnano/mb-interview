@@ -297,6 +297,7 @@ PO bỏ màn chọn vị trí ngày 2026-10-09 (story US3.1 cũ không còn). Th
   - **AC6.3.3** Given người phỏng vấn B, When gọi API đọc đánh giá của người phỏng vấn A, Then nhận `403`.
   - **AC6.3.4** Given tôi đã hoàn thành với kết luận và refer, When xem lại bài, Then thấy kết luận (`Đạt` / `Loại` / `Cân nhắc` / `Khác`) ở dạng chỉ đọc; khi kết luận là `Khác` thì thấy thêm vị trí refer và lý do refer (nếu có), các kết luận còn lại không hiển thị khối refer.
   - **AC6.3.5** Given tôi đã hoàn thành đánh giá, When xem lại bài, Then thấy điểm trung bình đã lưu ở dạng chỉ đọc; Given người dùng B gọi API đọc đánh giá của A, Then nhận `403` và không thấy điểm trung bình.
+  - **AC6.3.6** Given bài đã hoàn thành từ trước khi có kết luận (dữ liệu cũ), When xem lại bài hoặc xem danh sách ứng viên, Then bài hiển thị "Chưa ghi kết luận" (chữ và biểu tượng), không có khối refer, và điểm trung bình vẫn hiển thị. Bổ sung ở Functional Design U2.
 - **INVEST:** nhỏ; xác nhận quy tắc "không xem đánh giá của người khác" trong MVP.
 
 ## Nhóm 7 — Dữ liệu nền (Người vận hành)

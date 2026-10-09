@@ -1,0 +1,918 @@
+{
+  "workflow_id": "2026-10-09T04:42:52Z",
+  "scope": "classic",
+  "started_at": "2026-10-09T04:42:52Z",
+  "stages": [
+    {
+      "stage_slug": "workspace-scaffold",
+      "started_at": "2026-10-09T04:42:52Z",
+      "completed_at": "2026-10-09T04:42:52Z",
+      "agent": "orchestrator",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/initialization/workspace-scaffold/memory.md",
+      "memory_entries": null,
+      "memory_breakdown": null,
+      "sensor_firings": [],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "workspace-detection",
+      "started_at": "2026-10-09T04:42:52Z",
+      "completed_at": "2026-10-09T04:42:52Z",
+      "agent": "orchestrator",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/initialization/workspace-detection/memory.md",
+      "memory_entries": null,
+      "memory_breakdown": null,
+      "sensor_firings": [],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "state-init",
+      "started_at": "2026-10-09T04:42:52Z",
+      "completed_at": "2026-10-09T04:42:52Z",
+      "agent": "orchestrator",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/initialization/state-init/memory.md",
+      "memory_entries": null,
+      "memory_breakdown": null,
+      "sensor_firings": [],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "practices-discovery",
+      "started_at": "2026-10-09T04:42:52Z",
+      "completed_at": "2026-10-09T05:04:32Z",
+      "agent": "aidlc-pipeline-deploy-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/practices-discovery/memory.md",
+      "memory_entries": 6,
+      "memory_breakdown": {
+        "interpretations": 2,
+        "deviations": 0,
+        "tradeoffs": 2,
+        "open_questions": 2
+      },
+      "sensor_firings": [
+        {
+          "id": "required-sections",
+          "fire_id": "e2427aaf",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:41Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "91062423",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:42Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "6c05cbfb",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:42Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "e3ea1e3e",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:42Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "b96d5d3a",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:42Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "6e3f7d09",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:43Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "f344de1c",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:43Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "e3b9e47d",
+          "result": "passed",
+          "ts": "2026-10-09T05:01:43Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "requirements-analysis",
+      "started_at": "2026-10-09T05:04:32Z",
+      "completed_at": "2026-10-09T06:51:14Z",
+      "agent": "aidlc-product-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/requirements-analysis/memory.md",
+      "memory_entries": 11,
+      "memory_breakdown": {
+        "interpretations": 4,
+        "deviations": 3,
+        "tradeoffs": 2,
+        "open_questions": 2
+      },
+      "sensor_firings": [
+        {
+          "id": "required-sections",
+          "fire_id": "b9e72822",
+          "result": "passed",
+          "ts": "2026-10-09T06:03:09Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "853d8461",
+          "result": "passed",
+          "ts": "2026-10-09T06:03:09Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "55b01a5b",
+          "result": "failed",
+          "ts": "2026-10-09T06:03:10Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-55b01a5b.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "99b2b0c2",
+          "result": "failed",
+          "ts": "2026-10-09T06:03:10Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-99b2b0c2.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "4753fb2e",
+          "result": "passed",
+          "ts": "2026-10-09T06:36:34Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "cbec14a8",
+          "result": "passed",
+          "ts": "2026-10-09T06:36:35Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "084602d3",
+          "result": "failed",
+          "ts": "2026-10-09T06:36:35Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-084602d3.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "018658af",
+          "result": "failed",
+          "ts": "2026-10-09T06:36:35Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-018658af.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "421d6d1f",
+          "result": "passed",
+          "ts": "2026-10-09T06:43:31Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "45607508",
+          "result": "passed",
+          "ts": "2026-10-09T06:43:31Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "6460df99",
+          "result": "failed",
+          "ts": "2026-10-09T06:43:31Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-6460df99.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "aa49a5a5",
+          "result": "failed",
+          "ts": "2026-10-09T06:43:32Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-aa49a5a5.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "0c10dbbf",
+          "result": "passed",
+          "ts": "2026-10-09T06:50:06Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "df559195",
+          "result": "passed",
+          "ts": "2026-10-09T06:50:06Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "28ca88d5",
+          "result": "failed",
+          "ts": "2026-10-09T06:50:07Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-28ca88d5.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "4210b227",
+          "result": "failed",
+          "ts": "2026-10-09T06:50:07Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/requirements-analysis/upstream-coverage-4210b227.md"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "user-stories",
+      "started_at": "2026-10-09T06:51:15Z",
+      "completed_at": "2026-10-09T07:45:54Z",
+      "agent": "aidlc-product-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/user-stories/memory.md",
+      "memory_entries": 9,
+      "memory_breakdown": {
+        "interpretations": 4,
+        "deviations": 2,
+        "tradeoffs": 1,
+        "open_questions": 2
+      },
+      "sensor_firings": [
+        {
+          "id": "traceability",
+          "fire_id": "8b5598f8",
+          "result": "failed",
+          "ts": "2026-10-09T07:17:06Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/user-stories/traceability-8b5598f8.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "3b7e7f54",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:57Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "669681da",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:57Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "370a8498",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:57Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "fb15c69c",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:58Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "50da5f9f",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:58Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "b7860f75",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:58Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "0a3bc6f8",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:58Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "24ac6eee",
+          "result": "passed",
+          "ts": "2026-10-09T07:21:59Z"
+        },
+        {
+          "id": "traceability",
+          "fire_id": "98be0d1b",
+          "result": "failed",
+          "ts": "2026-10-09T07:43:58Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/user-stories/traceability-98be0d1b.md"
+        },
+        {
+          "id": "traceability",
+          "fire_id": "a4ab1a49",
+          "result": "failed",
+          "ts": "2026-10-09T07:43:59Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/user-stories/traceability-a4ab1a49.md"
+        },
+        {
+          "id": "traceability",
+          "fire_id": "44bbb182",
+          "result": "failed",
+          "ts": "2026-10-09T07:44:00Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/user-stories/traceability-44bbb182.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "74e82769",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:21Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "58b8951f",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "04018d32",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "fbf933e9",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:22Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "99fb2dd6",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:22Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "7c61cb6c",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:23Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "0aa36024",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:23Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "931b266a",
+          "result": "passed",
+          "ts": "2026-10-09T07:45:23Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "refined-mockups",
+      "started_at": "2026-10-09T07:45:54Z",
+      "completed_at": "2026-10-09T09:06:48Z",
+      "agent": "aidlc-design-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/refined-mockups/memory.md",
+      "memory_entries": 19,
+      "memory_breakdown": {
+        "interpretations": 8,
+        "deviations": 2,
+        "tradeoffs": 6,
+        "open_questions": 3
+      },
+      "sensor_firings": [
+        {
+          "id": "required-sections",
+          "fire_id": "97a9e9ed",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "0b2c3cea",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "97b645a1",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:23Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "02ad0336",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:23Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "cafcd7df",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:23Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "18ac6d1d",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:23Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "9223a7a1",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:24Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "c3a677fe",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:24Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "91d568c1",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:24Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "0755ac25",
+          "result": "passed",
+          "ts": "2026-10-09T07:57:24Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "809aca99",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:39Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "b4e8b014",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:39Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "88f11d69",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:40Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "8ab40d4a",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:40Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "b694c31a",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:40Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "c7b810e2",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "04f626ce",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "6c697d0e",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "d246e79e",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "94a9752b",
+          "result": "passed",
+          "ts": "2026-10-09T08:51:42Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "3676fbd3",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:09Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "55528351",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:09Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "125de108",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:09Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "3b98b998",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:10Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "0b822b02",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:10Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "f78c3208",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:10Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "2b04c993",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:10Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "db1d1e85",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:11Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "359dbd84",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:11Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "438e34bd",
+          "result": "passed",
+          "ts": "2026-10-09T09:06:11Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "domain-design",
+      "started_at": "2026-10-09T09:06:49Z",
+      "completed_at": "2026-10-09T09:25:00Z",
+      "agent": "aidlc-architect-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/domain-design/memory.md",
+      "memory_entries": 5,
+      "memory_breakdown": {
+        "interpretations": 2,
+        "deviations": 0,
+        "tradeoffs": 2,
+        "open_questions": 1
+      },
+      "sensor_firings": [
+        {
+          "id": "traceability",
+          "fire_id": "e48e9e29",
+          "result": "failed",
+          "ts": "2026-10-09T09:16:25Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/domain-design/traceability-e48e9e29.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "15694b79",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:40Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "00ea4868",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:41Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "678c5aaf",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "40c90d63",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "6b9b0d58",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:41Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "c53b5629",
+          "result": "passed",
+          "ts": "2026-10-09T09:20:42Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "units-generation",
+      "started_at": "2026-10-09T09:25:00Z",
+      "completed_at": "2026-10-09T09:39:40Z",
+      "agent": "aidlc-architect-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/units-generation/memory.md",
+      "memory_entries": 5,
+      "memory_breakdown": {
+        "interpretations": 2,
+        "deviations": 1,
+        "tradeoffs": 2,
+        "open_questions": 0
+      },
+      "sensor_firings": [
+        {
+          "id": "traceability",
+          "fire_id": "9d95cccf",
+          "result": "failed",
+          "ts": "2026-10-09T09:35:50Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/units-generation/traceability-9d95cccf.md"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "495a20d1",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:45Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "bbc105f3",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:45Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "3da8702e",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:45Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "277a77f3",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:46Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "97ebe9d7",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:46Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "83fdbf87",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:46Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "c54cdcfd",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:47Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "c5f0c47a",
+          "result": "passed",
+          "ts": "2026-10-09T09:37:47Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "contract-design",
+      "started_at": "2026-10-09T09:39:40Z",
+      "completed_at": "2026-10-09T09:58:58Z",
+      "agent": "aidlc-architect-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/contract-design/memory.md",
+      "memory_entries": 4,
+      "memory_breakdown": {
+        "interpretations": 1,
+        "deviations": 0,
+        "tradeoffs": 2,
+        "open_questions": 1
+      },
+      "sensor_firings": [
+        {
+          "id": "required-sections",
+          "fire_id": "a1c4c65b",
+          "result": "passed",
+          "ts": "2026-10-09T09:57:48Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "6d34751b",
+          "result": "passed",
+          "ts": "2026-10-09T09:57:48Z"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "delivery-planning",
+      "started_at": "2026-10-09T09:58:58Z",
+      "completed_at": "2026-10-09T10:04:27Z",
+      "agent": "aidlc-delivery-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/inception/delivery-planning/memory.md",
+      "memory_entries": 0,
+      "memory_breakdown": {
+        "interpretations": 0,
+        "deviations": 0,
+        "tradeoffs": 0,
+        "open_questions": 0
+      },
+      "sensor_firings": [
+        {
+          "id": "required-sections",
+          "fire_id": "4775871f",
+          "result": "passed",
+          "ts": "2026-10-09T10:03:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "e8dc61d1",
+          "result": "passed",
+          "ts": "2026-10-09T10:03:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "0f46365a",
+          "result": "passed",
+          "ts": "2026-10-09T10:03:22Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "6e117acf",
+          "result": "passed",
+          "ts": "2026-10-09T10:03:23Z"
+        },
+        {
+          "id": "required-sections",
+          "fire_id": "df3434a6",
+          "result": "passed",
+          "ts": "2026-10-09T10:03:23Z"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "2a136687",
+          "result": "failed",
+          "ts": "2026-10-09T10:03:23Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/delivery-planning/upstream-coverage-2a136687.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "5219ffb7",
+          "result": "failed",
+          "ts": "2026-10-09T10:03:23Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/delivery-planning/upstream-coverage-5219ffb7.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "e8177b2c",
+          "result": "failed",
+          "ts": "2026-10-09T10:03:24Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/delivery-planning/upstream-coverage-e8177b2c.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "b3bf6796",
+          "result": "failed",
+          "ts": "2026-10-09T10:03:24Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/delivery-planning/upstream-coverage-b3bf6796.md"
+        },
+        {
+          "id": "upstream-coverage",
+          "fire_id": "0b939a22",
+          "result": "failed",
+          "ts": "2026-10-09T10:03:24Z",
+          "detail_path": "aidlc/spaces/default/intents/261009-interview-execution-app/.aidlc-engine/sensors/delivery-planning/upstream-coverage-0b939a22.md"
+        }
+      ],
+      "outcome": "approved",
+      "learnings_captured": {
+        "from_orchestrator": 0,
+        "from_user_addition": 0
+      }
+    },
+    {
+      "stage_slug": "functional-design",
+      "started_at": "2026-10-09T10:04:27Z",
+      "completed_at": null,
+      "agent": "aidlc-architect-agent",
+      "memory_path": "aidlc/spaces/default/intents/261009-interview-execution-app/construction/functional-design/memory.md",
+      "memory_entries": 2,
+      "memory_breakdown": {
+        "interpretations": 1,
+        "deviations": 0,
+        "tradeoffs": 1,
+        "open_questions": 0
+      },
+      "sensor_firings": [],
+      "outcome": "pending",
+      "learnings_captured": null
+    }
+  ],
+  "bolt_dag": {
+    "units": [
+      {
+        "name": "u1-scoring-skeleton",
+        "depends_on": [],
+        "kind": "service"
+      },
+      {
+        "name": "u2-scoring-complete",
+        "depends_on": [
+          "u1-scoring-skeleton"
+        ],
+        "kind": "service"
+      },
+      {
+        "name": "u3-cv-viewer",
+        "depends_on": [
+          "u1-scoring-skeleton"
+        ],
+        "kind": "service"
+      },
+      {
+        "name": "u4-ai-assist",
+        "depends_on": [
+          "u3-cv-viewer"
+        ],
+        "kind": "service"
+      },
+      {
+        "name": "u5-ui-experience",
+        "depends_on": [
+          "u1-scoring-skeleton"
+        ],
+        "kind": "ui"
+      }
+    ],
+    "batches": [
+      [
+        "u1-scoring-skeleton"
+      ],
+      [
+        "u2-scoring-complete",
+        "u3-cv-viewer",
+        "u5-ui-experience"
+      ],
+      [
+        "u4-ai-assist"
+      ]
+    ]
+  }
+}

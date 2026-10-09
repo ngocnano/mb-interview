@@ -1,0 +1,22 @@
+{
+  "version": 4,
+  "id": "a6e0a41e-d554-45de-a0ec-98d2eebc12d1",
+  "kind": "skeleton",
+  "unit": "u1-scoring-skeleton",
+  "fingerprint": "sha256:06afcaf3b8b1ef1854afe6d373539d65f0a038c275a77eb8570f623bc87b3b91",
+  "command_sha256": "5eed5d8d48512e504e5d39c41fba40437e3a00e052a6a3141d170dcb8832a8ab",
+  "command_label": "npm --prefix backend run verify:e2e",
+  "started_at": "2026-10-09T15:44:18.776Z",
+  "finished_at": "2026-10-09T15:44:36.674Z",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout_bytes": 1276,
+  "stderr_bytes": 0,
+  "stdout_sha256": "574fab2bd086109286a79c7dc3d9746b826906fe4bf5d22515a210ffb31148c8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_tail": "\n> interview-backend@0.1.0 verify:e2e\n> tsx scripts/verify-e2e.ts\n\nDựng Oracle XE tạm (project interview-e2e-0723ac, cổng 51745)…\nĐẠT  Dựng Oracle XE tạm và tạo lược đồ\nĐẠT  Nạp dữ liệu mẫu: 40 bản ghi, 0 lỗi\nĐẠT  Nạp lại không nhân đôi\nĐẠT  GET /health trả 200\nĐẠT  Đăng nhập sai: 401 thông báo chung\nĐẠT  Đăng nhập đúng: 200 kèm token\nĐẠT  Danh sách HĐPV: chỉ HD004 (Inprogress, được gán)\nĐẠT  Ứng viên: sắp theo giờ, UV004 (N) bị ẩn\nĐẠT  Không lộ sdt, ngày sinh, giới tính\nĐẠT  Chính sách: 403 chưa gán, 404 HĐPV Completed, 404 ứng viên N\nĐẠT  Có đủ 5 tiêu chí\nĐẠT  Hoàn thành đánh giá: 201\nĐẠT  Gửi lại cùng idempotencyKey: 200, cùng mã đánh giá\nĐẠT  Khóa mới cho ứng viên đã chấm: 409\nĐẠT  DB: đúng 1 phiếu SUBMITTED và 5 dòng điểm\nĐẠT  my-evaluations liệt kê UV002\nĐẠT  Người chưa được gán vào HD004: 403\nĐẠT  Sai 5 lần thì lần 6 bị 429 kèm Retry-After\nĐẠT  Log không chứa mật khẩu, token hay nhận xét\nĐẠT  Log có mã tương quan và sự kiện kiểm toán hoàn thành\nĐẠT  Mọi phản hồi có X-Correlation-Id\n\n21/21 kiểm tra đạt.\n",
+  "stderr_tail": "",
+  "evidence_unchanged": true,
+  "verified": true
+}

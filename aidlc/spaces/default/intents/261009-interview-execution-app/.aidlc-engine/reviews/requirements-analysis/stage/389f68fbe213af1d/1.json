@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "stage": "requirements-analysis",
+  "unit": null,
+  "workflow": null,
+  "attempt": "389f68fbe213af1d",
+  "iteration": 1,
+  "reviewer": "aidlc-product-lead-agent",
+  "verdict": "READY",
+  "request_id": "review:0ceb9200c6f896f51c8bfdfee2c47ced",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:620422cb9602722fd7930a0baf71d44e464f654223a405955e39c23224f035a5",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "FR-A1 / DEC-2",
+      "finding": "Lệ thuộc schema DB dùng chung với team Phase 1; tên bảng/cột chưa chốt là rủi ro lịch cao nhất",
+      "required_action": "Thống nhất tên bảng/cột theo Kiro_bang (1).xlsx ngay ngày 1; nếu chưa sẵn, seed tạm đúng cấu trúc để không chặn FE/BE",
+      "status": "New"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "FR-A0 / FR-A6",
+      "finding": "Cần ánh xạ danh tính Supabase `auth.uid()` ↔ `EmployedID` của người chấm (dữ liệu Phase 1) để gắn đánh giá và áp RLS",
+      "required_action": "Seed sẵn bảng ánh xạ cho tài khoản demo trong MVP; đối chiếu đầy đủ để increment sau",
+      "status": "New"
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "FR-A3",
+      "finding": "\"Vị trí phỏng vấn\" trong flow chưa phân biệt rõ với trường `Vị trí` của ứng viên (job + ĐVQL + ĐVTT1-3)",
+      "required_action": "Làm rõ ở domain-design; không chặn requirements",
+      "status": "New"
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "FR-A6",
+      "finding": "Ràng buộc \"tối đa một đánh giá/(người chấm, ứng viên)\" nên hiện thực bằng unique constraint ở DB để test được",
+      "required_action": "Khai báo constraint ở tầng DB khi thiết kế schema",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "FR-A1 / DEC-2",
+      "finding": "Lệ thuộc schema DB dùng chung với team Phase 1; tên bảng/cột chưa chốt là rủi ro lịch cao nhất",
+      "required_action": "Thống nhất tên bảng/cột theo Kiro_bang (1).xlsx ngay ngày 1; nếu chưa sẵn, seed tạm đúng cấu trúc để không chặn FE/BE",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "FR-A0 / FR-A6",
+      "finding": "Cần ánh xạ danh tính Supabase `auth.uid()` ↔ `EmployedID` của người chấm (dữ liệu Phase 1) để gắn đánh giá và áp RLS",
+      "required_action": "Seed sẵn bảng ánh xạ cho tài khoản demo trong MVP; đối chiếu đầy đủ để increment sau",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "FR-A3",
+      "finding": "\"Vị trí phỏng vấn\" trong flow chưa phân biệt rõ với trường `Vị trí` của ứng viên (job + ĐVQL + ĐVTT1-3)",
+      "required_action": "Làm rõ ở domain-design; không chặn requirements",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "FR-A6",
+      "finding": "Ràng buộc \"tối đa một đánh giá/(người chấm, ứng viên)\" nên hiện thực bằng unique constraint ở DB để test được",
+      "required_action": "Khai báo constraint ở tầng DB khi thiết kế schema",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-product-lead-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory một lần cho `requirements.md` (và Q&A kèm theo) làm đầu vào quyết định cho cổng phê duyệt của con người. Lớp review: advisory — không có vòng sửa-và-review lại.\n\nNhận định chung: requirements tách rõ phần đầy đủ Phase 2 (north star, 31 FR) và lát cắt MVP 2 ngày (FR-A0..A7). Mỗi FR của MVP có tiêu chí pass/fail cụ thể, phù hợp với posture TDD đã khẳng định. Các quyết định của PO (DEC-1..DEC-5) truy vết được. Guardrail nghiệp vụ cốt lõi (HR duyệt trước khi gửi, audit, RBAC) được giữ ở north star dù MVP cắt bớt. Phạm vi 2 ngày thực tế và khả thi.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Medium | FR-A1 / DEC-2 | Lệ thuộc schema DB dùng chung với team Phase 1; tên bảng/cột chưa chốt là rủi ro lịch cao nhất | Thống nhất tên bảng/cột theo Kiro_bang (1).xlsx ngay ngày 1; nếu chưa sẵn, seed tạm đúng cấu trúc để không chặn FE/BE |\n| Medium | FR-A0 / FR-A6 | Cần ánh xạ danh tính Supabase `auth.uid()` ↔ `EmployedID` của người chấm (dữ liệu Phase 1) để gắn đánh giá và áp RLS | Seed sẵn bảng ánh xạ cho tài khoản demo trong MVP; đối chiếu đầy đủ để increment sau |\n| Low | FR-A3 | \"Vị trí phỏng vấn\" trong flow chưa phân biệt rõ với trường `Vị trí` của ứng viên (job + ĐVQL + ĐVTT1-3) | Làm rõ ở domain-design; không chặn requirements |\n| Low | FR-A6 | Ràng buộc \"tối đa một đánh giá/(người chấm, ứng viên)\" nên hiện thực bằng unique constraint ở DB để test được | Khai báo constraint ở tầng DB khi thiết kế schema |\n\n### Suggestions\n\n- Cân nhắc bật OTP code 6 số (đã ghi trong DEC-4) để demo không phụ thuộc deep-link email — giảm rủi ro vận hành khi trình diễn.\n",
+  "recorded_at": "2026-10-09T06:02:51Z"
+}

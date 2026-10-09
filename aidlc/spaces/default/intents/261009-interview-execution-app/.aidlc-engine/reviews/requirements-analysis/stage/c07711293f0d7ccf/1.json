@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "stage": "requirements-analysis",
+  "unit": null,
+  "workflow": null,
+  "attempt": "c07711293f0d7ccf",
+  "iteration": 1,
+  "reviewer": "aidlc-product-lead-agent",
+  "verdict": "READY",
+  "request_id": "review:79ef05df5a0e685615377f77c73ac543",
+  "request_challenge": null,
+  "artifact_fingerprint": "sha256:6bafac7bc34cdb84c6bff41e571b0b50ae58aceeaf504e67367b85ca217df489",
+  "source_fingerprint": null,
+  "unit_source_fingerprint": null,
+  "findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "FR-A1 / DEC-2",
+      "finding": "Lệ thuộc schema DB dùng chung với team Phase 1; tên bảng/cột chưa chốt là rủi ro lịch cao nhất",
+      "required_action": "Thống nhất tên bảng/cột theo Kiro_bang (1).xlsx ngay ngày 1; nếu chưa sẵn, seed tạm đúng cấu trúc để không chặn FE/BE",
+      "status": "Resolved"
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "FR-A0 / FR-A6",
+      "finding": "Cần ánh xạ danh tính Supabase `auth.uid()` ↔ `EmployedID` của người chấm (dữ liệu Phase 1) để gắn đánh giá và áp RLS",
+      "required_action": "Seed sẵn bảng ánh xạ cho tài khoản demo trong MVP; đối chiếu đầy đủ để increment sau",
+      "status": "Resolved"
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "FR-A3",
+      "finding": "\"Vị trí phỏng vấn\" trong flow chưa phân biệt rõ với trường `Vị trí` của ứng viên (job + ĐVQL + ĐVTT1-3)",
+      "required_action": "Làm rõ ở domain-design; không chặn requirements",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "FR-A6",
+      "finding": "Ràng buộc \"tối đa một đánh giá/(người chấm, ứng viên)\" nên hiện thực bằng unique constraint ở DB để test được",
+      "required_action": "Khai báo constraint ở tầng DB khi thiết kế schema",
+      "status": "Unresolved"
+    },
+    {
+      "id": "R-05",
+      "severity": "Medium",
+      "location": "DEC-5 / Kiến trúc MVP",
+      "finding": "Tự xây tầng REST API + JWT auth + Oracle driver làm tăng khối lượng so với Supabase; rủi ro lịch 2 ngày",
+      "required_action": "Giữ API tối thiểu (chỉ endpoint phục vụ FR-A0..A7); dùng Oracle XE Docker image dựng sẵn; bcrypt + jsonwebtoken là đủ, không thêm framework auth nặng",
+      "status": "New"
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "FR-A1",
+      "finding": "Cần chuẩn bị script seed/import và dữ liệu mẫu theo cấu trúc Kiro_bang (1).xlsx trước khi test luồng",
+      "required_action": "Viết seed script là việc ngày 1 của Construction",
+      "status": "New"
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "DEC-2",
+      "finding": "Schema DB riêng do app tự định nghĩa — chốt tên bảng/cột ở domain-design trước khi code",
+      "required_action": "Khóa schema sớm để FE/BE không lệch",
+      "status": "New"
+    }
+  ],
+  "derived_findings": [
+    {
+      "id": "R-01",
+      "severity": "Medium",
+      "location": "FR-A1 / DEC-2",
+      "finding": "Lệ thuộc schema DB dùng chung với team Phase 1; tên bảng/cột chưa chốt là rủi ro lịch cao nhất",
+      "required_action": "Thống nhất tên bảng/cột theo Kiro_bang (1).xlsx ngay ngày 1; nếu chưa sẵn, seed tạm đúng cấu trúc để không chặn FE/BE",
+      "status": "Resolved",
+      "reviewer_note": "DB riêng + seed/import thay cho DB dùng chung; không còn phụ thuộc schema/lịch team Phase 1",
+      "resolved_by_reviewer": true,
+      "resolved_in_review": true,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-02",
+      "severity": "Medium",
+      "location": "FR-A0 / FR-A6",
+      "finding": "Cần ánh xạ danh tính Supabase `auth.uid()` ↔ `EmployedID` của người chấm (dữ liệu Phase 1) để gắn đánh giá và áp RLS",
+      "required_action": "Seed sẵn bảng ánh xạ cho tài khoản demo trong MVP; đối chiếu đầy đủ để increment sau",
+      "status": "Resolved",
+      "reviewer_note": "Login JWT tự xây với bảng user Oracle gắn trực tiếp userId vào đánh giá; không cần ánh xạ auth.uid ↔ EmployedID ở MVP",
+      "resolved_by_reviewer": true,
+      "resolved_in_review": true,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-03",
+      "severity": "Low",
+      "location": "FR-A3",
+      "finding": "\"Vị trí phỏng vấn\" trong flow chưa phân biệt rõ với trường `Vị trí` của ứng viên (job + ĐVQL + ĐVTT1-3)",
+      "required_action": "Làm rõ ở domain-design; không chặn requirements",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-04",
+      "severity": "Low",
+      "location": "FR-A6",
+      "finding": "Ràng buộc \"tối đa một đánh giá/(người chấm, ứng viên)\" nên hiện thực bằng unique constraint ở DB để test được",
+      "required_action": "Khai báo constraint ở tầng DB khi thiết kế schema",
+      "status": "New",
+      "not_rechecked": true,
+      "resolved_in_review": false,
+      "introduced_in_review": false
+    },
+    {
+      "id": "R-05",
+      "severity": "Medium",
+      "location": "DEC-5 / Kiến trúc MVP",
+      "finding": "Tự xây tầng REST API + JWT auth + Oracle driver làm tăng khối lượng so với Supabase; rủi ro lịch 2 ngày",
+      "required_action": "Giữ API tối thiểu (chỉ endpoint phục vụ FR-A0..A7); dùng Oracle XE Docker image dựng sẵn; bcrypt + jsonwebtoken là đủ, không thêm framework auth nặng",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-06",
+      "severity": "Low",
+      "location": "FR-A1",
+      "finding": "Cần chuẩn bị script seed/import và dữ liệu mẫu theo cấu trúc Kiro_bang (1).xlsx trước khi test luồng",
+      "required_action": "Viết seed script là việc ngày 1 của Construction",
+      "status": "New",
+      "introduced_in_review": true
+    },
+    {
+      "id": "R-07",
+      "severity": "Low",
+      "location": "DEC-2",
+      "finding": "Schema DB riêng do app tự định nghĩa — chốt tên bảng/cột ở domain-design trước khi code",
+      "required_action": "Khóa schema sớm để FE/BE không lệch",
+      "status": "New",
+      "introduced_in_review": true
+    }
+  ],
+  "body": "**Reviewer:** aidlc-product-lead-agent\n**Verdict:** READY\n**Iteration:** 1\n\n### Review\n\nRà soát advisory một lần sau khi PO đổi kiến trúc sang Oracle XE local (Docker), DB riêng, login JWT tự xây và tầng REST API Node.js/Express. Lớp review: advisory.\n\nNhận định: thay đổi kiến trúc được phản ánh nhất quán trong DEC-2, DEC-4, DEC-5, mục Kiến trúc MVP, luồng người dùng, FR-A0, FR-A1 và FR-A6. Việc chuyển sang DB riêng loại bỏ rủi ro lịch phụ thuộc team Phase 1 (finding Medium ở review trước đã được giải quyết). Phạm vi 2 ngày vẫn khả thi dù tăng khối lượng do phải tự xây tầng API + auth; đây là đánh đổi hợp lý và đã được ghi nhận.\n\n### Findings\n\n**Prior findings**\n\n| ID | Now | Severity | Note |\n|---|---|---|---|\n| R-01 | Fixed | Medium | DB riêng + seed/import thay cho DB dùng chung; không còn phụ thuộc schema/lịch team Phase 1 |\n| R-02 | Fixed | Medium | Login JWT tự xây với bảng user Oracle gắn trực tiếp userId vào đánh giá; không cần ánh xạ auth.uid ↔ EmployedID ở MVP |\n\n**New findings**\n\n| Severity | Location | Finding | Required action |\n|---|---|---|---|\n| Medium | DEC-5 / Kiến trúc MVP | Tự xây tầng REST API + JWT auth + Oracle driver làm tăng khối lượng so với Supabase; rủi ro lịch 2 ngày | Giữ API tối thiểu (chỉ endpoint phục vụ FR-A0..A7); dùng Oracle XE Docker image dựng sẵn; bcrypt + jsonwebtoken là đủ, không thêm framework auth nặng |\n| Low | FR-A1 | Cần chuẩn bị script seed/import và dữ liệu mẫu theo cấu trúc Kiro_bang (1).xlsx trước khi test luồng | Viết seed script là việc ngày 1 của Construction |\n| Low | DEC-2 | Schema DB riêng do app tự định nghĩa — chốt tên bảng/cột ở domain-design trước khi code | Khóa schema sớm để FE/BE không lệch |\n\n### Suggestions\n\n- Cân nhắc dùng kết nối Oracle qua `oracledb` thin mode (không cần Instant Client) để giảm bước cài đặt trên máy dev trong 2 ngày.\n",
+  "recorded_at": "2026-10-09T06:36:19Z"
+}

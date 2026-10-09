@@ -232,6 +232,9 @@ paths:
         '409': { $ref: '#/components/responses/Conflict' }
     get:
       summary: Bài đã hoàn thành của tôi cho ứng viên này (U2, US6.3)
+      description: >
+        Chỉ đọc được bài của chính người gọi. Chưa có bài: 404 mã EVALUATION_NOT_FOUND.
+        Chưa được gán: 403.
       responses:
         '200':
           description: Bài đã hoàn thành, chỉ đọc
@@ -442,6 +445,7 @@ components:
         evaluationId: { type: string }
         submittedAt: { type: string, format: date-time }
         trangThai: { type: string, enum: [SUBMITTED] }
+        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC] }
         diemTrungBinh: { type: number, description: 'U2; 2 chữ số thập phân, server tính' }
     EvaluationDetail:
       type: object
@@ -458,8 +462,10 @@ components:
               - type: object
                 properties:
                   tenTieuChi: { type: string, description: 'Giữ được cả tiêu chí đã ngừng' }
+                  diemToiThieu: { type: integer, minimum: 1, maximum: 5 }
+                  diemToiDa: { type: integer, minimum: 1, maximum: 5 }
         nhanXet: { type: string }
-        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC] }
+        ketLuan: { type: string, enum: [DAT, LOAI, CAN_NHAC, KHAC], description: 'Vắng với bài hoàn thành từ U1 (AC6.3.6)' }
         referViTri: { $ref: '#/components/schemas/Position' }
         referLyDo: { type: string }
         diemTrungBinh: { type: number }
@@ -704,6 +710,7 @@ test_double: "Bộ chuyển đổi giả lập trả kết quả cố định, d
 - **[assumption]** API nằm trên HTTPS ở môi trường thật; ở máy dev local có thể dùng HTTP (thiết kế hạ tầng quyết định).
 - **[assumption]** `GET /cv-files/{token}` vẫn yêu cầu JWT của cùng người dùng, để liên kết lộ ra ngoài cũng không mở được nếu không đăng nhập. Nếu trình xem PDF trên web không gửi được header, cần cơ chế khác (ví dụ tải về bộ nhớ app rồi hiển thị); quyết định khi chọn gói xem PDF.
 - **[assumption]** `soUngVienXacNhan` trả trong danh sách HĐPV; số "đã chấm" do app ghép từ `my-evaluations` (ADR-002).
+- **Điều chỉnh ở U2 (Code Generation):** `ketLuan` bắt buộc trong `POST .../evaluation` (thay đổi phá vỡ đã định trước, U1 và U2 phát hành cùng nhau); `201` và `200` trả thêm `ketLuan` và `diemTrungBinh`; `GET .../evaluation` trả `ketLuan` vắng cho bài từ U1 và thêm `diemToiThieu`, `diemToiDa` mỗi dòng điểm; mã lỗi mới `EVALUATION_NOT_FOUND` (404); `diemTrungBinh` trong request bị bỏ qua.
 
 | Contract | Question | Blocks |
 |---|---|---|

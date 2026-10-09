@@ -82,3 +82,4 @@
 
 <!-- Project-specific corrections from human feedback. -->
 <!-- Format: NEVER/ALWAYS [behavior] (learned [date]) -->
+- ALWAYS kiểm tra có phiên agent hoặc workflow khác đang chạy trong cùng thư mục (danh sách phiên và thời gian ghi tệp) trước khi ghi vào thư mục dùng chung; nếu có thì dừng lại và hỏi người dùng thay vì ghi chồng lên. (learned 2026-10-09) <!-- cid:261009-interview-execution-app:code-generation:350677d4fb8ed0c566f9874410ec8a26264ae8c9c4debd4a7698334adb58ccfa -->

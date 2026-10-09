@@ -1,0 +1,1028 @@
+{
+  "stage": "code-generation",
+  "unit": "u1-scoring-skeleton",
+  "upstream_ids": [
+    "AC1.1.1",
+    "AC1.1.2",
+    "AC1.1.3",
+    "AC1.1.4",
+    "AC1.1.5",
+    "AC1.1.6",
+    "AC1.1.7",
+    "AC1.1.8",
+    "AC1.1.9",
+    "AC2.1.1",
+    "AC2.1.2",
+    "AC2.1.3",
+    "AC2.1.4",
+    "AC2.1.5",
+    "AC2.1.6",
+    "AC2.1.7",
+    "AC4.1.1",
+    "AC4.1.2",
+    "AC4.1.3",
+    "AC4.1.4",
+    "AC4.1.5",
+    "AC4.1.6",
+    "AC4.1.7",
+    "AC4.1.8",
+    "AC4.1.9",
+    "AC4.1.10",
+    "AC4.1.11",
+    "AC4.1.12",
+    "AC5.1.1",
+    "AC5.1.2",
+    "AC5.1.3",
+    "AC5.1.4",
+    "AC5.1.5",
+    "AC5.1.6",
+    "AC5.2.1",
+    "AC5.2.2",
+    "AC5.2.3",
+    "AC5.2.4",
+    "AC5.2.5",
+    "AC5.2.6",
+    "AC5.2.7",
+    "AC6.1.1",
+    "AC6.1.2",
+    "AC6.1.3",
+    "AC6.1.4",
+    "AC6.1.5",
+    "AC6.1.6",
+    "AC6.1.7",
+    "AC6.1.8",
+    "AC6.1.9",
+    "AC6.1.10",
+    "AC6.1.11",
+    "AC6.1.12",
+    "AC6.1.13",
+    "AC6.1.14",
+    "AC6.1.15",
+    "AC6.1.16",
+    "AC7.1.1",
+    "AC7.1.2",
+    "AC7.1.3",
+    "AC7.1.4",
+    "AC7.1.5",
+    "AC7.1.6",
+    "AC7.1.7",
+    "AC7.1.8",
+    "AC7.1.9",
+    "AC7.2.1",
+    "AC7.2.2",
+    "AC7.2.3",
+    "AC7.3.1",
+    "AC7.3.2",
+    "AC7.3.3",
+    "AC7.3.4",
+    "BR1.1",
+    "BR1.2",
+    "BR1.3",
+    "BR1.4",
+    "BR1.5",
+    "BR1.6",
+    "BR1.7",
+    "BR1.8",
+    "BR2.1",
+    "BR2.2",
+    "BR2.3",
+    "BR2.4",
+    "BR2.5",
+    "BR2.6",
+    "BR2.7",
+    "BR2.8",
+    "BR2.9",
+    "BR2.10",
+    "BR2.11",
+    "BR3.1",
+    "BR3.2",
+    "BR3.3",
+    "BR3.4",
+    "BR3.5",
+    "BR3.6",
+    "BR3.7",
+    "BR3.8",
+    "BR3.9",
+    "BR3.10",
+    "BR3.11",
+    "BR4.1",
+    "BR4.2",
+    "BR4.3",
+    "BR4.4",
+    "BR4.5",
+    "BR4.6",
+    "BR4.7",
+    "BR4.8",
+    "BR4.9",
+    "NFR1.1",
+    "NFR1.2",
+    "NFR1.3",
+    "NFR1.4",
+    "NFR1.5",
+    "NFR1.6",
+    "NFR1.7",
+    "NFR1.8",
+    "NFR1.9",
+    "NFR1.10",
+    "NFR1.11",
+    "NFR1.12",
+    "NFR1.13",
+    "NFR1.14",
+    "NFR1.15",
+    "NFR1.16",
+    "NFR1.17",
+    "NFR2.1",
+    "NFR2.2",
+    "NFR2.3",
+    "NFR2.4",
+    "NFR2.5",
+    "NFR2.6",
+    "NFR2.7",
+    "NFR3.1",
+    "NFR3.2",
+    "NFR3.3",
+    "NFR4.1",
+    "NFR4.2",
+    "NFR4.3",
+    "NFR4.4",
+    "NFR5.1",
+    "NFR6.1",
+    "NFR13.1",
+    "NFR13.2",
+    "NFR13.3",
+    "NFR13.4",
+    "NFR13.5",
+    "NFR13.6",
+    "NFR13.7",
+    "NFR13.8",
+    "NFR13.9",
+    "NFR13.10",
+    "NFR13.11",
+    "NFR13.12",
+    "NFR13.13",
+    "NFR13.14",
+    "NFR14.1",
+    "NFR14.2",
+    "NFR14.3",
+    "NFR14.4",
+    "NFR14.5",
+    "NFR14.6",
+    "NFR14.7",
+    "NFR14.8",
+    "NFR14.9",
+    "NFR14.10",
+    "NFR14.11"
+  ],
+  "coverage": [
+    {
+      "id": "AC1.1.1",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC1.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC1.1.3",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC1.1.4",
+      "status": "OK",
+      "target": "app/test/features/login_screen_test.dart"
+    },
+    {
+      "id": "AC1.1.5",
+      "status": "OK",
+      "target": "app/test/core/api_client_test.dart"
+    },
+    {
+      "id": "AC1.1.6",
+      "status": "OK",
+      "target": "backend/test/integration/identity.test.ts"
+    },
+    {
+      "id": "AC1.1.7",
+      "status": "OK",
+      "target": "app/test/features/login_screen_test.dart"
+    },
+    {
+      "id": "AC1.1.8",
+      "status": "OK",
+      "target": "app/test/core/auth_test.dart"
+    },
+    {
+      "id": "AC1.1.9",
+      "status": "OK",
+      "target": "backend/test/integration/identity.test.ts"
+    },
+    {
+      "id": "AC2.1.1",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC2.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC2.1.3",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC2.1.4",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC2.1.5",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC2.1.6",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC2.1.7",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.1",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC4.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC4.1.3",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.4",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.5",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.6",
+      "status": "OK",
+      "target": "backend/test/integration/catalog-policy.test.ts"
+    },
+    {
+      "id": "AC4.1.7",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.8",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC4.1.9",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC4.1.10",
+      "status": "OK",
+      "target": "app/test/features/panels_candidates_test.dart"
+    },
+    {
+      "id": "AC4.1.11",
+      "status": "N/A",
+      "target": "thu?c U2: nh?n k?t lu?n tr?n danh s?ch"
+    },
+    {
+      "id": "AC4.1.12",
+      "status": "N/A",
+      "target": "thu?c U2: c?t ?i?m TB tr?n danh s?ch"
+    },
+    {
+      "id": "AC5.1.1",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC5.1.3",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.1.4",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC5.1.5",
+      "status": "OK",
+      "target": "backend/test/integration/catalog-policy.test.ts"
+    },
+    {
+      "id": "AC5.1.6",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.2.1",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.2.2",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation.test.ts"
+    },
+    {
+      "id": "AC5.2.3",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.2.4",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.2.5",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC5.2.6",
+      "status": "N/A",
+      "target": "thu?c U2 v? U5: c?nh b?o khi chuy?n ?ng vi?n ? b? c?c hai khung"
+    },
+    {
+      "id": "AC5.2.7",
+      "status": "N/A",
+      "target": "thu?c U5: ph?m m?i t?n v? Enter ho?c Space"
+    },
+    {
+      "id": "AC6.1.1",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC6.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation.test.ts"
+    },
+    {
+      "id": "AC6.1.3",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation.test.ts"
+    },
+    {
+      "id": "AC6.1.4",
+      "status": "OK",
+      "target": "backend/test/integration/catalog-policy.test.ts"
+    },
+    {
+      "id": "AC6.1.5",
+      "status": "OK",
+      "target": "backend/test/integration/catalog-policy.test.ts"
+    },
+    {
+      "id": "AC6.1.6",
+      "status": "OK",
+      "target": "backend/test/integration/schema.test.ts"
+    },
+    {
+      "id": "AC6.1.7",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "AC6.1.8",
+      "status": "N/A",
+      "target": "thu?c U2: k?t lu?n b?t bu?c"
+    },
+    {
+      "id": "AC6.1.9",
+      "status": "N/A",
+      "target": "thu?c U2: l?u refer"
+    },
+    {
+      "id": "AC6.1.10",
+      "status": "N/A",
+      "target": "thu?c U2: ki?m v? tr? refer"
+    },
+    {
+      "id": "AC6.1.11",
+      "status": "N/A",
+      "target": "thu?c U2: l? do refer"
+    },
+    {
+      "id": "AC6.1.12",
+      "status": "N/A",
+      "target": "thu?c U2: refer ch? khi KHAC"
+    },
+    {
+      "id": "AC6.1.13",
+      "status": "OK",
+      "target": "app/test/features/scoring_screen_test.dart"
+    },
+    {
+      "id": "AC6.1.14",
+      "status": "N/A",
+      "target": "thu?c U2: ?i?m trung b?nh do server t?nh"
+    },
+    {
+      "id": "AC6.1.15",
+      "status": "N/A",
+      "target": "thu?c U2: b? qua ?i?m trung b?nh t? client"
+    },
+    {
+      "id": "AC6.1.16",
+      "status": "N/A",
+      "target": "thu?c U2: gi? ?i?m trung b?nh ?? l?u"
+    },
+    {
+      "id": "AC7.1.1",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.2",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.3",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.4",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.5",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.6",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.7",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.8",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.1.9",
+      "status": "N/A",
+      "target": "thu?c U3: c?nh b?o cvPath"
+    },
+    {
+      "id": "AC7.2.1",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC7.2.2",
+      "status": "OK",
+      "target": "backend/test/integration/repositories.test.ts"
+    },
+    {
+      "id": "AC7.2.3",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.3.1",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.3.2",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.3.3",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "AC7.3.4",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "BR1.1",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.2",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.3",
+      "status": "OK",
+      "target": "backend/src/http/validate.ts"
+    },
+    {
+      "id": "BR1.4",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.5",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.6",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.7",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "BR1.8",
+      "status": "OK",
+      "target": "app/lib/features/login/login_screen.dart"
+    },
+    {
+      "id": "BR2.1",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "BR2.2",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "BR2.3",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "BR2.4",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/repo.ts"
+    },
+    {
+      "id": "BR2.5",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/repo.ts"
+    },
+    {
+      "id": "BR2.6",
+      "status": "OK",
+      "target": "backend/src/http/presenters.ts"
+    },
+    {
+      "id": "BR2.7",
+      "status": "OK",
+      "target": "app/lib/features/candidates/candidates_screen.dart"
+    },
+    {
+      "id": "BR2.8",
+      "status": "OK",
+      "target": "app/lib/features/panels/panels_screen.dart"
+    },
+    {
+      "id": "BR2.9",
+      "status": "OK",
+      "target": "app/lib/features/panels/panels_screen.dart"
+    },
+    {
+      "id": "BR2.10",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "BR2.11",
+      "status": "OK",
+      "target": "app/lib/features/candidates/candidates_screen.dart"
+    },
+    {
+      "id": "BR3.1",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR3.2",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR3.3",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR3.4",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/validation.ts"
+    },
+    {
+      "id": "BR3.5",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "BR3.6",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR3.7",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR3.8",
+      "status": "OK",
+      "target": "backend/src/http/routes.ts"
+    },
+    {
+      "id": "BR3.9",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "BR3.10",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "BR3.11",
+      "status": "OK",
+      "target": "backend/src/http/presenters.ts"
+    },
+    {
+      "id": "BR4.1",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.2",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.3",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.4",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.5",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.6",
+      "status": "OK",
+      "target": "backend/src/import/cli.ts"
+    },
+    {
+      "id": "BR4.7",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.8",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "BR4.9",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "NFR1.1",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "NFR1.2",
+      "status": "OK",
+      "target": "backend/src/config.ts"
+    },
+    {
+      "id": "NFR1.3",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "NFR1.4",
+      "status": "OK",
+      "target": "backend/src/app.ts"
+    },
+    {
+      "id": "NFR1.5",
+      "status": "OK",
+      "target": "backend/src/modules/identity/service.ts"
+    },
+    {
+      "id": "NFR1.6",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/policy.ts"
+    },
+    {
+      "id": "NFR1.7",
+      "status": "OK",
+      "target": "backend/src/http/presenters.ts"
+    },
+    {
+      "id": "NFR1.8",
+      "status": "OK",
+      "target": "backend/eslint.config.js"
+    },
+    {
+      "id": "NFR1.9",
+      "status": "OK",
+      "target": "backend/src/http/validate.ts"
+    },
+    {
+      "id": "NFR1.10",
+      "status": "OK",
+      "target": "docker/schema/schema.sql"
+    },
+    {
+      "id": "NFR1.11",
+      "status": "OK",
+      "target": "backend/src/observability/logger.ts"
+    },
+    {
+      "id": "NFR1.12",
+      "status": "Deferred",
+      "target": "HTTPS do l?p ph?a tr??c ??m nhi?m (IS-8); m?y v? t?n mi?n demo ch?a ch?n"
+    },
+    {
+      "id": "NFR1.13",
+      "status": "OK",
+      "target": "backend/src/app.ts"
+    },
+    {
+      "id": "NFR1.14",
+      "status": "OK",
+      "target": "backend/src/http/routes.ts"
+    },
+    {
+      "id": "NFR1.15",
+      "status": "OK",
+      "target": "scripts/check-secrets.mjs"
+    },
+    {
+      "id": "NFR1.16",
+      "status": "OK",
+      "target": "app/lib/core/token_store.dart"
+    },
+    {
+      "id": "NFR1.17",
+      "status": "OK",
+      "target": "backend/src/http/error-handler.ts"
+    },
+    {
+      "id": "NFR2.1",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "NFR2.2",
+      "status": "OK",
+      "target": "app/lib/core/api_client.dart"
+    },
+    {
+      "id": "NFR2.3",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "NFR2.4",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "NFR2.5",
+      "status": "OK",
+      "target": "backend/src/db/errors.ts"
+    },
+    {
+      "id": "NFR2.6",
+      "status": "OK",
+      "target": "backend/src/server.ts"
+    },
+    {
+      "id": "NFR2.7",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "NFR3.1",
+      "status": "OK",
+      "target": "backend/test/integration/contract.test.ts"
+    },
+    {
+      "id": "NFR3.2",
+      "status": "OK",
+      "target": "backend/src/observability/correlation.ts"
+    },
+    {
+      "id": "NFR3.3",
+      "status": "OK",
+      "target": "backend/src/import/importer.ts"
+    },
+    {
+      "id": "NFR4.1",
+      "status": "OK",
+      "target": "aidlc/spaces/default/intents/261009-interview-execution-app/construction/u1-scoring-skeleton/code-generation/code-summary.md"
+    },
+    {
+      "id": "NFR4.2",
+      "status": "OK",
+      "target": "backend/vitest.config.ts"
+    },
+    {
+      "id": "NFR4.3",
+      "status": "OK",
+      "target": "scripts/ci.mjs"
+    },
+    {
+      "id": "NFR4.4",
+      "status": "OK",
+      "target": "backend/scripts/verify-e2e.ts"
+    },
+    {
+      "id": "NFR5.1",
+      "status": "OK",
+      "target": "docker/schema/schema.sql"
+    },
+    {
+      "id": "NFR6.1",
+      "status": "OK",
+      "target": "app/lib/features/scoring/scoring_screen.dart"
+    },
+    {
+      "id": "NFR13.1",
+      "status": "Deferred",
+      "target": "?o p95 API ??c b?ng k?ch b?n t?i ? Build and Test"
+    },
+    {
+      "id": "NFR13.2",
+      "status": "Deferred",
+      "target": "?o p95 ??ng nh?p v? ho?n th?nh ??nh gi? b?ng k?ch b?n t?i ? Build and Test"
+    },
+    {
+      "id": "NFR13.3",
+      "status": "Deferred",
+      "target": "?o th? c?ng th?i gian m? m?n tr?n thi?t b? th?t ? Build and Test"
+    },
+    {
+      "id": "NFR13.4",
+      "status": "OK",
+      "target": "backend/scripts/verify-e2e.ts"
+    },
+    {
+      "id": "NFR13.5",
+      "status": "OK",
+      "target": "docker/schema/schema.sql"
+    },
+    {
+      "id": "NFR13.6",
+      "status": "OK",
+      "target": "backend/test/integration/importer.test.ts"
+    },
+    {
+      "id": "NFR13.7",
+      "status": "OK",
+      "target": "docker-compose.yml"
+    },
+    {
+      "id": "NFR13.8",
+      "status": "OK",
+      "target": "docker-compose.yml"
+    },
+    {
+      "id": "NFR13.9",
+      "status": "OK",
+      "target": "backend/src/server.ts"
+    },
+    {
+      "id": "NFR13.10",
+      "status": "OK",
+      "target": "backend/src/modules/catalog/repo.ts"
+    },
+    {
+      "id": "NFR13.11",
+      "status": "OK",
+      "target": "docker/schema/schema.sql"
+    },
+    {
+      "id": "NFR13.12",
+      "status": "OK",
+      "target": "backend/test/integration/evaluation.test.ts"
+    },
+    {
+      "id": "NFR13.13",
+      "status": "OK",
+      "target": "backend/src/jobs/cleanup.ts"
+    },
+    {
+      "id": "NFR13.14",
+      "status": "OK",
+      "target": "backend/src/db/pool.ts"
+    },
+    {
+      "id": "NFR14.1",
+      "status": "OK",
+      "target": "docker-compose.yml"
+    },
+    {
+      "id": "NFR14.2",
+      "status": "OK",
+      "target": "scripts/backup.mjs"
+    },
+    {
+      "id": "NFR14.3",
+      "status": "OK",
+      "target": "scripts/restore.mjs"
+    },
+    {
+      "id": "NFR14.4",
+      "status": "OK",
+      "target": "backend/src/observability/logger.ts"
+    },
+    {
+      "id": "NFR14.5",
+      "status": "OK",
+      "target": "backend/src/app.ts"
+    },
+    {
+      "id": "NFR14.6",
+      "status": "OK",
+      "target": "backend/test/integration/api.test.ts"
+    },
+    {
+      "id": "NFR14.7",
+      "status": "OK",
+      "target": "backend/src/modules/evaluation/service.ts"
+    },
+    {
+      "id": "NFR14.8",
+      "status": "OK",
+      "target": "backend/src/app.ts"
+    },
+    {
+      "id": "NFR14.9",
+      "status": "OK",
+      "target": "scripts/archive-logs.mjs"
+    },
+    {
+      "id": "NFR14.10",
+      "status": "OK",
+      "target": "scripts/log-report.mjs"
+    },
+    {
+      "id": "NFR14.11",
+      "status": "OK",
+      "target": "scripts/log-report.mjs"
+    }
+  ]
+}

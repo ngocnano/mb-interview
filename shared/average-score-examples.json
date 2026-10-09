@@ -1,0 +1,12 @@
+{
+  "description": "Bộ ví dụ dùng chung cho công thức điểm trung bình (ADR-003, BR6.1, BR6.2). Backend (Vitest) và app (flutter test) cùng đọc tệp này. stored100 là điểm trung bình nhân 100 làm tròn nửa lên; display10 là điểm hiển thị nhân 10 làm tròn nửa lên từ stored100; null khi không có điểm nào.",
+  "examples": [
+    { "name": "3 tiêu chí thang 5: 4,3,4", "scores": [{ "diem": 4, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 4, "max": 5 }], "stored100": 367, "display10": 37 },
+    { "name": "5 tiêu chí thang 5: 4,3,5,4,5", "scores": [{ "diem": 4, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 5, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 5, "max": 5 }], "stored100": 420, "display10": 42 },
+    { "name": "thang trộn 1..3 và 1..5", "scores": [{ "diem": 2, "max": 3 }, { "diem": 4, "max": 5 }], "stored100": 367, "display10": 37 },
+    { "name": "một tiêu chí", "scores": [{ "diem": 3, "max": 5 }], "stored100": 300, "display10": 30 },
+    { "name": "làm tròn nửa lên ở chữ số thứ hai (3,125 thành 3,13)", "scores": [{ "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 4, "max": 5 }], "stored100": 313, "display10": 31 },
+    { "name": "hiển thị làm tròn nửa lên từ giá trị đã lưu (3,65 thành 3,7)", "scores": [{ "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 3, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }, { "diem": 4, "max": 5 }], "stored100": 365, "display10": 37 },
+    { "name": "không có điểm nào", "scores": [], "stored100": null, "display10": null }
+  ]
+}

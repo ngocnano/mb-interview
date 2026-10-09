@@ -327,6 +327,7 @@ PO bỏ màn chọn vị trí ngày 2026-10-09. Giữ lại ID để các tài l
   - Given thiếu `ketLuan`, When gọi API hoàn thành đánh giá, Then nhận `400` và không có bản ghi nào được tạo.
   - Given `referMaViTri` trùng vị trí hiện tại của ứng viên, When gọi API hoàn thành đánh giá, Then nhận `400`.
   - Given đã hoàn thành, When xem lại, Then thấy kết luận, vị trí refer và lý do refer đã chọn ở dạng chỉ đọc.
+  - Given bài đã hoàn thành từ trước khi có kết luận (dữ liệu cũ), When xem lại hoặc xem danh sách, Then hiển thị "Chưa ghi kết luận" và điểm trung bình đã điền bù bằng migration chạy lại được (`docker/schema/migrate/002-u2-constraints.sql`, `node scripts/migrate.mjs`). Bổ sung ở Functional Design U2 (Q2 = A); tương ứng AC6.3.6.
 
 #### FR-A7 — Danh sách tiêu chí chấm điểm
 
