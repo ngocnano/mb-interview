@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup xem trước — App thực hiện phỏng vấn</title>
+<style>
+  :root {
+    --bg:#F7F7FB; --surface:#FFFFFF; --surface-2:#EFEFF7; --text:#1B1B21; --muted:#5B5B66;
+    --primary:#4F46E5; --on-primary:#FFFFFF; --primary-soft:#E7E5FF;
+    --ok-fg:#0B6B3A; --ok-bg:#E3F5EA; --warn-fg:#8A4B00; --warn-bg:#FFF1DC;
+    --bad-fg:#B3261E; --bad-bg:#FCE8E6;
+    --err:#B3261E; --outline:#79747E; --glass:rgba(255,255,255,.72);
+    --shadow:0 1px 2px rgba(20,20,40,.08), 0 6px 18px rgba(20,20,40,.06);
+    --page:#E4E4EE;
+  }
+  [data-theme="dark"] {
+    --bg:#12121A; --surface:#1C1C27; --surface-2:#262634; --text:#E6E6F0; --muted:#B4B4C4;
+    --primary:#A5A0FF; --on-primary:#1B1B21; --primary-soft:#2E2B5A;
+    --ok-fg:#8FE0B0; --ok-bg:#12301F; --warn-fg:#FFD59E; --warn-bg:#3A2606;
+    --bad-fg:#FFB4AB; --bad-bg:#4A1612;
+    --err:#FFB4AB; --outline:#938F99; --glass:rgba(28,28,39,.72);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.3);
+    --page:#0B0B10;
+  }
+  * { box-sizing:border-box; }
+  /* Một họ phông sans-serif duy nhất cho mọi màn hình, kể cả trình xem CV và khung AI */
+  body { margin:0; font-family:Roboto,"Noto Sans","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif; background:var(--page); color:var(--text); }
+  button, input, textarea, select { font:inherit; color:inherit; }
+  :focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+
+  /* Thanh công cụ xem trước (không thuộc app) */
+  .toolbar { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; padding:12px 16px; background:var(--surface); border-bottom:1px solid var(--surface-2); position:sticky; top:0; z-index:50; }
+  .toolbar h1 { font-size:15px; margin:0 8px 0 0; }
+  .toolbar label { display:flex; gap:6px; align-items:center; font-size:14px; }
+  .toolbar .note { font-size:13px; color:var(--muted); flex-basis:100%; }
+  .seg { display:inline-flex; border:1px solid var(--outline); border-radius:12px; overflow:hidden; }
+  .seg button { border:0; background:transparent; padding:8px 14px; cursor:pointer; min-height:40px; }
+  .seg button[aria-pressed="true"] { background:var(--primary); color:var(--on-primary); }
+
+  .stage { padding:24px 12px 48px; display:flex; justify-content:center; }
+  .frame { background:var(--bg); position:relative; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; }
+  .frame.phone { width:390px; height:780px; border-radius:32px; border:8px solid #2b2b36; }
+  .frame.desktop { width:min(1180px,100%); height:720px; border-radius:16px; border:1px solid var(--surface-2); }
+  .scroll { flex:1; overflow:auto; position:relative; }
+
+  /* Header kính mờ */
+  .appbar { position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:8px; padding:12px 16px; background:var(--glass); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-bottom:1px solid var(--surface-2); }
+  @media (prefers-contrast: more) { .appbar, .glass, .submitbar { background:var(--surface); -webkit-backdrop-filter:none; backdrop-filter:none; } }
+  .appbar h2 { font-size:18px; margin:0; flex:1; }
+  .appbar small { display:block; color:var(--muted); font-size:13px; font-weight:400; }
+  .iconbtn { min-width:48px; min-height:48px; border:0; border-radius:12px; background:transparent; cursor:pointer; font-size:18px; }
+  .iconbtn:hover { background:var(--surface-2); }
+  .menu { position:absolute; right:12px; top:60px; background:var(--surface); border-radius:12px; box-shadow:var(--shadow); padding:6px; z-index:20; min-width:180px; }
+  .menu button { width:100%; text-align:left; background:transparent; border:0; padding:12px; border-radius:8px; cursor:pointer; min-height:48px; }
+  .menu button:hover { background:var(--surface-2); }
+
+  .content { padding:16px; }
+  .center { max-width:720px; margin:0 auto; }
+  .grid { display:grid; gap:16px; grid-template-columns:1fr; }
+  .desktop .grid { grid-template-columns:repeat(3,1fr); }
+  .desktop .grid .wide { grid-column:span 2; }
+
+  .card { background:var(--surface); border-radius:16px; padding:16px; box-shadow:var(--shadow); }
+  button.card { width:100%; text-align:left; border:0; cursor:pointer; display:block; transition:transform .25s ease, box-shadow .25s ease; animation:slidein .25s ease both; }
+  button.card:hover { transform:translateY(-2px); }
+  @keyframes slidein { from { opacity:0; transform:translateY(8px);} to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+
+  .row { display:flex; gap:12px; align-items:center; justify-content:space-between; }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:8px; font-size:13px; font-weight:600; white-space:nowrap; }
+  .chip.ok { background:var(--ok-bg); color:var(--ok-fg); }
+  .chip.todo { background:var(--warn-bg); color:var(--warn-fg); }
+  .chip.bad { background:var(--bad-bg); color:var(--bad-fg); }
+  .chip.info { background:var(--primary-soft); color:var(--text); }
+  .muted { color:var(--muted); }
+  .title { font-weight:600; font-size:16px; margin:6px 0 2px; }
+  .progress { height:8px; background:var(--surface-2); border-radius:8px; overflow:hidden; margin-top:12px; }
+  .progress > i { display:block; height:100%; background:var(--primary); border-radius:8px; transition:width .3s ease; }
+
+  .btn { min-height:48px; padding:0 20px; border-radius:12px; border:1px solid transparent; cursor:pointer; font-weight:600; }
+  .btn.primary { background:var(--primary); color:var(--on-primary); }
+  .btn.outline { background:transparent; border-color:var(--outline); }
+  .btn.small { min-height:44px; padding:0 14px; }
+  .btn[disabled], .btn[aria-disabled="true"] { opacity:.55; cursor:not-allowed; }
+  .full { width:100%; }
+
+  .field { margin-bottom:16px; }
+  .field label, .lbl { display:block; font-size:14px; margin-bottom:6px; font-weight:600; }
+  .input { width:100%; min-height:48px; padding:10px 12px; border-radius:12px; border:1px solid var(--outline); background:var(--surface); }
+  .input.bad { border-color:var(--err); }
+  .input[disabled] { opacity:.55; }
+  .errtext { color:var(--err); font-size:13px; margin-top:6px; }
+  textarea.input { min-height:112px; resize:vertical; }
+  textarea.input.short { min-height:72px; }
+  .desktop textarea.input { min-height:144px; }
+  .desktop textarea.input.short { min-height:72px; }
+
+  .login-wrap { min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px; background:radial-gradient(circle at 20% 15%, var(--primary-soft), transparent 55%), radial-gradient(circle at 85% 85%, var(--surface-2), transparent 50%), var(--bg); }
+  .glass { width:100%; max-width:420px; background:var(--glass); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid var(--surface-2); border-radius:24px; padding:28px; box-shadow:var(--shadow); }
+  .logo { font-size:22px; font-weight:700; margin-bottom:4px; }
+
+  /* Hai khung (máy tính để bàn) */
+  .split { display:flex; height:100%; }
+  .split .left { width:400px; border-right:1px solid var(--surface-2); overflow:auto; flex-shrink:0; }
+  .split .right { flex:1; overflow:auto; position:relative; display:flex; flex-direction:column; }
+  .empty { display:flex; align-items:center; justify-content:center; height:100%; color:var(--muted); padding:24px; text-align:center; }
+  .list { display:flex; flex-direction:column; gap:12px; padding:16px; }
+  .cand { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
+  .cand .time { font-weight:700; font-size:16px; }
+  .cand .date { font-size:12px; color:var(--muted); }
+  .cand .chipcell { grid-column:2; justify-self:end; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .cand.done { opacity:.86; }
+  .cand.sel { outline:2px solid var(--primary); }
+
+  /* Chấm điểm */
+  .crit { margin-bottom:16px; }
+  .crit h3 { font-size:15px; margin:0 0 8px; }
+  .crit h3 span { color:var(--muted); font-weight:500; }
+  .scores { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .desktop .scores { grid-template-columns:repeat(5,56px); }
+  .score { min-height:48px; border-radius:12px; border:1px solid var(--outline); background:var(--surface); cursor:pointer; font-weight:600; transition:transform .15s ease; }
+  .score:hover { background:var(--surface-2); }
+  .score[aria-checked="true"] { background:var(--primary); color:var(--on-primary); border-color:var(--primary); transform:scale(1.04); }
+  .score[aria-checked="true"]::before { content:"✓ "; }
+  .score[disabled] { cursor:default; }
+  .crit.bad .scores .score { border-color:var(--err); }
+
+  /* Kết luận */
+  .decs { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .desktop .decs { grid-template-columns:repeat(4,120px); }
+  .dec { min-height:48px; border-radius:12px; border:1px solid var(--outline); background:var(--surface); cursor:pointer; font-weight:600; font-size:14px; display:flex; align-items:center; justify-content:center; gap:4px; padding:0 4px; white-space:nowrap; }
+  .dec:hover { background:var(--surface-2); }
+  .dec .dot::before { content:"○"; }
+  .dec[aria-checked="true"] { border-width:2px; }
+  .dec[aria-checked="true"] .dot::before { content:"◉"; }
+  .dec[data-v="DAT"][aria-checked="true"] { background:var(--ok-bg); color:var(--ok-fg); border-color:var(--ok-fg); }
+  .dec[data-v="LOAI"][aria-checked="true"] { background:var(--bad-bg); color:var(--bad-fg); border-color:var(--bad-fg); }
+  .dec[data-v="CAN_NHAC"][aria-checked="true"] { background:var(--primary-soft); color:var(--text); border-color:var(--primary); }
+  .dec[data-v="KHAC"][aria-checked="true"] { background:var(--surface-2); color:var(--text); border-color:var(--primary); }
+  .dec[disabled] { cursor:default; }
+  .decwrap.bad .dec { border-color:var(--err); }
+  .hint { font-size:13px; color:var(--muted); margin:0 0 8px; }
+  #refslot:empty { display:none; }
+  .counter { text-align:right; font-size:13px; color:var(--muted); }
+  .submitbar .btn { white-space:nowrap; padding:0 14px; }
+  .submitbar #prog { font-size:13px; }
+  .avg { font-size:32px; font-weight:700; color:var(--primary); line-height:1; white-space:nowrap; }
+  .avg span { font-size:14px; font-weight:500; color:var(--muted); }
+  .submitbar { position:sticky; bottom:0; display:flex; gap:12px; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--glass); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-top:1px solid var(--surface-2); }
+  .banner { margin:12px 16px 0; padding:12px 14px; border-radius:12px; background:var(--warn-bg); color:var(--warn-fg); display:flex; justify-content:space-between; gap:12px; align-items:center; }
+  .banner.okb { background:var(--ok-bg); color:var(--ok-fg); }
+  .info2 { display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; font-size:14px; }
+  .desktop .info2 { grid-template-columns:repeat(4,1fr); }
+  .info2 b { display:block; font-size:12px; color:var(--muted); font-weight:500; }
+  .twocol { display:grid; grid-template-columns:1fr; gap:16px; }
+  .desktop .twocol { grid-template-columns:1fr 1fr; gap:8px 24px; }
+
+  /* Hộp thoại */
+  .scrim { position:absolute; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; padding:20px; z-index:40; }
+  .dialog { background:var(--surface); border-radius:24px; padding:24px; max-width:400px; width:100%; box-shadow:var(--shadow); }
+  .dialog h3 { margin:0 0 8px; font-size:18px; }
+  .dialog .acts { display:flex; justify-content:flex-end; gap:8px; margin-top:20px; flex-wrap:wrap; }
+  .snack { position:absolute; left:50%; transform:translateX(-50%); bottom:84px; background:#2b2b36; color:#fff; padding:12px 18px; border-radius:12px; z-index:45; font-size:14px; }
+  .skel { background:linear-gradient(90deg,var(--surface-2),var(--surface),var(--surface-2)); background-size:200% 100%; animation:shine 1.2s linear infinite; border-radius:16px; height:110px; }
+  @keyframes shine { to { background-position:-200% 0; } }
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+  /* Trình xem CV (S6) */
+  .cvscrim { position:absolute; inset:0; z-index:42; background:rgba(0,0,0,.45); display:flex; justify-content:flex-end; }
+  .cvpanel { background:var(--bg); width:100%; display:flex; flex-direction:column; box-shadow:var(--shadow); }
+  .desktop .cvpanel { width:94%; }
+  .cvmain { flex:1; display:flex; min-height:0; }
+  .cvcol { flex:1; display:flex; flex-direction:column; min-width:0; }
+  .aicol { width:380px; flex-shrink:0; border-left:1px solid var(--surface-2); background:var(--surface); display:flex; flex-direction:column; min-height:0; }
+  .phone .aicol { width:100%; border-left:0; flex:1; }
+  .aibody { flex:1; overflow:auto; padding:16px; }
+  .tabs { display:flex; border-bottom:1px solid var(--surface-2); background:var(--surface); }
+  .tab { flex:1; min-height:48px; border:0; background:transparent; cursor:pointer; font-weight:600; border-bottom:3px solid transparent; }
+  .tab[aria-selected="true"] { border-bottom-color:var(--primary); color:var(--primary); }
+  .aibadge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:8px; background:var(--primary-soft); color:var(--text); vertical-align:middle; margin-left:6px; }
+  .aisec { margin-bottom:18px; }
+  .aisec h4 { margin:0 0 8px; font-size:14px; }
+  .fact { padding:10px 12px; border-radius:12px; background:var(--surface-2); margin-bottom:8px; font-size:14px; }
+  .fact .meta { color:var(--muted); font-size:12px; }
+  .linkbtn { display:block; background:transparent; border:0; color:var(--primary); cursor:pointer; padding:6px 0; min-height:44px; text-decoration:underline; font-size:13px; }
+  .qitem { padding:12px; border-radius:12px; border:1px solid var(--surface-2); margin-bottom:8px; font-size:14px; }
+  .qitem .why { color:var(--muted); font-size:12px; margin-top:4px; }
+  .notice { font-size:12px; color:var(--muted); background:var(--surface-2); padding:10px 12px; border-radius:12px; margin-bottom:12px; }
+  .hl { padding:0 2px; border-radius:3px; color:#1B1B21; }
+  .hl::after { content:attr(data-t); font-size:.6em; vertical-align:super; font-family:inherit; font-weight:700; margin-left:2px; }
+  .hl-kn { background:#CFE3FF; text-decoration:underline solid #1D4ED8; }
+  .hl-td { background:#C9EBD3; text-decoration:underline dashed #0B6B3A; }
+  .hl-cc { background:#FFE2A8; text-decoration:underline dotted #8A4B00; text-decoration-thickness:2px; }
+  .hl.flash { outline:3px solid #4F46E5; }
+  .legend { display:flex; gap:12px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-bottom:8px; }
+  .cvbody { flex:1; overflow:auto; padding:16px; background:var(--surface-2); }
+  .paper { background:#fff; color:#1b1b21; max-width:560px; margin:0 auto 16px; padding:28px 32px; border-radius:4px; box-shadow:var(--shadow); font-family:inherit; line-height:1.5; }
+  .paper h4 { margin:0 0 4px; font-size:1.4em; }
+  .paper h5 { margin:16px 0 4px; font-size:1em; border-bottom:1px solid #ccc; text-transform:uppercase; letter-spacing:.04em; }
+  .paper p, .paper li { margin:2px 0; font-size:.95em; }
+  .cvtools { display:flex; align-items:center; justify-content:center; gap:8px; padding:8px 12px; border-top:1px solid var(--surface-2); background:var(--surface); flex-wrap:wrap; }
+  .cvnote { font-size:12px; color:var(--muted); text-align:center; padding:6px 12px; background:var(--surface); }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>Mockup xem trước · App thực hiện phỏng vấn</h1>
+  <div class="seg" role="group" aria-label="Thiết bị">
+    <button id="dev-phone" aria-pressed="true">Điện thoại</button>
+    <button id="dev-desktop" aria-pressed="false">Máy tính</button>
+  </div>
+  <div class="seg" role="group" aria-label="Giao diện">
+    <button id="th-light" aria-pressed="true">Sáng</button>
+    <button id="th-dark" aria-pressed="false">Tối</button>
+  </div>
+  <label><input type="checkbox" id="sim-net"> Mô phỏng lỗi mạng khi hoàn thành đánh giá</label>
+  <label><input type="checkbox" id="sim-cv"> Mô phỏng lỗi mở CV</label>
+  <label><input type="checkbox" id="sim-skel"> Hiện khung xương khi tải</label>
+  <label><input type="checkbox" id="sim-ai"> Mô phỏng lỗi AI</label>
+  <label><input type="checkbox" id="sim-aioff"> Tắt tính năng AI (cờ cấu hình)</label>
+  <span class="muted" style="font-size:13px">Nhật ký xem CV: <b id="cvlog">0</b> lần · Lần gọi AI: <b id="ailog">0</b></span>
+  <div class="note">Bản xem trước tĩnh, dữ liệu minh họa, không gọi server. Đăng nhập: nhập email bất kỳ có dấu @ và mật khẩu bất kỳ; mật khẩu <b>sai</b> để xem thông báo lỗi. CV và nội dung AI trong bản này là dữ liệu giả lập, không phải tệp PDF thật và không gọi mô hình AI nào. Ứng viên Phạm Thu Dung chưa có CV. Không phải mã Flutter của app.</div>
+</div>
+<div class="stage"><div id="frame" class="frame phone" aria-live="off"></div></div>
+<div class="sr" id="live" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var CRITERIA = [
+    { ma:'TC01', ten:'Kiến thức chuyên môn' },
+    { ma:'TC02', ten:'Giao tiếp' },
+    { ma:'TC03', ten:'Giải quyết vấn đề' },
+    { ma:'TC04', ten:'Tư duy hệ thống' },
+    { ma:'TC05', ten:'Thái độ làm việc' }
+  ];
+  var DECS = [
+    { v:'DAT', t:'Đạt', i:'✓' },
+    { v:'LOAI', t:'Loại', i:'✕' },
+    { v:'CAN_NHAC', t:'Cân nhắc', i:'?' },
+    { v:'KHAC', t:'Khác', i:'↗' }
+  ];
+  var POS = [
+    { ma:'P-BA-CNTT', ten:'CV BA · Khối CNTT', on:true },
+    { ma:'P-BA-VH', ten:'CV BA · Khối Vận hành', on:true },
+    { ma:'P-DEV-CNTT', ten:'CV DEV · Khối CNTT', on:true },
+    { ma:'P-QA-CNTT', ten:'CV QA · Khối CNTT', on:true },
+    { ma:'P-OLD', ten:'CV Cũ · Đã ngừng tuyển', on:false }
+  ];
+  var HDPV = [
+    { ma:'HD-0012', ten:'Phỏng vấn CV BA đợt 3', ngay:'15/10/2026', hinhThuc:'Online', diaDiem:'Họp trực tuyến',
+      ungVien:[
+        { ma:'UV-1021', ten:'Nguyễn Văn An', vt:'P-BA-CNTT', tu:'08:30', den:'09:00', kn:'4 năm', td:'Đại học', cv:true },
+        { ma:'UV-1034', ten:'Trần Thị Bình', vt:'P-BA-CNTT', tu:'09:15', den:'09:45', kn:'2 năm', td:'Đại học', cv:true },
+        { ma:'UV-1040', ten:'Lê Văn Cường', vt:'P-BA-VH', tu:'10:00', den:'10:30', kn:'6 năm', td:'Thạc sĩ', cv:true },
+        { ma:'UV-1052', ten:'Phạm Thu Dung', vt:'P-BA-CNTT', tu:'10:45', den:'11:15', kn:'3 năm', td:'Đại học', cv:false }
+      ] },
+    { ma:'HD-0015', ten:'Phỏng vấn CV DEV đợt 1', ngay:'16/10/2026', hinhThuc:'Offline', diaDiem:'Tầng 5, phòng họp B',
+      ungVien:[
+        { ma:'UV-2001', ten:'Hoàng Minh Đức', vt:'P-DEV-CNTT', tu:'09:00', den:'09:40', kn:'5 năm', td:'Đại học', cv:true },
+        { ma:'UV-2010', ten:'Võ Thị Hà', vt:'P-DEV-CNTT', tu:'10:00', den:'10:40', kn:'1 năm', td:'Đại học', cv:true }
+      ] }
+  ];
+  var S = {
+    screen:'login', device:'phone', theme:'light', hdpv:null, cand:null,
+    scores:{}, ketLuan:null, referMa:'', referLy:'', comment:'', dirty:false, menu:false, dialog:null, snack:null, banner:null,
+    showMissing:false, loading:false, pending:null, loginError:'',
+    cv:null, cvZoom:100, cvPage:1, cvLogCount:0, cvTab:'cv',
+    aiState:'idle', aiHl:true, aiByCand:{}, aiCount:0,
+    submitted:{ 'HD-0012|UV-1021': { scores:{TC01:4,TC02:3,TC03:4,TC04:5,TC05:3}, ketLuan:'KHAC', referMa:'P-DEV-CNTT', referLy:'Mạnh về lập trình, phù hợp vị trí DEV.', comment:'Trả lời tốt, cần thêm ví dụ thực tế.', at:'09:12 15/10/2026' } }
+  };
+  var frame = document.getElementById('frame');
+  var live = document.getElementById('live');
+
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function key(h, c) { return h.ma + '|' + c.ma; }
+  function isDone(h, c) { return !!S.submitted[key(h, c)]; }
+  function posName(ma) { var p = POS.filter(function (x) { return x.ma === ma; })[0]; return p ? p.ten : ma; }
+  function decOf(v) { return DECS.filter(function (d) { return d.v === v; })[0]; }
+  function sorted(h) { return h.ungVien.slice().sort(function (a, b) { return a.tu < b.tu ? -1 : a.tu > b.tu ? 1 : (a.ma < b.ma ? -1 : 1); }); }
+  /* Điểm trung bình các tiêu chí đã chọn (server tính lại khi hoàn thành đánh giá, đây chỉ là xem trước) */
+  function avgOf(scores) {
+    var v = CRITERIA.map(function (k) { return scores[k.ma]; }).filter(function (x) { return x; });
+    if (!v.length) return null;
+    return v.reduce(function (a, b) { return a + b; }, 0) / v.length;
+  }
+  function fmtAvg(x) { return x === null ? '—' : (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }
+  function avgSub(sc, done) {
+    var n = CRITERIA.filter(function (k) { return sc[k.ma]; }).length;
+    if (done || n === CRITERIA.length) return 'Trung bình ' + CRITERIA.length + ' tiêu chí';
+    return n ? 'Tạm tính theo ' + n + '/' + CRITERIA.length + ' tiêu chí đã chọn' : 'Chưa chọn điểm nào';
+  }
+  function avgCard(sub) {
+    var sc = sub ? sub.scores : S.scores, sublabel = avgSub(sc, !!sub);
+    return '<div class="card" id="avgcard"><div class="row"><div><div class="lbl" style="margin:0">Điểm trung bình</div><div class="muted" id="avg-sub" style="font-size:13px">' + sublabel + '</div></div>' +
+      '<div class="avg" id="avg-val" role="status" aria-live="polite" aria-label="Điểm trung bình ' + fmtAvg(avgOf(sc)) + ' trên 5">' + fmtAvg(avgOf(sc)) + '<span> / 5</span></div></div>' +
+      '<p class="hint" style="margin:8px 0 0">Chỉ để tham khảo, không thay thế kết luận của bạn.</p></div>';
+  }
+  function counts(h) { var d = 0; h.ungVien.forEach(function (c) { if (isDone(h, c)) d++; }); return { d:d, t:h.ungVien.length }; }
+  function announce(t) { live.textContent = ''; setTimeout(function () { live.textContent = t; }, 30); }
+  function isDesktop() { return S.device === 'desktop'; }
+
+  /* ---------- Thành phần ---------- */
+  function appbar(title, sub, opts) {
+    opts = opts || {};
+    return '<header class="appbar">' +
+      (opts.back ? '<button class="iconbtn" data-act="back" aria-label="Quay lại">←</button>' : '') +
+      '<h2>' + esc(title) + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</h2>' +
+      (opts.user ? '<button class="iconbtn" data-act="menu" aria-haspopup="menu" aria-expanded="' + S.menu + '" aria-label="Menu người dùng, Nguyễn Phỏng Vấn">👤</button>' : '') +
+      '</header>' +
+      (opts.user && S.menu ? '<div class="menu" role="menu"><button role="menuitem" data-act="logout">Đăng xuất</button></div>' : '');
+  }
+  function chip(done) {
+    return done ? '<span class="chip ok"><span aria-hidden="true">✓</span> Đã chấm</span>'
+                : '<span class="chip todo"><span aria-hidden="true">●</span> Chưa chấm</span>';
+  }
+  function resChip(v) {
+    var d = decOf(v); if (!d) return '';
+    var cls = v === 'DAT' ? 'ok' : v === 'LOAI' ? 'bad' : 'info';
+    return '<span class="chip ' + cls + '"><span aria-hidden="true">' + d.i + '</span> ' + d.t + '</span>';
+  }
+  function skeletons(n) { var s = ''; for (var i = 0; i < n; i++) s += '<div class="skel" aria-hidden="true"></div>'; return '<div class="list">' + s + '</div>'; }
+
+  /* ---------- Màn hình ---------- */
+  function vLogin() {
+    return '<div class="scroll"><div class="login-wrap"><form class="glass" id="loginform" novalidate>' +
+      '<div class="logo">◉ Phỏng vấn</div><p class="muted" style="margin:0 0 20px">Đăng nhập để bắt đầu</p>' +
+      '<div class="field"><label for="em">Email</label><input class="input" id="em" type="email" autocomplete="username" placeholder="ten@congty.vn"><div class="errtext" id="em-e" role="alert"></div></div>' +
+      '<div class="field"><label for="pw">Mật khẩu</label><input class="input" id="pw" type="password" autocomplete="current-password"><div class="errtext" id="pw-e" role="alert"></div></div>' +
+      '<button class="btn primary full" type="submit">Đăng nhập</button>' +
+      '<div class="errtext" id="login-e" role="alert">' + (S.loginError ? '⚠ ' + esc(S.loginError) : '') + '</div>' +
+      '</form></div></div>';
+  }
+  function vHdpv() {
+    var body;
+    if (S.loading) { body = skeletons(3); }
+    else {
+      var cards = HDPV.map(function (h, i) {
+        var c = counts(h), pct = c.t ? Math.round(c.d * 100 / c.t) : 0;
+        return '<button class="card' + (i === 0 ? ' wide' : '') + '" data-act="openhdpv" data-id="' + h.ma + '" aria-label="' + esc(h.ma + ', ' + h.ten + ', ' + h.ngay + ', ' + (h.hinhThuc === 'Online' ? 'trực tuyến' : 'trực tiếp') + ', đã chấm ' + c.d + ' trên ' + c.t) + '">' +
+          '<div class="row"><b>' + esc(h.ma) + '</b><span class="chip info">' + esc(h.hinhThuc) + '</span></div>' +
+          '<div class="title">' + esc(h.ten) + '</div>' +
+          '<div class="muted">' + esc(h.ngay) + ' · ' + esc(h.diaDiem) + '</div>' +
+          '<div class="progress" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
+          '<div class="muted" style="margin-top:6px;font-size:13px">' + c.d + '/' + c.t + ' đã chấm</div></button>';
+      }).join('');
+      body = '<div class="content"><div class="' + (isDesktop() ? '' : 'center') + '"><div class="grid">' + cards + '</div></div></div>';
+    }
+    return '<div class="scroll">' + appbar('Hội đồng của tôi', '', { user:true }) + body + '</div>';
+  }
+  function candCard(h, c) {
+    var sub = S.submitted[key(h, c)], d = !!sub, sel = isDesktop() && S.cand && S.cand.ma === c.ma;
+    return '<button class="card cand' + (d ? ' done' : '') + (sel ? ' sel' : '') + '" data-act="opencand" data-id="' + c.ma + '" aria-label="' +
+      esc(c.ten + ', mã ' + c.ma + ', vị trí ' + posName(c.vt) + ', ' + h.ngay + ' ' + c.tu + ' đến ' + c.den + ', ' + (d ? 'đã chấm, kết luận ' + decOf(sub.ketLuan).t : 'chưa chấm')) + '">' +
+      '<div><div class="time">' + c.tu + '–' + c.den + '</div><div class="date">' + esc(h.ngay) + '</div></div>' +
+      '<div><div class="title" style="margin-top:0">' + esc(c.ten) + '</div><div class="muted" style="font-size:13px">' + esc(c.ma) + '<br>' + esc(posName(c.vt)) + '</div></div>' +
+      '<div class="chipcell">' + chip(d) + (d ? '<span class="chip info" aria-label="Điểm trung bình ' + fmtAvg(avgOf(sub.scores)) + ' trên 5">Điểm TB ' + fmtAvg(avgOf(sub.scores)) + '</span>' + resChip(sub.ketLuan) : '') + '</div></button>';
+  }
+  function candList(h) {
+    if (S.loading) return skeletons(4);
+    var list = sorted(h);
+    if (!list.length) return '<div class="empty">Chưa có ứng viên xác nhận lịch</div>';
+    return '<div class="list">' + list.map(function (c) { return candCard(h, c); }).join('') + '</div>';
+  }
+  function vCands() {
+    var h = S.hdpv, c = counts(h);
+    var head = appbar(h.ma + ' · ' + h.ten, c.d + '/' + c.t + ' đã chấm', { back:true, user:true });
+    if (isDesktop()) {
+      return '<div class="split"><div class="left">' + head + candList(h) + '</div><div class="right">' + (S.cand ? vDetail() : '<div class="empty">Chọn một ứng viên để bắt đầu</div>') + '</div></div>';
+    }
+    return '<div class="scroll">' + head + candList(h) + '</div>';
+  }
+  function decisionBlock(sub) {
+    var v = sub ? sub.ketLuan : S.ketLuan, ro = !!sub || !!S.pending;
+    var bad = S.showMissing && !sub && !v;
+    var btns = DECS.map(function (d) {
+      return '<button type="button" class="dec" role="radio" data-act="dec" data-v="' + d.v + '" aria-checked="' + (v === d.v) + '"' + (ro ? ' disabled' : '') +
+        ' aria-label="Kết luận ' + d.t + '"><span class="dot" aria-hidden="true"></span><span aria-hidden="true">' + d.i + '</span> ' + d.t + '</button>';
+    }).join('');
+    return '<div class="decwrap' + (bad ? ' bad' : '') + '" id="decwrap"><div class="lbl">Kết luận của bạn' + (sub ? '' : ' <span style="color:var(--err)" aria-hidden="true">*</span>') + '</div>' +
+      '<p class="hint">Đề xuất của người phỏng vấn, không phải kết luận cuối.</p>' +
+      '<div class="decs" role="radiogroup" aria-label="Kết luận của bạn">' + btns + '</div>' +
+      (bad ? '<div class="errtext" id="dec-err" role="alert">⚠ Chưa chọn kết luận</div>' : '') + '</div>';
+  }
+  function referBlock(c, sub) {
+    if (sub) {
+      return '<div class="lbl">Refer sang vị trí khác</div>' +
+        (sub.referMa ? '<div class="card" style="box-shadow:none;background:var(--surface-2)"><b>' + esc(posName(sub.referMa)) + '</b>' + (sub.referLy ? '<br><span class="muted">' + esc(sub.referLy) + '</span>' : '') + '</div>'
+                     : '<div class="muted">Không refer</div>');
+    }
+    var opts = '<option value="">Không refer</option>' + POS.filter(function (p) { return p.on && p.ma !== c.vt; }).map(function (p) {
+      return '<option value="' + p.ma + '"' + (S.referMa === p.ma ? ' selected' : '') + '>' + esc(p.ten) + '</option>';
+    }).join('');
+    return '<div class="field"><label for="rf">Giới thiệu sang vị trí khác (tùy chọn)</label><select class="input" id="rf"' + (S.pending ? ' disabled' : '') + '>' + opts + '</select></div>' +
+      '<div class="field" style="margin-bottom:0"><label for="rl">Lý do refer (tùy chọn)</label><textarea class="input short" id="rl" maxlength="500"' + ((!S.referMa || S.pending) ? ' disabled' : '') + '>' + esc(S.referLy) + '</textarea><div class="counter" id="rl-n">' + S.referLy.length + '/500</div></div>';
+  }
+  /* Khối "Giới thiệu sang vị trí khác" chỉ hiện khi kết luận là "Khác" */
+  function refSlot(c, sub) {
+    var v = sub ? sub.ketLuan : S.ketLuan;
+    return v === 'KHAC' ? '<div class="card" id="refcard">' + referBlock(c, sub) + '</div>' : '';
+  }
+  function vDetail() {
+    var h = S.hdpv, c = S.cand, sub = S.submitted[key(h, c)];
+    var cvBtn = c.cv ? '<button class="btn outline small" data-act="opencv" aria-label="Xem CV của ' + esc(c.ten) + '">📄 Xem CV</button>'
+                     : '<button class="btn outline small" disabled aria-disabled="true">📄 Chưa có CV</button>';
+    var info = '<div class="card"><div class="info2">' +
+      '<div><b>Mã</b>' + esc(c.ma) + '</div><div><b>Vị trí</b>' + esc(posName(c.vt)) + '</div>' +
+      '<div><b>Giờ</b>' + esc(h.ngay) + ' ' + c.tu + '–' + c.den + '</div><div><b>Hình thức</b>' + esc(h.hinhThuc) + ' · ' + esc(h.diaDiem) + '</div>' +
+      '<div><b>Kinh nghiệm</b>' + esc(c.kn) + '</div><div><b>Trình độ</b>' + esc(c.td) + '</div></div>' +
+      '<div style="margin-top:12px">' + cvBtn + '</div></div>';
+    var crit = CRITERIA.map(function (k) {
+      var v = sub ? sub.scores[k.ma] : S.scores[k.ma];
+      var btns = [1,2,3,4,5].map(function (n) {
+        return '<button type="button" class="score" role="radio" aria-checked="' + (v === n) + '" data-act="score" data-k="' + k.ma + '" data-n="' + n + '" aria-label="Điểm ' + n + ' trên 5, ' + esc(k.ten) + '"' + (sub || S.pending ? ' disabled' : '') + '>' + n + '</button>';
+      }).join('');
+      var bad = S.showMissing && !sub && !v;
+      return '<div class="crit' + (bad ? ' bad' : '') + '" id="crit-' + k.ma + '"><h3>' + esc(k.ma) + ' <span>· ' + esc(k.ten) + '</span></h3>' +
+        '<div class="scores" role="radiogroup" aria-label="' + esc(k.ten) + '">' + btns + '</div>' +
+        (bad ? '<div class="errtext" role="alert">⚠ Chưa chọn điểm</div>' : '') + '</div>';
+    }).join('');
+    var comment = sub
+      ? '<div class="field"><label>Nhận xét</label><div class="card" style="box-shadow:none;background:var(--surface-2)">' + (sub.comment ? esc(sub.comment) : '<span class="muted">Không có nhận xét</span>') + '</div></div>'
+      : '<div class="field" style="margin-bottom:0"><label for="cm">Nhận xét (không bắt buộc)</label><textarea class="input" id="cm" maxlength="2000"' + (S.pending ? ' disabled' : '') + '>' + esc(S.comment) + '</textarea><div class="counter" id="cm-n">' + S.comment.length + '/2000</div></div>';
+    var top = sub
+      ? '<div class="banner okb"><span>✓ Đã hoàn thành lúc ' + esc(sub.at) + '. Không thể sửa.</span></div>'
+      : (S.banner ? '<div class="banner" role="alert"><span>⚠ ' + esc(S.banner) + '</span><button class="btn outline" data-act="retry">Thử lại</button></div>' : '');
+    var bar = sub ? '' : submitBar();
+    return '<div class="scroll" id="detail-scroll">' +
+      appbar(c.ten, c.ma, { back:!isDesktop() }) + top +
+      '<div class="content"><div class="' + (isDesktop() ? '' : 'center') + '" style="display:grid;gap:16px">' + info +
+      '<div class="card"><div class="muted" style="margin-bottom:10px;font-size:13px">' + (sub ? 'Bài đã hoàn thành (chỉ đọc)' : 'Chọn điểm từ 1 đến 5 cho từng tiêu chí') + '</div>' +
+      '<div class="twocol">' + crit + '</div></div>' + avgCard(sub) +
+      '<div class="card">' + decisionBlock(sub) + '</div>' +
+      '<div id="refslot">' + refSlot(c, sub) + '</div>' +
+      '<div class="card">' + comment + '</div></div></div>' + bar + '</div>';
+  }
+  function missingCount() {
+    var n = CRITERIA.filter(function (k) { return !S.scores[k.ma]; }).length;
+    return { crit:n, dec:!S.ketLuan };
+  }
+  function submitBar() {
+    var m = missingCount(), done = CRITERIA.length - m.crit, ready = m.crit === 0 && !m.dec;
+    var label = S.pending ? 'Đang hoàn thành…' : 'Hoàn thành đánh giá';
+    return '<div class="submitbar" id="submitbar"><span id="prog" aria-live="polite">' + progText() + '</span>' +
+      '<button class="btn primary" id="submitbtn" data-act="submit" aria-disabled="' + (!ready || !!S.pending) + '"' + (S.pending ? ' disabled' : '') + '>' + label + '</button></div>';
+  }
+  function progText() {
+    var m = missingCount(), done = CRITERIA.length - m.crit;
+    return done + '/' + CRITERIA.length + ' tiêu chí' + (m.dec ? ' · thiếu kết luận' : ' · đã chọn kết luận');
+  }
+
+  /* ---------- Hộp thoại và trình xem CV ---------- */
+  function hl(id, cls, tag, text) {
+    return (S.aiHl && S.aiState === 'ready') ? '<span class="hl hl-' + cls + '" id="' + id + '" data-t="' + tag + '">' + text + '</span>' : text;
+  }
+  function cvPage(p) {
+    var fs = 'font-size:' + S.cvZoom + '%';
+    if (p === 1) {
+      return '<div class="paper" style="' + fs + '"><h4>' + esc(S.cand.ten) + '</h4><p>Ứng viên vị trí ' + esc(posName(S.cand.vt)) + '</p>' +
+        '<p>Điện thoại: 09xx xxx xxx · Ngày sinh: xx/xx/19xx · Email: ten@mail.vn</p>' +
+        '<h5>Tóm tắt</h5><p>' + esc(S.cand.kn) + ' kinh nghiệm phân tích nghiệp vụ và triển khai hệ thống cho khối tài chính và ngân hàng.</p>' +
+        '<h5>Kinh nghiệm làm việc</h5><ul><li>' + hl('h-kn1', 'kn', 'KN', '2022 – nay: Chuyên viên phân tích nghiệp vụ, Công ty ABC') + '</li><li>' +
+        hl('h-kn2', 'kn', 'KN', '2019 – 2022: Chuyên viên triển khai, Công ty XYZ') + '</li></ul></div>';
+    }
+    return '<div class="paper" style="' + fs + '"><h5>Học vấn</h5><p>' + hl('h-td1', 'td', 'TĐ', esc(S.cand.td) + ' · Đại học Công nghệ') + '</p>' +
+      '<h5>Kỹ năng</h5><ul><li>Phân tích yêu cầu, viết tài liệu BRD/SRS</li><li>SQL, Excel nâng cao, Jira</li><li>Giao tiếp và làm việc nhóm</li></ul>' +
+      '<h5>Chứng chỉ</h5><p>' + hl('h-cc1', 'cc', 'CC', 'CBAP (đang chuẩn bị)') + ' · ' + hl('h-cc2', 'cc', 'CC', 'Scrum Master') + '</p></div>';
+  }
+  /* Dữ liệu AI minh họa (không gọi mô hình thật) */
+  function aiData(c) {
+    return {
+      tomTat: 'Chuyên viên phân tích nghiệp vụ có ' + c.kn + ' kinh nghiệm trong khối tài chính – ngân hàng, từng làm tại hai công ty. Trình độ ' + c.td + ', đang chuẩn bị chứng chỉ CBAP.',
+      kinhNghiem: [
+        { tieuDe:'Chuyên viên phân tích nghiệp vụ · Công ty ABC', tg:'2022 – nay', id:'h-kn1', trang:1 },
+        { tieuDe:'Chuyên viên triển khai · Công ty XYZ', tg:'2019 – 2022', id:'h-kn2', trang:1 }
+      ],
+      trinhDo: [ { tieuDe:c.td + ' · Đại học Công nghệ', tg:'', id:'h-td1', trang:2 } ],
+      chungChi: [
+        { tieuDe:'CBAP', tg:'Đang chuẩn bị', id:'h-cc1', trang:2 },
+        { tieuDe:'Scrum Master', tg:'', id:'h-cc2', trang:2 }
+      ],
+      cauHoi: [
+        { loai:'Kinh nghiệm', q:'Ở Công ty ABC, bạn từng viết tài liệu yêu cầu cho dự án nào, và vai trò cụ thể của bạn là gì?', ref:'Công ty ABC, 2022 – nay' },
+        { loai:'Kinh nghiệm', q:'Khi chuyển từ vai trò triển khai sang phân tích nghiệp vụ, điều gì thay đổi lớn nhất trong cách bạn làm việc?', ref:'Công ty XYZ, 2019 – 2022' },
+        { loai:'Chứng chỉ', q:'CBAP của bạn đang ở giai đoạn nào, và bạn dự kiến thi khi nào?', ref:'CBAP (đang chuẩn bị)' },
+        { loai:'Chứng chỉ', q:'Hãy kể một lần bạn áp dụng Scrum trong dự án gần nhất và kết quả ra sao.', ref:'Scrum Master' },
+        { loai:'Trình độ', q:'Kiến thức nào ở trường bạn thấy áp dụng trực tiếp vào công việc phân tích?', ref:'Đại học Công nghệ' }
+      ]
+    };
+  }
+  function factList(arr) {
+    return arr.map(function (f) {
+      return '<div class="fact"><b>' + esc(f.tieuDe) + '</b>' + (f.tg ? '<div class="meta">' + esc(f.tg) + '</div>' : '') +
+        '<button class="linkbtn" data-act="aigo" data-id="' + f.id + '" data-p="' + f.trang + '" aria-label="Xem ' + esc(f.tieuDe) + ' trong CV, trang ' + f.trang + '">Xem trong CV (trang ' + f.trang + ')</button></div>';
+    }).join('');
+  }
+  function vAi() {
+    var off = document.getElementById('sim-aioff').checked;
+    var notice = '<div class="notice">Do AI tạo từ nội dung CV, có thể sai sót, chỉ để tham khảo. Không dùng để chấm điểm hay quyết định. Mỗi lần tạo được ghi nhật ký.</div>';
+    var head = '<div class="aibody"><h3 style="margin:0 0 12px;font-size:16px">Tóm tắt AI <span class="aibadge">AI</span></h3>';
+    if (off) return head + '<div class="fact">Tính năng AI đang tắt. Liên hệ người vận hành để bật.</div>' + notice + '</div>';
+    if (S.cv !== 'ready') return head + '<div class="fact">Chưa mở được CV nên chưa thể tạo tóm tắt AI.</div></div>';
+    if (S.aiState === 'idle') {
+      return head + '<p style="margin-top:0">Tóm tắt CV, làm nổi bật kinh nghiệm, trình độ, chứng chỉ và gợi ý thêm câu hỏi phỏng vấn.</p>' + notice +
+        '<button class="btn primary full" data-act="aigen">✨ Tạo tóm tắt AI</button></div>';
+    }
+    if (S.aiState === 'loading') {
+      return head + '<div role="status" aria-live="polite" class="muted">Đang tạo tóm tắt…</div>' + skeletons(2) + '</div>';
+    }
+    if (S.aiState === 'error') {
+      return head + '<div class="banner" role="alert" style="margin:0 0 12px"><span>⚠ Không tạo được tóm tắt AI. CV vẫn xem được bình thường.</span><button class="btn outline" data-act="aigen">Thử lại</button></div>' + notice + '</div>';
+    }
+    var d = aiData(S.cand);
+    var qs = d.cauHoi.map(function (x, i) {
+      return '<div class="qitem"><span class="chip info">' + esc(x.loai) + '</span><div style="margin-top:6px"><b>' + (i + 1) + '.</b> ' + esc(x.q) + '</div><div class="why">Dựa trên: ' + esc(x.ref) + '</div></div>';
+    }).join('');
+    return head + notice +
+      '<div class="aisec"><h4>Tóm tắt</h4><div class="fact">' + esc(d.tomTat) + '</div></div>' +
+      '<div class="legend" aria-label="Chú thích làm nổi bật"><span><span class="hl hl-kn" data-t="KN">Kinh nghiệm</span></span><span><span class="hl hl-td" data-t="TĐ">Trình độ</span></span><span><span class="hl hl-cc" data-t="CC">Chứng chỉ</span></span></div>' +
+      '<div class="aisec"><h4>Kinh nghiệm (KN)</h4>' + factList(d.kinhNghiem) + '</div>' +
+      '<div class="aisec"><h4>Trình độ (TĐ)</h4>' + factList(d.trinhDo) + '</div>' +
+      '<div class="aisec"><h4>Chứng chỉ (CC)</h4>' + factList(d.chungChi) + '</div>' +
+      '<div class="aisec"><h4>Câu hỏi gợi ý thêm</h4>' + qs + '</div>' +
+      '<div class="muted" style="font-size:12px;margin-bottom:8px">Kết quả đã lưu lúc ' + esc(S.aiByCand[S.cand.ma]) + '.</div>' +
+      '<label style="display:flex;gap:8px;align-items:center;min-height:44px"><input type="checkbox" data-act="aihl"' + (S.aiHl ? ' checked' : '') + '> Làm nổi bật trong CV</label>' +
+      '<button class="btn outline full" data-act="aigen">Tạo lại</button></div>';
+  }
+  function vCv() {
+    var body;
+    if (S.cv === 'loading') body = skeletons(3);
+    else if (S.cv === 'error') body = '<div class="content"><div class="banner" role="alert" style="margin:0"><span>⚠ Không mở được CV</span><button class="btn outline" data-act="cvretry">Thử lại</button></div></div>';
+    else body = cvPage(S.cvPage);
+    var cvcol = '<div class="cvcol"><div class="cvbody" id="cvbody">' + body + '</div>' +
+      '<div class="cvnote">CV chứa thông tin cá nhân. Mỗi lần xem được ghi nhật ký. Không có nút tải xuống hoặc in.</div>' +
+      '<div class="cvtools"><button class="btn outline small" data-act="cvzoom" data-d="-25" aria-label="Thu nhỏ">−</button>' +
+      '<span aria-live="polite">' + S.cvZoom + '%</span><button class="btn outline small" data-act="cvzoom" data-d="25" aria-label="Phóng to">+</button>' +
+      '<button class="btn outline small" data-act="cvpage" data-d="-1" aria-label="Trang trước"' + (S.cvPage === 1 ? ' disabled' : '') + '>‹</button>' +
+      '<span aria-live="polite">Trang ' + S.cvPage + '/2</span>' +
+      '<button class="btn outline small" data-act="cvpage" data-d="1" aria-label="Trang sau"' + (S.cvPage === 2 ? ' disabled' : '') + '>›</button></div></div>';
+    var aicol = '<aside class="aicol" aria-label="Tóm tắt AI">' + vAi() + '</aside>';
+    var main;
+    if (isDesktop()) { main = '<div class="cvmain">' + cvcol + aicol + '</div>'; }
+    else {
+      var tb = function (id, label) { return '<button class="tab" role="tab" id="tab-' + id + '" data-act="cvtab" data-t="' + id + '" aria-selected="' + (S.cvTab === id) + '">' + label + '</button>'; };
+      main = '<div class="tabs" role="tablist" aria-label="Chế độ xem">' + tb('cv', 'CV') + tb('ai', '✨ Tóm tắt AI') + '</div><div class="cvmain">' + (S.cvTab === 'cv' ? cvcol : aicol) + '</div>';
+    }
+    return '<div class="cvscrim"><div class="cvpanel" role="dialog" aria-modal="true" aria-labelledby="cvt">' +
+      '<header class="appbar"><button class="iconbtn" id="cvclose" data-act="cvclose" aria-label="Đóng trình xem CV">✕</button>' +
+      '<h2 id="cvt">CV · ' + esc(S.cand.ten) + '<small>' + esc(S.cand.ma) + ' · Chỉ đọc</small></h2></header>' + main +
+      '</div></div>';
+  }
+  function vDialog() {
+    if (!S.dialog) return '';
+    if (S.dialog.type === 'confirm') {
+      return '<div class="scrim"><div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dt" aria-describedby="dd"><h3 id="dt">Hoàn thành đánh giá?</h3>' +
+        '<p id="dd" class="muted" style="margin:0">Sau khi hoàn thành sẽ không sửa được. Hoàn thành đánh giá cho ' + esc(S.cand.ten) + ' với kết luận <b>' + esc(decOf(S.ketLuan).t) + '</b> và điểm trung bình <b>' + fmtAvg(avgOf(S.scores)) + '/5</b>?</p>' +
+        '<div class="acts"><button class="btn outline" data-act="dlg-cancel">Kiểm tra lại</button><button class="btn primary" id="dlg-main" data-act="dlg-submit">Hoàn thành đánh giá</button></div></div></div>';
+    }
+    return '<div class="scrim"><div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dt" aria-describedby="dd"><h3 id="dt">Rời khỏi màn này?</h3>' +
+      '<p id="dd" class="muted" style="margin:0">Dữ liệu chưa lưu sẽ mất.</p>' +
+      '<div class="acts"><button class="btn outline" data-act="dlg-leave">Rời đi</button><button class="btn primary" id="dlg-main" data-act="dlg-cancel">Ở lại</button></div></div></div>';
+  }
+
+  /* ---------- Vẽ lại ---------- */
+  function render() {
+    document.documentElement.setAttribute('data-theme', S.theme);
+    frame.className = 'frame ' + S.device;
+    var body = S.screen === 'login' ? vLogin() : S.screen === 'hdpv' ? vHdpv() : S.screen === 'cands' ? vCands() : '';
+    if (S.screen === 'detail') body = vDetail();
+    frame.innerHTML = body + (S.cv ? vCv() : '') + vDialog() + (S.snack ? '<div class="snack" role="status">' + esc(S.snack) + '</div>' : '');
+    ['dev-phone','dev-desktop'].forEach(function (id) { document.getElementById(id).setAttribute('aria-pressed', String((id === 'dev-phone') === (S.device === 'phone'))); });
+    ['th-light','th-dark'].forEach(function (id) { document.getElementById(id).setAttribute('aria-pressed', String((id === 'th-light') === (S.theme === 'light'))); });
+    document.getElementById('cvlog').textContent = S.cvLogCount;
+    document.getElementById('ailog').textContent = S.aiCount;
+    var m = document.getElementById('dlg-main'); if (m) m.focus();
+  }
+  function withSkeleton(fn) {
+    if (!document.getElementById('sim-skel').checked) { fn(); return; }
+    S.loading = true; render();
+    setTimeout(function () { S.loading = false; fn(); }, 900);
+  }
+  function resetForm() { S.scores = {}; S.ketLuan = null; S.referMa = ''; S.referLy = ''; S.comment = ''; S.dirty = false; S.showMissing = false; S.banner = null; S.pending = null; S.cv = null; }
+  function go(fn) { if (S.dirty && S.screen !== 'login') { S.dialog = { type:'leave', next:fn }; render(); } else { fn(); } }
+  function snack(t) { S.snack = t; render(); setTimeout(function () { S.snack = null; render(); }, 3000); announce(t); }
+  function openCv() {
+    S.cvZoom = 100; S.cvPage = 1; S.cvTab = 'cv'; S.aiState = S.aiByCand[S.cand.ma] ? 'ready' : 'idle'; S.cv = 'loading'; render();
+    setTimeout(function () {
+      if (document.getElementById('sim-cv').checked) { S.cv = 'error'; render(); announce('Không mở được CV'); return; }
+      S.cvLogCount++; S.cv = 'ready'; render();
+      var b = document.getElementById('cvclose'); if (b) b.focus();
+    }, document.getElementById('sim-skel').checked ? 900 : 250);
+  }
+  function genAi() {
+    S.aiState = 'loading'; render(); announce('Đang tạo tóm tắt AI');
+    setTimeout(function () {
+      var sim = document.getElementById('sim-ai');
+      if (sim.checked) { sim.checked = false; S.aiState = 'error'; render(); announce('Không tạo được tóm tắt AI'); return; }
+      S.aiCount++; S.aiByCand[S.cand.ma] = '09:05 15/10/2026'; S.aiState = 'ready'; render(); announce('Đã tạo tóm tắt AI');
+    }, 1200);
+  }
+  function goCitation(id, page) {
+    S.cvPage = page; S.cvTab = 'cv'; S.aiHl = true; render();
+    var el = document.getElementById(id);
+    if (el) { el.scrollIntoView({ block:'center' }); el.classList.add('flash'); setTimeout(function () { el.classList.remove('flash'); }, 2000); }
+    announce('Đã chuyển tới đoạn trích trong CV, trang ' + page);
+  }
+  function doSubmit() {
+    S.dialog = null; S.pending = true; S.banner = null; render();
+    setTimeout(function () {
+      if (document.getElementById('sim-net').checked) {
+        S.pending = null; S.banner = 'Chưa hoàn thành được. Dữ liệu của bạn vẫn được giữ.'; document.getElementById('sim-net').checked = false; render(); announce(S.banner); return;
+      }
+      S.submitted[key(S.hdpv, S.cand)] = { scores:JSON.parse(JSON.stringify(S.scores)), ketLuan:S.ketLuan, referMa:S.ketLuan === 'KHAC' ? S.referMa : '', referLy:(S.ketLuan === 'KHAC' && S.referMa) ? S.referLy : '', comment:S.comment, at:'09:12 15/10/2026' };
+      resetForm(); render(); snack('Đã hoàn thành đánh giá');
+    }, 700);
+  }
+  function updateFormUI() {
+    var av = document.getElementById('avg-val');
+    if (av) {
+      av.innerHTML = fmtAvg(avgOf(S.scores)) + '<span> / 5</span>';
+      av.setAttribute('aria-label', 'Điểm trung bình ' + fmtAvg(avgOf(S.scores)) + ' trên 5');
+      document.getElementById('avg-sub').textContent = avgSub(S.scores, false);
+    }
+    var slot = document.getElementById('refslot');
+    if (slot) { var had = !!document.getElementById('refcard'); slot.innerHTML = refSlot(S.cand, null); if (!had && S.ketLuan === 'KHAC') announce('Đã hiện ô giới thiệu sang vị trí khác'); }
+    CRITERIA.forEach(function (k) {
+      var grp = document.getElementById('crit-' + k.ma);
+      if (!grp) return;
+      Array.prototype.forEach.call(grp.querySelectorAll('.score'), function (b) { b.setAttribute('aria-checked', String(S.scores[k.ma] === Number(b.getAttribute('data-n')))); });
+      if (S.scores[k.ma]) { grp.classList.remove('bad'); var e = grp.querySelector('.errtext'); if (e) e.remove(); }
+    });
+    var dw = document.getElementById('decwrap');
+    if (dw) {
+      Array.prototype.forEach.call(dw.querySelectorAll('.dec'), function (b) { b.setAttribute('aria-checked', String(S.ketLuan === b.getAttribute('data-v'))); });
+      if (S.ketLuan) { dw.classList.remove('bad'); var de = document.getElementById('dec-err'); if (de) de.remove(); }
+    }
+    var p = document.getElementById('prog'); if (p) p.textContent = progText();
+    var m = missingCount(), b = document.getElementById('submitbtn');
+    if (b) b.setAttribute('aria-disabled', String(m.crit !== 0 || m.dec));
+  }
+
+  /* ---------- Sự kiện ---------- */
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest('[data-act]'); if (!t) { if (S.menu) { S.menu = false; render(); } return; }
+    var a = t.getAttribute('data-act');
+    if (a === 'menu') { S.menu = !S.menu; render(); return; }
+    if (a === 'logout') { S.menu = false; S.screen = 'login'; S.hdpv = null; S.cand = null; resetForm(); render(); return; }
+    if (a === 'openhdpv') { S.hdpv = HDPV.filter(function (h) { return h.ma === t.getAttribute('data-id'); })[0]; S.cand = null; withSkeleton(function () { S.screen = 'cands'; render(); }); return; }
+    if (a === 'back') {
+      go(function () {
+        if (S.screen === 'detail') { S.screen = 'cands'; S.cand = null; resetForm(); }
+        else if (S.screen === 'cands') { S.screen = 'hdpv'; S.hdpv = null; S.cand = null; resetForm(); }
+        render();
+      }); return;
+    }
+    if (a === 'opencand') {
+      var c = S.hdpv.ungVien.filter(function (x) { return x.ma === t.getAttribute('data-id'); })[0];
+      go(function () { resetForm(); S.cand = c; S.screen = isDesktop() ? 'cands' : 'detail'; render(); }); return;
+    }
+    if (a === 'score') { S.scores[t.getAttribute('data-k')] = Number(t.getAttribute('data-n')); S.dirty = true; updateFormUI(); return; }
+    if (a === 'dec') {
+      S.ketLuan = t.getAttribute('data-v'); S.dirty = true;
+      if (S.ketLuan !== 'KHAC') { S.referMa = ''; S.referLy = ''; }
+      updateFormUI(); return;
+    }
+    if (a === 'submit') {
+      var m = missingCount();
+      if (m.crit || m.dec) {
+        S.showMissing = true; render();
+        var firstCrit = CRITERIA.filter(function (k) { return !S.scores[k.ma]; })[0];
+        var el = firstCrit ? document.getElementById('crit-' + firstCrit.ma) : document.getElementById('decwrap');
+        if (el) { el.scrollIntoView({ block:'center' }); var f = el.querySelector('[role="radio"]'); if (f) f.focus(); }
+        announce(m.crit ? 'Còn ' + m.crit + ' tiêu chí chưa chọn điểm' + (m.dec ? ' và chưa chọn kết luận' : '') : 'Chưa chọn kết luận'); return;
+      }
+      S.dialog = { type:'confirm' }; render(); return;
+    }
+    if (a === 'retry') { doSubmit(); return; }
+    if (a === 'dlg-cancel') { S.dialog = null; render(); return; }
+    if (a === 'dlg-submit') { doSubmit(); return; }
+    if (a === 'dlg-leave') { var nx = S.dialog.next; S.dialog = null; S.dirty = false; nx(); return; }
+    if (a === 'opencv') { openCv(); return; }
+    if (a === 'cvretry') { document.getElementById('sim-cv').checked = false; openCv(); return; }
+    if (a === 'cvclose') { S.cv = null; render(); var ob = document.querySelector('[data-act="opencv"]'); if (ob) ob.focus(); return; }
+    if (a === 'cvtab') { S.cvTab = t.getAttribute('data-t'); render(); var tb = document.getElementById('tab-' + S.cvTab); if (tb) tb.focus(); return; }
+    if (a === 'aigen') { genAi(); return; }
+    if (a === 'aigo') { goCitation(t.getAttribute('data-id'), Number(t.getAttribute('data-p'))); return; }
+    if (a === 'aihl') { S.aiHl = t.checked; render(); return; }
+    if (a === 'cvzoom') { S.cvZoom = Math.max(75, Math.min(200, S.cvZoom + Number(t.getAttribute('data-d')))); render(); return; }
+    if (a === 'cvpage') { S.cvPage = Math.max(1, Math.min(2, S.cvPage + Number(t.getAttribute('data-d')))); render(); return; }
+  });
+  document.addEventListener('input', function (ev) {
+    if (ev.target.id === 'cm') { S.comment = ev.target.value; S.dirty = true; document.getElementById('cm-n').textContent = S.comment.length + '/2000'; }
+    if (ev.target.id === 'rl') { S.referLy = ev.target.value; S.dirty = true; document.getElementById('rl-n').textContent = S.referLy.length + '/500'; }
+  });
+  document.addEventListener('change', function (ev) {
+    if (ev.target.id === 'rf') {
+      S.referMa = ev.target.value; S.dirty = true;
+      var rl = document.getElementById('rl'); if (rl) { rl.disabled = !S.referMa; if (!S.referMa) { S.referLy = ''; rl.value = ''; document.getElementById('rl-n').textContent = '0/500'; } else { announce('Đã bật ô lý do refer'); } }
+    }
+  });
+  document.addEventListener('submit', function (ev) {
+    if (ev.target.id !== 'loginform') return;
+    ev.preventDefault();
+    var em = document.getElementById('em').value.trim(), pw = document.getElementById('pw').value;
+    var ok = true;
+    document.getElementById('em-e').textContent = ''; document.getElementById('pw-e').textContent = ''; document.getElementById('login-e').textContent = '';
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { document.getElementById('em-e').textContent = '⚠ Email không đúng định dạng'; ok = false; }
+    if (!pw) { document.getElementById('pw-e').textContent = '⚠ Vui lòng nhập mật khẩu'; ok = false; }
+    if (!ok) { var first = document.querySelector('#loginform .errtext:not(:empty)'); announce(first ? first.textContent : ''); return; }
+    if (pw === 'sai') { S.loginError = 'Email hoặc mật khẩu không đúng'; render(); announce(S.loginError); return; }
+    S.loginError = ''; withSkeleton(function () { S.screen = 'hdpv'; render(); });
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && S.cv) { S.cv = null; render(); return; }
+    if (ev.key === 'Escape' && S.dialog) { S.dialog = null; render(); return; }
+    if (ev.key === 'Escape' && S.menu) { S.menu = false; render(); return; }
+    var cl = ev.target.classList;
+    if (cl && cl.contains('tab') && (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft')) { S.cvTab = S.cvTab === 'cv' ? 'ai' : 'cv'; render(); var nt = document.getElementById('tab-' + S.cvTab); if (nt) nt.focus(); ev.preventDefault(); return; }
+    if (cl && (cl.contains('score') || cl.contains('dec')) && (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft')) {
+      var sibs = Array.prototype.slice.call(ev.target.parentNode.querySelectorAll('[role="radio"]')), i = sibs.indexOf(ev.target) + (ev.key === 'ArrowRight' ? 1 : -1);
+      if (i >= 0 && i < sibs.length) { sibs[i].focus(); sibs[i].click(); }
+      ev.preventDefault();
+    }
+  });
+  document.getElementById('dev-phone').onclick = function () { S.device = 'phone'; if (S.screen === 'cands' && S.cand) S.screen = 'detail'; render(); };
+  document.getElementById('dev-desktop').onclick = function () { S.device = 'desktop'; if (S.screen === 'detail') S.screen = 'cands'; render(); };
+  document.getElementById('th-light').onclick = function () { S.theme = 'light'; render(); };
+  document.getElementById('th-dark').onclick = function () { S.theme = 'dark'; render(); };
+  render();
+})();
+</script>
+</body>
+</html>

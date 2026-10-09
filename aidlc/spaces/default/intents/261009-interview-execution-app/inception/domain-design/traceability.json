@@ -1,0 +1,37 @@
+{
+  "stage": "domain-design",
+  "upstream_ids": [
+    "US1.1", "US1.2", "US2.1", "US4.1",
+    "US5.1", "US5.2", "US5.3", "US5.4", "US5.5", "US5.6", "US5.7", "US5.8",
+    "US6.1", "US6.2", "US6.3",
+    "US7.1", "US7.2", "US7.3", "US7.4",
+    "US8.1", "US8.2", "US8.3", "US8.4", "US8.5", "US8.6"
+  ],
+  "coverage": [
+    { "id": "US1.1", "status": "OK", "target": "IdentityAccess, UserAccount, InterviewerApp" },
+    { "id": "US1.2", "status": "OK", "target": "InterviewerApp, IdentityAccess" },
+    { "id": "US2.1", "status": "OK", "target": "InterviewCatalog, InterviewPanel, PanelInterviewer, Evaluation, InterviewerApp" },
+    { "id": "US4.1", "status": "OK", "target": "InterviewCatalog, PanelCandidate, Candidate, Position, Evaluation, InterviewerApp" },
+    { "id": "US5.1", "status": "OK", "target": "InterviewCatalog, Candidate, Evaluation, Criterion, InterviewerApp" },
+    { "id": "US5.2", "status": "OK", "target": "Evaluation, EvaluationScore, InterviewerApp" },
+    { "id": "US5.3", "status": "OK", "target": "Evaluation, InterviewEvaluation, InterviewerApp" },
+    { "id": "US5.4", "status": "OK", "target": "Evaluation, InterviewEvaluation, Position, InterviewCatalog, InterviewerApp" },
+    { "id": "US5.5", "status": "OK", "target": "CandidateDocuments, CvDocument, CvViewLog, InterviewerApp" },
+    { "id": "US5.6", "status": "OK", "target": "AiAssist, CvAiSummary, AiCallLog, CandidateDocuments, InterviewerApp" },
+    { "id": "US5.7", "status": "OK", "target": "AiAssist, CvAiSummary, InterviewerApp" },
+    { "id": "US5.8", "status": "OK", "target": "Evaluation, InterviewEvaluation, InterviewerApp" },
+    { "id": "US6.1", "status": "OK", "target": "Evaluation, InterviewEvaluation, EvaluationScore" },
+    { "id": "US6.2", "status": "OK", "target": "Evaluation, InterviewEvaluation, InterviewerApp" },
+    { "id": "US6.3", "status": "OK", "target": "Evaluation, InterviewEvaluation, InterviewerApp" },
+    { "id": "US7.1", "status": "OK", "target": "DataImport, InterviewCatalog, CandidateDocuments" },
+    { "id": "US7.2", "status": "OK", "target": "DataImport, Evaluation, Criterion" },
+    { "id": "US7.3", "status": "OK", "target": "DataImport, IdentityAccess, UserAccount" },
+    { "id": "US7.4", "status": "OK", "target": "AiAssist" },
+    { "id": "US8.1", "status": "OK", "target": "InterviewerApp" },
+    { "id": "US8.2", "status": "OK", "target": "InterviewerApp" },
+    { "id": "US8.3", "status": "OK", "target": "InterviewerApp" },
+    { "id": "US8.4", "status": "OK", "target": "InterviewerApp" },
+    { "id": "US8.5", "status": "OK", "target": "InterviewerApp" },
+    { "id": "US8.6", "status": "OK", "target": "InterviewerApp" }
+  ]
+}
